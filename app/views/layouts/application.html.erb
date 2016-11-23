@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Meedesidy</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="Olive Enterprise">
+  <link rel="shortcut icon" href="iamge/favicon.ico">
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<section id="container" style="margin-top: 3.9%;">
+  <%= render 'layouts/head' %>
+  <aside>
+    <%= render 'layouts/left' %>
+  </aside>
+  <section id="main-content">
+    <%= yield %>
+
+    <!-- END WRAPPER  -->
+  </section>
+  <!-- END MAIN CONTENT -->
+  <!-- BEGIN FOOTER -->
+  <footer class="site-footer">
+    <%= render 'layouts/foot' %>
+  </footer>
+</section>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script><!-- UNDERSCORE JS -->
+<script >
+  //knob
+  $(".knob").knob();
+</script>
+<!-- END JS -->
+</body>
+</body>
+</html>
+

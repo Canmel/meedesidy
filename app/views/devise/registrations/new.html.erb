@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Meedesidy</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="Olive Enterprise">
+  <link rel="shortcut icon" href="iamge/favicon.ico">
+  <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <%= csrf_meta_tags %>
+</head>
+<body class="login-screen">
+<!-- BEGIN SECTION -->
+<div class="container">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: 'form-signin'}) do |f| %>
+      <h2 class="form-signin-heading">注册</h2>
+      <div class="login-wrap">
+        <div class="field">
+          <%= f.email_field :email, autofocus: true, label: "邮箱", placeholder: '邮箱', hide_label: true, class: 'form-control' %>
+        </div>
+        <div class="field">
+          <%= f.password_field :password, autocomplete: "off", label: "密码",hide_label: true, placeholder: "密码", class: 'form-control', style: 'font-size:16px' %>
+        </div>
+        <div class="field">
+          <%= f.password_field :password_confirmation, autocomplete: "off",label: "确认密码",hide_label: true, placeholder: "确认密码", class: 'form-control', style: 'font-size:16px' %>
+        </div>
+        <div class="login-social-link" style="text-align: center;width: 100%;">
+          <%= link_to "返回", new_session_path(resource_name), class: "facebook", style: "width: 46%; height:47px;" %>
+          <%= f.submit "提交", class: "btn btn-lg btn-login btn-block twitter", style: 'width: 46%;' %>
+        </div>
+      </div>
+  <% end %>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          &times;
+        </button>
+        <h4 class="modal-title" id="myModalLabel">
+          提示
+        </h4>
+      </div>
+      <div class="modal-body">
+        <%= devise_error_messages! %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+        </button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal -->
+</div>
+<div style="display: none;">
+<%= devise_error_messages! %>
+</div>
+<script>
+  $(function () {
+    error_text = $("#error_explanation").find('ul').text();
+    if(error_text != null && error_text != ''){
+      $('#myModal').modal('show');
+    }
+  })
+</script>
+</body>
+</html>
