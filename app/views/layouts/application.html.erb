@@ -10,15 +10,19 @@
   <link rel="shortcut icon" href="iamge/favicon.ico">
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body style="background-color: white;">
 <section id="container" style="margin-top: 3.9%;">
   <%= render 'layouts/head' %>
+  <div>
   <aside>
     <%= render 'layouts/left' %>
   </aside>
+  </div>
   <section id="main-content">
+    <div style="height: 60px"></div>
+    <div>
     <%= yield %>
-
+    </div>
     <!-- END WRAPPER  -->
   </section>
   <!-- END MAIN CONTENT -->

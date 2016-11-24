@@ -35,7 +35,7 @@ gem 'devise'
 gem 'cancan'
 gem 'rolify'
 gem 'mysql2'
-
+gem 'ransack'
 gem 'bootstrap_form'
 
 gem 'bcrypt-ruby'

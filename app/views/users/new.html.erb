@@ -1,0 +1,19 @@
+<% provide(:title, '新建用户') %>
+<div class="panel col-md-12 col-lg-12 col-sm-12 col-xs-12">
+  <h5 class="page-header" id="page_title_by_menu">新建用户</h5>
+
+  <div style="width: 60%;">
+    <div class="form"></div>
+      <%= bootstrap_form_for(@user, layout: :horizontal) do |f| %>
+        <%= f.text_field :email, label: "电子邮箱" %>
+        <%= f.password_field :password, label: "密码" %>
+        <div class="form-group">
+          <%= f.collection_check_boxes :role_ids, allRole, :id, :name, label: "角色", inline: true %>
+        </div>
+        <div class="form-group text-center">
+          <%= link_to '取消', users_path, :class => 'btn btn-default' %>
+          <%= f.submit "保存", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+  </div>
+</div>
