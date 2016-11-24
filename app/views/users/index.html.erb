@@ -30,10 +30,10 @@
       <% @users.each_with_index do |user, index| %>
         <tr>
           <td>#</td>
-          <td>李德健</td>
+          <td><%= user.name %></td>
           <td><%= user.email %></td>
           <td>
-            <a class="edit" href="javascript:;"><span class="label label-success">Edit</span></a>
+            <%= link_to '编辑', edit_user_path(user), class: 'label label-success'%>
             <a class="delete" href="javascript:;"><span class="label label-danger">Delete</span></a>
           </td>
         </tr>

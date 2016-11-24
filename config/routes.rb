@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   # devise_for :users
-  devise_for :users, :controllers => {:registrations => "devise_customed/registrations"}
+  # devise_for :users, :controllers => {:registrations => "devise_customed/registrations"}
+  devise_for :users,controllers:{sessions:"users/sessions",confirmations:"users/confirmations",passwords:"users/passwords",registrations:"users/registrations" }, path: "auth",
+             path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'cmon_let_me_in' }
   root :to => "home#index"
   get 'home/index'
-  post 'users/create_user'
   resources :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

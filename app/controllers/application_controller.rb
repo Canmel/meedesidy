@@ -4,6 +4,19 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   layout :test
 
+  def after_sign_in_path_for(resource)
+    if resource.is_a?(User)
+      if User.count == 1
+        resource.add_role 'admin'
+      end
+      resource
+    end
+    root_path
+  end
+
+  # rescue_from CanCan::AccessDenied do |exception|
+  #   redirect_to "/", :alert => exception.message
+  # end
 protected
   def test
     if current_user
