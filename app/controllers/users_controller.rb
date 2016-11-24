@@ -24,6 +24,21 @@ class UsersController < ApplicationController
     @user.update_without_password(user_params)
     redirect_to :users
   end
+
+  def destroy
+    p "==========="
+    if admin? @user
+      flash[:notice] = "超级管理员不能删除"
+    else
+      if @user.update_attribute(:status, User.statuses[:archived])
+        flash[:notice] = "删除成功"
+      else
+          flash[:notice] = '删除失败'
+      end
+    end
+    redirect_to :users
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_user

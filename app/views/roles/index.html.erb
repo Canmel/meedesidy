@@ -1,12 +1,12 @@
-<% provide(:title, '用户信息') %>
+<% provide(:title, '角色信息') %>
 <div class="panel col-md-12 col-lg-12 col-sm-12 col-xs-12">
   <h5 class="page-header" id="page_title_by_menu">查询条件</h5>
   <div class="dataTables_wrapper form-inline">
     <div>
     <%= search_form_for @q, :html => {:class => 'dataTables_filter_left'} do |f| %>
-        <%= f.label "邮箱：", class: "control-label" %>
-        <%= f.search_field :email_cont, class: 'form-control' %>
-        <%= link_to '新增', :new_user, class: "btn btn-success green" %>
+        <%= f.label "角色名称：", class: "control-label" %>
+        <%= f.search_field :name_cont, class: 'form-control' %>
+        <%= link_to '新增', :new_role, class: "btn btn-success green" %>
         <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#search_model">查询</button>
     <% end %>
     </div>
@@ -29,19 +29,7 @@
       </tr>
       </thead>
       <tbody>
-      <% @users.each_with_index do |user, index| %>
-        <tr>
-          <td>#</td>
-          <td><%= user.name %></td>
-          <td><%= user.email %></td>
-          <td><%= user.roles.pluck(:name) %></td>
-          <td><%= user.status_i18n %></td>
-          <td>
-            <%= link_to '编辑', edit_user_path(user), class: 'label label-success'%>
-            <%= link_to '删除', user, data: {confirm: "确认要删除#{user.name}?"}, method: :delete, class: "label label-danger" %>
-          </td>
-        </tr>
-      <% end %>
+
       </tbody>
     </table>
   </div>

@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161124120340) do
+ActiveRecord::Schema.define(version: 20161124170004) do
+
+  create_table "menus", force: :cascade do |t|
+    t.string   "name",          limit: 255
+    t.string   "desc",          limit: 255
+    t.string   "source",        limit: 255
+    t.integer  "parent_id",     limit: 4
+    t.integer  "resource_id",   limit: 4
+    t.string   "resource_type", limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "roles", force: :cascade do |t|
     t.string   "name",          limit: 255
@@ -19,10 +30,17 @@ ActiveRecord::Schema.define(version: 20161124120340) do
     t.string   "resource_type", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "desc",          limit: 255
+    t.integer  "level",         limit: 4
   end
 
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
+
+  create_table "roles_menus", id: false, force: :cascade do |t|
+    t.integer "role_id", limit: 4
+    t.integer "menu_id", limit: 4
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -39,6 +57,7 @@ ActiveRecord::Schema.define(version: 20161124120340) do
     t.datetime "updated_at",                                      null: false
     t.string   "name",                   limit: 255
     t.string   "group",                  limit: 255
+    t.integer  "status",                 limit: 4,   default: 1
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
