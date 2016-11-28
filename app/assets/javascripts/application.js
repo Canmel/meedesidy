@@ -13,4 +13,12 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require jquery.pjax
 //= require_tree .
+
+
+$(document).on('ready page:load',function() {
+    $(function () {
+        $(document).pjax('a:not([data-remote]):not([data-behavior]):not([data-skip-pjax])', '[data-pjax-container]')
+    })
+})

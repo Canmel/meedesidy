@@ -1,0 +1,36 @@
+<% provide(:title, '菜单信息') %>
+<div class="panel col-md-12 col-lg-12 col-sm-12 col-xs-12">
+  <h5 class="page-header" id="page_title_by_menu">查询条件</h5>
+  <div class="dataTables_wrapper form-inline">
+    <div>
+    <%= search_form_for @q, :html => {:class => 'dataTables_filter_left'} do |f| %>
+        <%= f.label "菜单名称：", class: "control-label" %>
+        <%= f.search_field :name_cont, class: 'form-control' %>
+        <%= link_to '新增', :new_menu, class: "btn btn-success green" %>
+        <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#search_model">查询</button>
+    <% end %>
+    </div>
+  </div>
+  <h3 class="sub-header">菜单列表
+    <% if flash[:notice] %>
+        <div class="notice text-center"><span class="label label-info"><%= flash[:notice] %></span></div>
+    <% end %>
+  </h3>
+  <div class="table-responsive">
+    <table class="table table-striped table-hover" id="editable-sample">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>用户名</th>
+        <th>邮箱</th>
+        <th>角色</th>
+        <th>状态</th>
+        <th>操作</th>
+      </tr>
+      </thead>
+      <tbody>
+
+      </tbody>
+    </table>
+  </div>
+</div>
