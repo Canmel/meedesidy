@@ -21,15 +21,23 @@
       <thead>
       <tr>
         <th>#</th>
-        <th>用户名</th>
-        <th>邮箱</th>
-        <th>角色</th>
-        <th>状态</th>
+        <th>名称</th>
+        <th>备注</th>
         <th>操作</th>
       </tr>
       </thead>
       <tbody>
-
+      <% @roles.each_with_index do |role, index| %>
+          <tr>
+            <td><%= (@page.to_i-1)*@pageSize+index+1 %></td>
+            <td><%= role.name %></td>
+            <td><%= role.desc %></td>
+            <td>
+              <%= link_to '编辑',edit_role_path(role), class: 'label label-success' %>
+              <%= link_to '删除', role, data: {confirm: "确认要删除#{role.name}?"}, method: :delete, class: "label label-danger" %>
+            </td>
+          </tr>
+      <% end %>
       </tbody>
     </table>
   </div>

@@ -2,6 +2,8 @@ class RolesController < ApplicationController
   before_action :set_role, only: [:show, :edit, :update, :destroy]
 
   def index
+    params[:q] ||= ActionController::Parameters.new
+    params[:q][:status_eq] = 1
     @q = Role.ransack(params[:q])
     @roles = @q.result(distinct: true)
   end
@@ -12,7 +14,26 @@ class RolesController < ApplicationController
 
   def create
     @role = Role.new(role_params)
-    @role.save
+    @role.status = 1
+    if @role.save
+      flash[:notice] = '创建成功'
+      redirect_to :roles
+    else
+      flash[:notice] = '创建失败'
+      render "/users/new"
+    end
+  end
+
+  def destroy
+    if @role.name != 'admin'
+      if @role.update_attributes(status: 0)
+        flash[:notice] = '删除成功'
+      else
+        flash[:notice] = '删除失败'
+      end
+    else
+      flash[:notice] = 'admin角色不能删除'
+    end
     redirect_to :roles
   end
 

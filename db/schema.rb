@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161124170004) do
+ActiveRecord::Schema.define(version: 20161128155836) do
 
   create_table "menus", force: :cascade do |t|
     t.string   "name",          limit: 255
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20161124170004) do
     t.string   "resource_type", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "status",        limit: 4
   end
 
   create_table "roles", force: :cascade do |t|
@@ -32,6 +33,7 @@ ActiveRecord::Schema.define(version: 20161124170004) do
     t.datetime "updated_at"
     t.string   "desc",          limit: 255
     t.integer  "level",         limit: 4
+    t.integer  "status",        limit: 4
   end
 
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree

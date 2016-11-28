@@ -6,9 +6,9 @@
     <div class="form"></div>
       <%= bootstrap_form_for(@role, layout: :horizontal) do |f| %>
         <%= f.text_field :name, label: "名称" %>
-        <%= f.text_field :desc, label: "描述" %>
+        <%= f.text_field :desc, label: "备注" %>
         <div class="form-group">
-          <%= f.collection_check_boxes :role_ids, all_menu, :id, :name, label: "菜单", inline: true %>
+          <%= f.collection_check_boxes :menu_ids, all_menu, :id, :name, label: "菜单", inline: true %>
         </div>
         <div class="form-group text-center">
           <%= link_to '取消', roles_path, :class => 'btn btn-default' %>
