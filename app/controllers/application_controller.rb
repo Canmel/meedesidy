@@ -2,9 +2,15 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+  before_action :record_request
   layout :test
 
   ADMIN_ROLE_ID = 2
+
+  def record_request
+    @page = params[:page] ||= 1
+    @pageSize = params[:pageSize] ||= 10
+  end
 
   def after_sign_in_path_for(resource)
     if resource.is_a?(User)

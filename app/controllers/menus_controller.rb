@@ -1,4 +1,6 @@
 class MenusController < ApplicationController
+  before_action :set_menu, only: [:show, :edit, :update, :destroy]
+
   def index
     @q = Menu.ransack(params[:q])
     @menus = @q.result(distinct: true)
@@ -13,6 +15,18 @@ class MenusController < ApplicationController
     @menu.parent_id=nil unless @menu.resource_type == 1
     @menu.save
     redirect_to :menus
+  end
+
+  def edit
+  end
+
+  def update
+    if @menu.update(menu_params)
+      flash[:notice] = "编辑成功"
+      redirect_to :menus
+    else
+      flash[:notice] = "编辑失败"
+    end
   end
 
   private

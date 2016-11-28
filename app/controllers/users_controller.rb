@@ -26,7 +26,6 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    p "==========="
     if admin? @user
       flash[:notice] = "超级管理员不能删除"
     else

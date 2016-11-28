@@ -1,16 +1,16 @@
-<% provide(:title, '新建菜单') %>
+<% provide(:title, '编辑菜单') %>
 <div class="panel col-md-12 col-lg-12 col-sm-12 col-xs-12">
-  <h5 class="page-header" id="page_title_by_menu">新建用户</h5>
+  <h5 class="page-header" id="page_title_by_menu">编辑菜单</h5>
 
   <div style="width: 60%;">
     <div class="form"></div>
-      <%= bootstrap_form_for(@menu, layout: :horizontal) do |f| %>
+    <%= bootstrap_form_for(@menu, layout: :horizontal) do |f| %>
         <div class="form-group">
           <%= f.label :等级, :class => 'control-label col-lg-2' %>
           <div class="col-lg-10">
             <select class="form-control" name="menu[resource_type]" id="resource_type">
-              <option value="1">一级菜单</option>
-              <option value="2">二级菜单</option>
+              <option value="1" <% if @menu.resource_type.to_i == 1 %>selected="selected"<% end %>>一级菜单</option>
+              <option value="2" <% if @menu.resource_type.to_i == 2 %>selected="selected"<% end %>>二级菜单</option>
             </select>
           </div>
         </div>
@@ -24,7 +24,7 @@
           <%= link_to '取消', roles_path, :class => 'btn btn-default' %>
           <%= f.submit "保存", class: "btn btn-primary" %>
         </div>
-      <% end %>
+    <% end %>
   </div>
 </div>
 <script>

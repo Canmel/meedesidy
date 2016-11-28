@@ -31,7 +31,7 @@
       <tbody>
       <% @users.each_with_index do |user, index| %>
         <tr>
-          <td>#</td>
+          <td><%= (@page.to_i-1)*@pageSize+index+1 %></td>
           <td><%= user.name %></td>
           <td><%= user.email %></td>
           <td><%= user.roles.pluck(:name) %></td>
