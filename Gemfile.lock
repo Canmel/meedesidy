@@ -65,6 +65,8 @@ GEM
     enum_help (0.0.16)
     erubis (2.7.0)
     execjs (2.7.0)
+    font-awesome-rails (4.7.0.0)
+      railties (>= 3.2, < 5.1)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
@@ -183,6 +185,7 @@ DEPENDENCIES
   devise
   devise-i18n
   enum_help
+  font-awesome-rails
   jbuilder (~> 2.0)
   jquery-rails
   mysql2

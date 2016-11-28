@@ -42,6 +42,7 @@ gem 'bcrypt-ruby'
 gem 'enum_help'
 gem 'devise-i18n'
 gem 'pjax_rails'
+gem "font-awesome-rails"
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
