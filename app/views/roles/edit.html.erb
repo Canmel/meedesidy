@@ -4,12 +4,11 @@
 
   <div style="width: 60%;">
     <div class="form"></div>
-      <%= bootstrap_form_for(@user, layout: :horizontal) do |f| %>
-        <%= f.text_field :email, label: "电子邮箱" %>
+      <%= bootstrap_form_for(@role, layout: :horizontal) do |f| %>
         <%= f.text_field :name, label: "姓名" %>
-        <%= f.password_field :password, label: "密码" %>
+        <%= f.text_field :desc, label: "备注" %>
         <div class="form-group">
-          <%= f.collection_check_boxes :role_ids, allRole, :id, :name, label: "角色", inline: true %>
+          <%= f.collection_check_boxes :menu_ids, all_menu, :id, :name, label: "菜单", inline: true %>
         </div>
         <div class="form-group text-center">
           <%= link_to '取消', users_path, :class => 'btn btn-default' %>

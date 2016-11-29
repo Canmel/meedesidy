@@ -38,6 +38,22 @@ class UsersController < ApplicationController
     redirect_to :users
   end
 
+  def load_menus
+    user = User.find(current_user.id)
+    roles = user.roles
+    menus = []
+    roles.each do |role|
+      role_menus = role.menus
+      role_menus.each do |menu|
+        menus << menu
+      end
+    end
+    menus = menus.uniq
+    respond_to do |format|
+      format.json { render json: menus.to_json }
+    end
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_user

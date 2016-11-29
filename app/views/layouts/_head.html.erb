@@ -5,9 +5,7 @@
     </div>
   </div>
   <!-- SIDEBAR TOGGLE BUTTON  END-->
-  <a href="index.html" class="logo">
-    Olive
-    <span>Admin</span></a>
+  <%= link_to 'Meedesidy', home_index_path, class: "logo" %>
   <!-- START HEADER  NAV -->
 
   <nav class="nav notify-row" id="top_menu">
@@ -313,7 +311,7 @@
   <div class="top-nav ">
     <ul class="nav pull-right" style="margin-top: 10px;">
       <% if current_user %>
-          <%= link_to('退出', destroy_user_session_path, :method => :delete) %> |       <%= link_to('修改密码', edit_registration_path(:user)) %>     <% else %>       <%= link_to('注册', new_registration_path(:user)) %> |       <%= link_to('登录', new_session_path(:user)) %>
+          <%= link_to('退出', destroy_user_session_path, :method => :delete,'data-skip-pjax' => true) %> |       <%= link_to('修改密码', edit_registration_path(:user)) %>     <% else %>       <%= link_to('注册', new_registration_path(:user)) %> |       <%= link_to('登录', new_session_path(:user)) %>
       <% end %>
     </ul>
   </div>

@@ -1,27 +1,44 @@
-<div id="sidebar" class="nav-collapse">
-  <ul class="sidebar-menu" id="nav-accordion">
+<div id="sidebar" class="nav-collapse" data-pjax-container>
+  <ul class="sidebar-menu" id="left_menu">
     <li>
       <a href="index.html" class="active">
         <i class="fa fa-dashboard">
         </i>
-        <span>
-                  首页
-                </span>
+        <span>首页</span>
       </a>
-    </li>
-    <li class="sub-menu">
-      <a href="javascript:;">
-        <i class="fa fa-laptop"></i>
-        <span>系统权限管理</span>
-        <span class="label label-success span-sidebar">4</span>
-      </a>
-      <ul class="sub">
-        <li><%= link_to '用户信息管理', :users %></li>
-        <li><%= link_to '角色信息管理', :roles %></li>
-        <li><%= link_to '菜单信息管理', :menus %></li>
-        <li><a href="##">权限信息管理</a></li>
-        <li><a href="##">开发哥忙碌中</a></li>
-      </ul>
     </li>
   </ul>
 </div>
+<script>
+  $(function () {
+    load_menus();
+  })
+
+  function load_menus() {
+    var menus = null;
+    $.ajax({
+      url: '/users/load_menus',
+      async: false,
+      dataType: 'json',
+      success: function (data) {
+        menus = data;
+      }
+    });
+
+    for (var i=0 ;i < menus.length ;i++ ){
+      if (menus[i].resource_type == 1){
+        $("#left_menu").append("<li class='sub-menu dcjq-parent-li'>"+
+            "<a href='javascript:;' class='dcjq-parent active'>"+
+            "<i class='fa fa-laptop'></i>"+
+            "<span>"+ menus[i].name +"</span>"+
+            "<span class='label label-success span-sidebar'>4</span>"+
+            "<span class='dcjq-icon'></span></a>"+
+            "<ul class='sub' style='overflow: hidden; display: block;' id='menu_id_"+ menus[i].id +"'>"+
+            "</ul>"+
+            "</li>")
+      }else{
+        $("#menu_id_"+ menus[i].parent_id).append("<li><a href='"+ menus[i].source +"' data-skip-pjax>"+ menus[i].name +"</a></li>")
+      }
+    }
+  }
+</script>

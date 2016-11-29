@@ -1,15 +1,5 @@
 $(function () {
 'use strict';
-    $('#nav-accordion').dcAccordion({
-        eventType: 'click',
-        autoClose: true,
-        saveState: true,
-        disableLink: true,
-        speed: 'slow',
-        showCount: false,
-        autoExpand: true,
-        classExpand: 'dcjq-current-parent'
-    });
 });
 var Script = function () {
 'use strict';
@@ -58,7 +48,7 @@ var Script = function () {
             $("#container").removeClass("sidebar-closed");
         }
     });
-    $("#sidebar").niceScroll({
+    $("#sidebar").scroll({
         styler: "fb",
         cursorcolor: "#72d0eb",
         cursorwidth: '8',
@@ -68,7 +58,7 @@ var Script = function () {
         cursorborder: '',
 		zindex: '1000'
     });
-    $("html").niceScroll({
+    $("html").scroll({
         styler: "fb",
         cursorcolor: "#72d0eb",
         cursorwidth: '6',

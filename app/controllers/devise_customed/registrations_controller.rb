@@ -10,6 +10,11 @@ class DeviseCustomed::RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def logout
+    p "===================="
+    redirect_to :users
+  end
+
   def update
     super
   end

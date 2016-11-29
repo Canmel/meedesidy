@@ -37,6 +37,15 @@ class RolesController < ApplicationController
     redirect_to :roles
   end
 
+  def update
+    if @role.update(role_params)
+      flash[:notice] = "编辑成功"
+      redirect_to :roles
+    else
+      render 'roles/edit'
+    end
+  end
+
 
   private
   # Use callbacks to share common setup or constraints between actions.
