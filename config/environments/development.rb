@@ -42,4 +42,5 @@ Rails.application.configure do
 
   config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
   config.assets.precompile += %w( .svg .eot .woff .ttf)
+  config.assets.precompile = ['*.js', '*.css', '*.css.erb', '*.png', '*.jpg', '*.gif']
 end
