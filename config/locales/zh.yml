@@ -5,3 +5,7 @@ zh-cn:
       status:
         active: "正常"
         archived: "删除"
+    menu:
+      resource_type:
+        one: "一级菜单"
+        two: "二级菜单"

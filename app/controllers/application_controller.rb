@@ -3,9 +3,16 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_action :record_request
+  after_action :render_layout
   layout :test
 
   ADMIN_ROLE_ID = 2
+
+  def render_layout
+    if request.headers['X-PJAX']
+    render :layout=>false
+    end
+  end
 
   def record_request
     @page = params[:page] ||= 1
@@ -21,6 +28,10 @@ class ApplicationController < ActionController::Base
     end
     root_path
   end
+
+  def edit
+  end
+
 
   def admin? user
    user.roles.include? Role.find(ADMIN_ROLE_ID)

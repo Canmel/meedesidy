@@ -13,45 +13,39 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @user.save
-    redirect_to :users
+    if @user.save
+      flash_msg '创建用户成功'
+      redirect_to :users
+    else
+      flash_msg '创建用户失败'
+      render :new
+    end
   end
 
   def edit
   end
 
   def update
-    @user.update_without_password(user_params)
-    redirect_to :users
+    if @user.update_without_password(user_params)
+      flash_msg '修改用户成功'
+      redirect_to :users
+    else
+      flash_msg '修改用户失败'
+      render :edit
+    end
   end
 
   def destroy
     if admin? @user
-      flash[:notice] = "超级管理员不能删除"
+      flash_msg "超级管理员不能删除"
     else
       if @user.update_attribute(:status, User.statuses[:archived])
-        flash[:notice] = "删除成功"
+        flash_msg "删除成功"
       else
-          flash[:notice] = '删除失败'
+        flash_msg '删除失败'
       end
     end
     redirect_to :users
-  end
-
-  def load_menus
-    user = User.find(current_user.id)
-    roles = user.roles
-    menus = []
-    roles.each do |role|
-      role_menus = role.menus
-      role_menus.each do |menu|
-        menus << menu
-      end
-    end
-    menus = menus.uniq
-    respond_to do |format|
-      format.json { render json: menus.to_json }
-    end
   end
 
   private
@@ -63,5 +57,9 @@ class UsersController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
     params.require(:user).permit(:name, :id, :password ,:email ,:role_ids => [])
+  end
+  
+  def flash_msg msg
+    flash[:user_notice] = msg
   end
 end

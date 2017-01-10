@@ -16,9 +16,19 @@
 //= require jquery.pjax
 //= require_tree .
 
+
 $(function() {
+    init_menus();
+    $(".dcjq-parent").eq(0).click();
     $(document).pjax('a:not([data-remote]):not([data-behavior]):not([data-skip-pjax])', '[data-pjax-container]')
-    $("#sidebar").scroll(function(){
-        $("#sidebar").getNiceScroll().resize();
-    });
 });
+
+function init_menus() {
+    $(".dcjq-parent").click(function () {
+        if($(this).next().css('display') == 'none'){
+            $(this).next().slideDown();
+        }else{
+            $(this).next().slideUp();
+        }
+    });
+}

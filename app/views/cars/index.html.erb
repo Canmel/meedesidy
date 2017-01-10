@@ -1,18 +1,20 @@
-<% provide(:title, '用户信息') %>
+<% provide(:title, '车辆信息') %>
 <div class="panel col-md-12 col-lg-11 col-sm-12 col-xs-12">
   <h5 class="page-header" id="page_title_by_menu">查询条件</h5>
   <div class="dataTables_wrapper form-inline">
     <div>
     <%= search_form_for @q, :html => {:class => 'dataTables_filter_left'} do |f| %>
-        <%= f.label "邮箱：", class: "control-label" %>
-        <%= f.search_field :email_cont, class: 'form-control' %>
-        <%= link_to '新增', :new_user, class: "btn btn-success green" %>
+        <%= f.label "车牌号：", class: "control-label" %>
+        <%= f.search_field :car_no_cont, class: 'form-control' %>
+        <%= f.label "车架号：", class: "control-label" %>
+        <%= f.search_field :vin_cont, class: 'form-control' %>
+        <%= link_to '新增', :new_car, class: "btn btn-success green" %>
         <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#search_model">查询</button>
     <% end %>
     </div>
   </div>
-  <h3 class="sub-header">用户列表
-    <% if flash[:user_notice] %>
+  <h3 class="sub-header">车辆列表
+    <% if flash[:notice] %>
         <div class="notice text-center"><span class="label label-info"><%= flash[:notice] %></span></div>
     <% end %>
   </h3>
@@ -21,24 +23,20 @@
       <thead>
       <tr>
         <th>#</th>
-        <th>用户名</th>
-        <th>邮箱</th>
-        <th>角色</th>
-        <th>状态</th>
+        <th>车牌号</th>
+        <th>车架号</th>
         <th>操作</th>
       </tr>
       </thead>
       <tbody>
-      <% @users.each_with_index do |user, index| %>
+      <% @cars.each_with_index do |car, index| %>
         <tr>
           <td><%= (@page.to_i-1)*@pageSize+index+1 %></td>
-          <td><%= user.name %></td>
-          <td><%= user.email %></td>
-          <td><%= user.roles.pluck(:name) %></td>
-          <td><%= user.status_i18n %></td>
+          <td><%= car.car_no %></td>
+          <td><%= car.vin %></td>
           <td>
-            <%= link_to '编辑', edit_user_path(user), class: 'label label-success'%>
-            <%= link_to '删除', user, data: {confirm: "确认要删除#{user.name}?"}, method: :delete, class: "label label-danger" %>
+            <%= link_to '编辑', edit_car_path(car), class: 'label label-success'%>
+            <%= link_to '删除', car, data: {confirm: "确认要删除#{car.car_no}?"}, method: :delete, class: "label label-danger" %>
           </td>
         </tr>
       <% end %>
