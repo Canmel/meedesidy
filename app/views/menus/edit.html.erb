@@ -9,8 +9,8 @@
           <%= f.label :等级, :class => 'control-label col-lg-2' %>
           <div class="col-lg-10">
             <select class="form-control" name="menu[resource_type]" id="resource_type">
-              <option value="<%= Menu.resource_types[:one] %>" <% if @menu.one_level_menu? %>selected="selected"<% end %>>一级菜单</option>
-              <option value="<%= Menu.resource_types[:two] %>" <% if @menu.two_level_menu? %>selected="selected"<% end %>>二级菜单</option>
+              <option value="<%= Menu.resource_types[:one] %>" <% if @menu.one_level? %>selected="selected"<% end %>>一级菜单</option>
+              <option value="<%= Menu.resource_types[:two] %>" <% if @menu.two_level? %>selected="selected"<% end %>>二级菜单</option>
             </select>
           </div>
         </div>

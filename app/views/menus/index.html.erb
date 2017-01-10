@@ -24,6 +24,7 @@
         <th>名称</th>
         <th>备注</th>
         <th>地址</th>
+        <th>菜单级别</th>
         <th>操作</th>
       </tr>
       </thead>
@@ -34,6 +35,7 @@
           <td><%= menu.name %></td>
           <td><%= menu.desc %></td>
           <td><%= menu.source %></td>
+          <td><%= menu.resource_type_i18n %></td>
           <td>
             <%= link_to '编辑',edit_menu_path(menu), class: 'label label-success' %>
             <%= link_to '删除', menu, data: {confirm: "确认要删除#{menu.name}?"}, method: :delete, class: "label label-danger" %>

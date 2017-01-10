@@ -1,15 +1,9 @@
 class Menu < ActiveRecord::Base
   has_and_belongs_to_many :roles, :join_table => :roles_menus
+  belongs_to :parent, :class_name => 'Menu', foreign_key: 'parent_id', primary_key: 'id'
+
+  enum resource_type: { one_level: 1, two_level: 2 }
   enum status: { active: 1, archived: 0 }
-  enum resource_type: { one: 1, two: 2 }
-
-  def one_level_menu?
-    status == Menu.resource_types[:one]
-  end
-
-  def two_level_menu?
-    status == Menu.resource_types[:two]
-  end
 
   class << self
     def find_by_user(user_id, level, parent_id)
@@ -19,18 +13,16 @@ class Menu < ActiveRecord::Base
       roles.each do |role|
         role_menus = role.menus
         role_menus.each do |menu|
-          p menu.name
-          p menu.resource_type
-          p level == menu.resource_type.to_i
-          if level == menu.resource_type.to_i
-            if parent_id == menu.parent_id.to_i
+          if level == menu.resource_type
+            p menu.parent.nil?
+            if parent_id == menu.parent&.id
               menus << menu
             end
           end
-          p menus
         end
       end
-      menus = menus.uniq
+      p menus
+      menus.uniq
     end
   end
 end

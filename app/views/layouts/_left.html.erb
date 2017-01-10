@@ -7,14 +7,14 @@
         <span>首页</span>
       </a>
     </li>
-    <% load_menus(1, 0).each do |menu| %>
+    <% load_menus('one_level', nil).each do |menu| %>
       <li class='sub-menu dcjq-parent-li'>
         <a href='javascript:;' class='dcjq-parent active'>
           <i class='fa fa-laptop'></i>
           <span><%= menu.name %></span>
           <span class='dcjq-icon'></span></a>
           <ul class='sub' style='overflow: hidden; display: none;' id='sub_menu_<%= menu.id %>'>
-            <% load_menus(2,menu.id).each do |menu_link| %>
+            <% load_menus('two_level',menu.id).each do |menu_link| %>
                 <li>
                   <a href='<%= menu_link.source %>'><%= menu_link.name %></a>
                 </li>
