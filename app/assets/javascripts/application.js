@@ -17,10 +17,10 @@
 //= require_tree .
 
 
-$(function() {
+$(document).on('ready page:load',function(){
     init_menus();
     $(".dcjq-parent").eq(0).click();
-    $(document).pjax('a:not([data-remote]):not([data-behavior]):not([data-skip-pjax])', '[data-pjax-container]')
+    $(document).pjax('a:not([data-remote]):not([data-behavior]):not([data-skip-pjax]):not([data-method="delete"])', '[data-pjax-container]',{timeout: 50000});
 });
 
 function init_menus() {

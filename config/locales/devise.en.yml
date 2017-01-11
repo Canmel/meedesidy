@@ -68,8 +68,8 @@ zh:
         archived: "删除"
     menu:
       status:
-        active: "正常1"
-        archived: "删除1"
+        active: "正常"
+        archived: "删除"
       resource_type:
         one_level: "一级菜单"
         two_level: "二级菜单"

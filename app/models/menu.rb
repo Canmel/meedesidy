@@ -11,17 +11,11 @@ class Menu < ActiveRecord::Base
       roles = user.roles
       menus = []
       roles.each do |role|
-        role_menus = role.menus
+        role_menus = role.menus.where(resource_type: Menu.resource_types[level], parent: parent_id)
         role_menus.each do |menu|
-          if level == menu.resource_type
-            p menu.parent.nil?
-            if parent_id == menu.parent&.id
-              menus << menu
-            end
-          end
+            menus << menu
         end
       end
-      p menus
       menus.uniq
     end
   end
