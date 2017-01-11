@@ -4,7 +4,7 @@
 
   <div style="width: 60%;">
     <div class="form"></div>
-      <%= bootstrap_form_for(@user, layout: :horizontal) do |f| %>
+      <%= bootstrap_form_for(@user, layout: :horizontal, :html => { class: 'pjax-form' }) do |f| %>
         <%= f.text_field :email, label: "电子邮箱" %>
         <%= f.text_field :name, label: "姓名" %>
         <%= f.password_field :password, label: "密码" %>

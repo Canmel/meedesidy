@@ -2,9 +2,10 @@ class UsersController < ApplicationController
   # load_and_authorize_resource param_method: :user_params
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   # before_filter :authenticate_user!
+  respond_to :html
   def index
     @q = User.ransack(params[:q])
-    @users = @q.result(distinct: true)
+    @users = @q.result
   end
 
   def new
@@ -15,7 +16,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash_msg '创建用户成功'
-      redirect_to :users
+      redirect_to '/users'
     else
       flash_msg '创建用户失败'
       render :new

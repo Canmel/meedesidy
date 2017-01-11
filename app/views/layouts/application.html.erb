@@ -5,18 +5,16 @@
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
   <meta name="author" content="Olive Enterprise">
   <link rel="shortcut icon" href="favicon.ico">
 
   <%= csrf_meta_tags %>
 </head>
 <body style="background-color: white; overflow: hidden;">
-<section id="container" style="margin-top: 3.9%;">
+<section style="margin-top: 3.9%;">
   <%= render 'layouts/head' %>
   <%= render 'layouts/left' %>
   <section id="main-content" data-pjax-container>
-    <div style="height: 60px"></div>
     <%= yield %>
   </section>
   <footer class="site-footer">
