@@ -14,26 +14,25 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if @user.save
-      flash_msg '创建用户成功'
-      redirect_to '/users'
-    else
-      flash_msg '创建用户失败'
-      render :new
-    end
-  end
-
-  def edit
+    # if @user.save
+    #   flash_msg '创建用户成功'
+    #   redirect_to '/users'
+    # else
+    #   flash_msg '创建用户失败'
+    #   render :new
+    # end
+    redirect_to :users
   end
 
   def update
-    if @user.update_without_password(user_params)
-      flash_msg '修改用户成功'
-      redirect_to :users
-    else
-      flash_msg '修改用户失败'
-      render :edit
-    end
+    # if @user.update_without_password(user_params)
+    #   flash_msg '修改用户成功'
+    #   redirect_to :users
+    # else
+    #   flash_msg '修改用户失败'
+    #   render :edit
+    # end
+    redirect_to :users
   end
 
   def destroy

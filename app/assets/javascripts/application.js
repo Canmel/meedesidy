@@ -18,10 +18,18 @@
 
 $(document).on('ready page:load',function(){
     $(document).pjax('a:not([data-remote]):not([data-behavior]):not([data-skip-pjax]):not([data-method="delete"])', '[data-pjax-container]',{timeout: 50000});
+
+    $(document).on('pjax:start', function() {
+        NProgress.start();
+    });
+
+    $(document).on('pjax:end', function() {
+        NProgress.done();
+    });
+
     $(document).on('submit', '.pjax-form', function(event) {
         $.pjax.submit(event, '[data-pjax-container]',{timeout: 50000})
     });
-
 });
 
 function init_menus() {

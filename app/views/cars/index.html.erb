@@ -3,7 +3,7 @@
   <h5 class="page-header">查询条件</h5>
   <div class="dataTables_wrapper form-inline">
     <div>
-    <%= search_form_for @q, :html => {:class => 'dataTables_filter_left'} do |f| %>
+    <%= search_form_for @q, :html => {:class => 'pjax-form'} do |f| %>
         <%= f.label "车牌号：", class: "control-label" %>
         <%= f.search_field :car_no_cont, class: 'form-control' %>
         <%= f.label "车架号：", class: "control-label" %>

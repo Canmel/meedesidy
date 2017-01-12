@@ -3,7 +3,7 @@
   <h5 class="page-header" id="page_title_by_menu">查询条件</h5>
   <div class="dataTables_wrapper form-inline">
     <div>
-    <%= search_form_for @q, :html => {:class => 'dataTables_filter_left'} do |f| %>
+    <%= search_form_for @q, :html => {:class => 'pjax-form'} do |f| %>
         <%= f.label "角色名称：", class: "control-label" %>
         <%= f.search_field :name_cont, class: 'form-control' %>
         <%= link_to '新增', :new_role, class: "btn btn-success green" %>

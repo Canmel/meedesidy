@@ -25,9 +25,6 @@ class MenusController < ApplicationController
     end
   end
 
-  def edit
-  end
-
   def update
     if @menu.update(menu_params)
       flash[:notice] = "编辑成功"

@@ -4,7 +4,7 @@
 
   <div style="width: 60%;">
     <div class="form"></div>
-      <%= bootstrap_form_for(@role, layout: :horizontal) do |f| %>
+      <%= bootstrap_form_for(@role, layout: :horizontal, :html => {'data-remote': true}) do |f| %>
         <%= f.text_field :name, label: "名称" %>
         <%= f.text_field :desc, label: "备注" %>
         <div class="form-group">
