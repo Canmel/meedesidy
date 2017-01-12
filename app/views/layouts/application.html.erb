@@ -6,27 +6,32 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Olive Enterprise">
-  <!--<link rel="shortcut icon" href="image/favicon.ico">-->
-
   <%= csrf_meta_tags %>
 </head>
 <body style="background-color: white; overflow: hidden;">
-<section style="margin-top: 3.9%;">
-  <%= render 'layouts/head' %>
-  <%= render 'layouts/left' %>
+<section>
+  <div class="header_div">
+    <%= render 'layouts/head' %>
+  </div>
+  <div class="lefter">
+    <%= render 'layouts/left' %>
+  </div>
   <section id="main-content" data-pjax-container>
-    <%= yield %>
+    <div class="contents_div" style="overflow:auto;">
+      <%= yield %>
+    </div>
   </section>
   <footer class="site-footer">
     <%= render 'layouts/foot' %>
   </footer>
 </section>
 <script >
-  //knob
   $(".knob").knob();
 
+  $(function(){
+    init_html();
+  });
 </script>
-</body>
 </body>
 </html>
 

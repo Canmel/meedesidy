@@ -4,8 +4,12 @@ class UsersController < ApplicationController
   # before_filter :authenticate_user!
   respond_to :html
   def index
+    params[:q] ||= ActionController::Parameters.new
+    params[:q][:status_eq] ||= User.statuses[:active]
+    params[:q][:s] = 'id desc'
     @q = User.ransack(params[:q])
-    @users = @q.result
+    @users = @q.result.page(@page).per(@pageSize)
+    @users.total_count
   end
 
   def new
@@ -14,25 +18,23 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    # if @user.save
-    #   flash_msg '创建用户成功'
-    #   redirect_to '/users'
-    # else
-    #   flash_msg '创建用户失败'
-    #   render :new
-    # end
-    redirect_to :users
+    if @user.save
+      flash_msg '创建用户成功'
+      redirect_to '/users'
+    else
+      flash_msg '创建用户失败'
+      render :new
+    end
   end
 
   def update
-    # if @user.update_without_password(user_params)
-    #   flash_msg '修改用户成功'
-    #   redirect_to :users
-    # else
-    #   flash_msg '修改用户失败'
-    #   render :edit
-    # end
-    redirect_to :users
+    if @user.update_without_password(user_params)
+      flash_msg '修改用户成功'
+      redirect_to :users
+    else
+      flash_msg '修改用户失败'
+      render :edit
+    end
   end
 
   def destroy

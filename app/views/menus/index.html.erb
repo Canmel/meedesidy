@@ -1,5 +1,5 @@
 <% provide(:title, '菜单信息') %>
-<div class="panel col-md-12 col-lg-11 col-sm-12 col-xs-12">
+<div class="panel col-md-12 col-lg-12 col-sm-12 col-xs-12">
   <h5 class="page-header" id="page_title_by_menu">查询条件</h5>
   <div class="dataTables_wrapper form-inline">
     <div>
@@ -12,8 +12,8 @@
     </div>
   </div>
   <h3 class="sub-header">菜单列表
-    <% if flash[:notice] %>
-        <div class="notice text-center"><span class="label label-info"><%= flash[:notice] %></span></div>
+    <% if flash[:menu_notice] %>
+        <div class="notice text-center"><span class="label label-info"><%= flash[:menu_notice] %></span></div>
     <% end %>
   </h3>
   <div class="table-responsive">
@@ -44,5 +44,6 @@
       <% end %>
       </tbody>
     </table>
+    共<%= @menus.total_count %>条 <%= @menus.total_pages %>页 <%= paginate @menus %>
   </div>
 </div>

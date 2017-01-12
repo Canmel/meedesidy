@@ -5,7 +5,7 @@ class RolesController < ApplicationController
     params[:q] ||= ActionController::Parameters.new
     params[:q][:status_eq] = 1
     @q = Role.ransack(params[:q])
-    @roles = @q.result(distinct: true)
+    @roles = @q.result.page(@page).per(@pageSize)
   end
 
   def new

@@ -1,5 +1,5 @@
 <% provide(:title, '车辆信息') %>
-<div class="panel col-md-12 col-lg-11 col-sm-12 col-xs-12">
+<div class="panel col-md-12 col-lg-12 col-sm-12 col-xs-12">
   <h5 class="page-header">查询条件</h5>
   <div class="dataTables_wrapper form-inline">
     <div>
@@ -44,5 +44,6 @@
       <% end %>
       </tbody>
     </table>
+    共<%= @cars.total_count %>条 <%= @cars.total_pages %>页 <%= paginate @cars %>
   </div>
 </div>

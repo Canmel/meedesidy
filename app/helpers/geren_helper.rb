@@ -1,5 +1,5 @@
 module GerenHelper
   def all_gerens
-    Geren.all
+    Geren.where(status: Geren.statuses[:active])
   end
 end

@@ -9,8 +9,8 @@
           <%= f.label :等级, :class => 'control-label col-lg-2' %>
           <div class="col-lg-10">
             <select class="form-control" name="menu[resource_type]" id="resource_type">
-              <option value="1">一级菜单</option>
-              <option value="2">二级菜单</option>
+              <option value="one_level">一级菜单</option>
+              <option value="two_level">二级菜单</option>
             </select>
           </div>
         </div>
@@ -30,7 +30,7 @@
 <script>
   $(function () {
     $("#resource_type").change(function(){
-      if($(this).val() == 1){
+      if($(this).val() == "one_level"){
         $('#parant').hide();
       }else{
         $('#parant').show();

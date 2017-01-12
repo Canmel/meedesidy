@@ -3,7 +3,7 @@ class CarsController < ApplicationController
   before_action :set_global_search_variable, only: :index
 
   def index
-    @cars = @q.result(distinct: true)
+    @cars = @q.result.page(@page).per(@pageSize)
   end
 
   def new

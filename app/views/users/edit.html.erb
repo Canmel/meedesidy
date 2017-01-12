@@ -9,7 +9,7 @@
         <%= f.text_field :name, label: "姓名" %>
         <%= f.password_field :password, label: "密码" %>
         <div class="form-group">
-          <%= f.collection_check_boxes :role_ids, all_role, :id, :name, label: "角色", inline: true %>
+          <%= f.collection_check_boxes :role_ids, all_role, :id, :desc, label: "角色", inline: true %>
         </div>
         <div class="form-group text-center">
           <%= link_to '取消', users_path, :class => 'btn btn-default' %>

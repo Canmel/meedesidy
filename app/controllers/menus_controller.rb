@@ -5,7 +5,7 @@ class MenusController < ApplicationController
     params[:q] ||= ActionController::Parameters.new
     params[:q][:status_eq] = 1
     @q = Menu.ransack(params[:q])
-    @menus = @q.result(distinct: true)
+    @menus = @q.result.page(@page).per(@pageSize)
   end
 
   def new
@@ -17,28 +17,28 @@ class MenusController < ApplicationController
     @menu.status = 1
     @menu.parent_id=nil unless @menu.resource_type == 1
     if @menu.save
-      flash[:notice] = '创建成功'
+      flash_msg '创建成功'
       redirect_to :menus
     else
-      flash[:notice] = '创建失败'
+      flash_msg '创建失败'
       render 'menus/new'
     end
   end
 
   def update
     if @menu.update(menu_params)
-      flash[:notice] = "编辑成功"
+      flash_msg "编辑成功"
       redirect_to :menus
     else
-      flash[:notice] = "编辑失败"
+      flash_msg "编辑失败"
     end
   end
 
   def destroy
     if @menu.update_attributes(status: 0)
-      flash[:notice] = '删除成功'
+      flash_msg '删除成功'
     else
-      flash[:notice] = '删除失败'
+      flash_msg '删除失败'
     end
     redirect_to :menus
   end
@@ -52,5 +52,9 @@ class MenusController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def menu_params
     params.require(:menu).permit(:name, :id, :desc, :parent_id, :source, :resource_type)
+  end
+
+  def flash_msg msg
+    flash[:menu_notice] = msg
   end
 end
