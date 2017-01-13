@@ -1,16 +1,16 @@
-<% provide(:title, '新建车型') %>
+<% provide(:title, '编辑车型') %>
 <div class="panel col-md-12 col-lg-12 col-sm-12 col-xs-12">
   <h5 class="page-header" id="page_title_by_menu">新建菜单</h5>
 
   <div style="width: 60%;">
     <div class="form"></div>
-      <%= bootstrap_form_for(@geren, layout: :horizontal) do |f| %>
+    <%= bootstrap_form_for(@geren, layout: :horizontal) do |f| %>
         <%= f.text_field :name, label: "车型名称", help: '必填' %>
         <%= f.text_field :seat_num, label: "座位数量", help: "必填"%>
         <div class="form-group text-center">
           <%= link_to '取消', gerens_path, :class => 'btn btn-default' %>
           <%= f.submit "保存", class: "btn btn-primary" %>
         </div>
-      <% end %>
+    <% end %>
   </div>
 </div>

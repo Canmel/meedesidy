@@ -14,35 +14,36 @@ class RolesController < ApplicationController
 
   def create
     @role = Role.new(role_params)
-    @role.status = 1
+    @role.status = Role.statuses[:active]
     if @role.save
-      flash[:notice] = '创建成功'
+      flash_msg '创建成功'
       redirect_to :roles
     else
-      flash[:notice] = '创建失败'
-      render "/users/new"
+      flash_msg '创建失败'
+      render :new
     end
   end
 
   def destroy
     if @role.name != 'admin'
       if @role.update_attributes(status: 0)
-        flash[:notice] = '删除成功'
+        flash_msg '删除成功'
       else
-        flash[:notice] = '删除失败'
+        flash_msg "删除失败: #{@role.operat_error_msg}"
       end
+      redirect_to :roles
     else
-      flash[:notice] = 'admin角色不能删除'
+      flash_msg 'admin角色不能删除'
+      redirect_to :roles
     end
-    redirect_to :roles
   end
 
   def update
     if @role.update(role_params)
-      flash[:notice] = "编辑成功"
+      flash_msg "编辑成功"
       redirect_to :roles
     else
-      render 'roles/edit'
+      render :edit
     end
   end
 
@@ -56,5 +57,9 @@ class RolesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def role_params
     params.require(:role).permit(:name, :id, :desc, :level, :menu_ids => [])
+  end
+
+  def flash_msg msg
+    flash[:role_notice] = msg
   end
 end

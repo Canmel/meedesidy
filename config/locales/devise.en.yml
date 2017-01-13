@@ -4,11 +4,35 @@ zh:
   activerecord:
     errors:
       models:
+        role:
+          attributes:
+            name:
+              too_long: '角色名称过长'
+              blank: '角色名称不能为空'
+            desc:
+              too_long: '角色备注过长'
+              blank: '角色备注不能为空'
+            menus:
+              size: '角色不能为空'
         user:
           attributes:
             password:
               too_short: '密码长度太短'
               blank: "密码不能为空"
+            email:
+              invalid: '邮箱格式不正确'
+              blank: '邮箱不能为空'
+              taken: '该邮箱已经被使用过了'
+            name:
+              blank: '姓名不能为空'
+              too_long: '姓名长度过长'
+        geren:
+          attributes:
+            seat_num:
+              not_an_integer: '座位数量必须是整数'
+            name:
+              too_long: '车型名称过长(最大长度10)'
+
   devise:
     confirmations:
       confirmed: "您的电子邮件地址已成功确认。"
