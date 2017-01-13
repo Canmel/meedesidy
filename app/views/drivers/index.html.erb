@@ -1,0 +1,55 @@
+<% provide(:title, '司机信息') %>
+<div class="panel col-md-12 col-lg-12 col-sm-12 col-xs-12">
+  <h5 class="page-header">查询条件</h5>
+  <div class="dataTables_wrapper form-inline">
+    <div>
+    <%= search_form_for @q, :html => {:class => 'pjax-form'} do |f| %>
+        <%= f.label "姓名：", class: "control-label" %>
+        <%= f.search_field :name_cont, class: 'form-control' %>
+        <%= link_to '新增', :new_driver, class: "btn btn-success green" %>
+        <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#search_model">查询</button>
+    <% end %>
+    </div>
+  </div>
+  <h3 class="sub-header">司机列表
+    <% if flash[:driver_notice] %>
+        <div class="notice text-center"><span class="label label-info"><%= flash[:driver_notice] %></span></div>
+    <% end %>
+  </h3>
+  <div class="table-responsive">
+    <table class="table table-striped table-hover" id="editable-sample">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>姓名</th>
+        <th>性别</th>
+        <th>公司</th>
+        <th>手机</th>
+        <th>入职时间</th>
+        <th>状态</th>
+        <th>操作人</th>
+        <th>操作</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @drivers.each_with_index do |driver, index| %>
+        <tr>
+          <td><%= sequence index %></td>
+          <td><%= driver.name %></td>
+          <td><%= driver.sex %></td>
+          <td><%= driver.company %></td>
+          <td><%= driver.phone %></td>
+          <td><%= driver.entry_time %></td>
+          <td><%= driver.status %></td>
+          <td><%= driver.updater %></td>
+          <td>
+            <%= link_to '编辑', edit_driver_path(driver), class: 'label label-success'%>
+            <%= link_to '删除', driver, data: {confirm: "确认要删除#{driver.name}?"}, method: :delete, class: "label label-danger" %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+    共<%= @drivers.total_count %>条 <%= @drivers.total_pages %>页 <%= paginate @drivers %>
+  </div>
+</div>

@@ -6,6 +6,6 @@ module MenusHelper
   end
 
   def parents_menus
-    Menu.where( resource_type: 1 )
+    Menu.where( resource_type: 1, status: Menu.statuses[:active] )
   end
 end

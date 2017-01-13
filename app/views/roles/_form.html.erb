@@ -1,0 +1,9 @@
+<%= bootstrap_form_for(@role, layout: :horizontal, :html => { class: 'pjax-form' }) do |f| %>
+    <%= f.text_field :name, label: "名称" %>
+    <%= f.text_field :desc, label: "备注" %>
+    <%= f.collection_check_boxes :menu_ids, all_menu, :id, :name, label: "菜单", inline: true %>
+    <div class="form-group text-center">
+      <%= link_to '取消', roles_path, :class => 'btn btn-default' %>
+      <%= f.submit "保存", class: "btn btn-primary" %>
+    </div>
+<% end %>

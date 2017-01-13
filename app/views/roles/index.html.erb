@@ -29,7 +29,7 @@
       <tbody>
       <% @roles.each_with_index do |role, index| %>
           <tr>
-            <td><%= (@page.to_i-1)*@pageSize+index+1 %></td>
+            <td><%= sequence index %></td>
             <td><%= role.name %></td>
             <td><%= role.desc %></td>
             <td>

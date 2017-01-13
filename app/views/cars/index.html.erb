@@ -32,7 +32,7 @@
       <tbody>
       <% @cars.each_with_index do |car, index| %>
         <tr>
-          <td><%= (@page.to_i-1)*@pageSize+index+1 %></td>
+          <td><%= sequence index %></td>
           <td><%= car.car_no %></td>
           <td><%= car.vin %></td>
           <td><%= car.color %></td>

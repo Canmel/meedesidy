@@ -4,37 +4,6 @@
 
   <div style="width: 60%;">
     <div class="form"></div>
-    <%= bootstrap_form_for(@menu, layout: :horizontal) do |f| %>
-        <div class="form-group">
-          <%= f.label :等级, :class => 'control-label col-lg-2' %>
-          <div class="col-lg-10">
-            <select class="form-control" name="menu[resource_type]" id="resource_type">
-              <option value="one_level" <% if @menu.one_level? %>selected="selected"<% end %>>一级菜单</option>
-              <option value="two_level" <% if @menu.two_level? %>selected="selected"<% end %>>二级菜单</option>
-            </select>
-          </div>
-        </div>
-        <div id="parant">
-          <%= f.collection_select(:parent_id, parents_menus, :id, :name, label: "上级") %>
-        </div>
-        <%= f.text_field :name, label: "名称" %>
-        <%= f.text_field :source, label: "地址" %>
-        <%= f.text_field :desc, label: "备注" %>
-        <div class="form-group text-center">
-          <%= link_to '取消', menus_path, :class => 'btn btn-default' %>
-          <%= f.submit "保存", class: "btn btn-primary" %>
-        </div>
-    <% end %>
+      <%= render :partial => 'form' %>
   </div>
 </div>
-<script>
-  $(function () {
-    $("#resource_type").change(function(){
-      if($(this).val() == 'one_level'){
-        $('#parant').hide();
-      }else{
-        $('#parant').show();
-      }
-    })
-  })
-</script>

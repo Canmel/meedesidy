@@ -5,7 +5,7 @@ class MenusController < ApplicationController
     params[:q] ||= ActionController::Parameters.new
     params[:q][:status_eq] = 1
     @q = Menu.ransack(params[:q])
-    @menus = @q.result.page(@page).per(@pageSize)
+    @menus = @q.result.page(@page).per(@page_size)
   end
 
   def new
@@ -21,7 +21,7 @@ class MenusController < ApplicationController
       redirect_to :menus
     else
       flash_msg '创建失败'
-      render 'menus/new'
+      render :edit
     end
   end
 
@@ -31,6 +31,7 @@ class MenusController < ApplicationController
       redirect_to :menus
     else
       flash_msg "编辑失败"
+      render :edit
     end
   end
 

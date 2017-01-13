@@ -47,6 +47,8 @@ gem "less-rails"
 gem "twitter-bootstrap-rails"
 gem 'kaminari'
 gem 'sprockets', '3.6.3'
+gem 'jquery-datetimepicker-rails'
+gem 'bootstrap-multiselect-rails'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

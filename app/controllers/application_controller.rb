@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 
   def record_request
     @page = params[:page] ||= 1
-    @pageSize = params[:pageSize] ||= 10
+    @page_size = params[:pageSize] ||= 10
   end
 
   def after_sign_in_path_for(resource)

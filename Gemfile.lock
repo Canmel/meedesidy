@@ -42,6 +42,8 @@ GEM
       bcrypt (>= 3.1.3)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-multiselect-rails (0.9.9)
+      rails (>= 4.0.0)
     bootstrap_form (2.5.3)
     builder (3.2.2)
     byebug (9.0.6)
@@ -74,6 +76,7 @@ GEM
     jbuilder (2.6.1)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
+    jquery-datetimepicker-rails (2.4.1.0)
     jquery-rails (4.2.2)
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
@@ -208,6 +211,7 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt-ruby
+  bootstrap-multiselect-rails
   bootstrap_form
   byebug
   cancan
@@ -217,6 +221,7 @@ DEPENDENCIES
   enum_help
   font-awesome-rails
   jbuilder (~> 2.0)
+  jquery-datetimepicker-rails
   jquery-rails
   kaminari
   less-rails

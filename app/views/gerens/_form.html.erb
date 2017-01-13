@@ -1,0 +1,8 @@
+<%= bootstrap_form_for(@geren, layout: :horizontal, :html => { class: 'pjax-form' }) do |f| %>
+    <%= f.text_field :name, label: "车型名称", help: '必填' %>
+    <%= f.text_field :seat_num, label: "座位数量", help: "必填"%>
+    <div class="form-group text-center">
+      <%= link_to '取消', gerens_path, :class => 'btn btn-default' %>
+      <%= f.submit "保存", class: "btn btn-primary" %>
+    </div>
+<% end %>

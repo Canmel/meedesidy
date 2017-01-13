@@ -1,7 +1,7 @@
 <div id="sidebar" class="nav-collapse">
   <ul class="sidebar-menu" id="left_menu">
     <li>
-      <a href="/home/index" class="active">
+      <a href="/home/index" class="">
         <i class="fa fa-dashboard">
         </i>
         <span>首页</span>
@@ -9,11 +9,11 @@
     </li>
     <% load_menus('one_level', nil).each do |menu| %>
       <li class='sub-menu dcjq-parent-li'>
-        <a href='javascript:;' class='dcjq-parent active'>
+        <a href='javascript:;' class='dcjq-parent-menu'>
           <i class='fa fa-laptop'></i>
           <span><%= menu.name %></span>
           <span class='dcjq-icon'></span></a>
-          <ul class='sub' style='overflow: hidden; display: none;' id='sub_menu_<%= menu.id %>'>
+          <ul class='sub menu-sub' style='overflow: hidden; display: none;' id='sub_menu_<%= menu.id %>'>
             <% load_menus('two_level',menu.id).each do |menu_link| %>
                 <li>
                   <a href='<%= menu_link.source %>'><%= menu_link.name %></a>
@@ -25,10 +25,3 @@
     <% end %>
   </ul>
 </div>
-
-<script>
-  $(function () {
-    init_menus();
-    $(".dcjq-parent").eq(0).click();
-  })
-</script>

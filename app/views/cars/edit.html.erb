@@ -3,27 +3,8 @@
   <h5 class="page-header" id="page_title_by_menu">编辑菜单</h5>
 
   <div style="width: 60%;">
-    <div class="form"></div>
-    <%= bootstrap_form_for(@car, layout: :horizontal) do |f| %>
-        <%= f.text_field :car_no, label: "车牌号" %>
-        <%= f.text_field :vin, label: "车架号" %>
-        <%= f.text_field :color, label: "备注" %>
-        <%= f.collection_select(:genre, all_gerens, :id, :name, label: "车型") %>
-        <div class="form-group text-center">
-          <%= link_to '取消', cars_path, :class => 'btn btn-default' %>
-          <%= f.submit "保存", class: "btn btn-primary" %>
-        </div>
-    <% end %>
+    <div class="form">
+      <%= render :partial => 'form' %>
+    </div>
   </div>
 </div>
-<script>
-  $(function () {
-    $("#resource_type").change(function(){
-      if($(this).val() == 1){
-        $('#parant').hide();
-      }else{
-        $('#parant').show();
-      }
-    })
-  })
-</script>

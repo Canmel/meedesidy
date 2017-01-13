@@ -1,19 +1,9 @@
 <% provide(:title, '新建角色') %>
 <div class="panel col-md-12 col-lg-11 col-sm-12 col-xs-12">
-  <h5 class="page-header" id="page_title_by_menu">新建用户</h5>
+  <h5 class="page-header" id="page_title_by_menu">新建角色</h5>
 
   <div style="width: 60%;">
     <div class="form"></div>
-      <%= bootstrap_form_for(@role, layout: :horizontal, :html => {'data-remote': true}) do |f| %>
-        <%= f.text_field :name, label: "名称" %>
-        <%= f.text_field :desc, label: "备注" %>
-        <div class="form-group">
-          <%= f.collection_check_boxes :menu_ids, all_menu, :id, :name, label: "菜单", inline: true %>
-        </div>
-        <div class="form-group text-center">
-          <%= link_to '取消', roles_path, :class => 'btn btn-default' %>
-          <%= f.submit "保存", class: "btn btn-primary" %>
-        </div>
-      <% end %>
+      <%= render :partial => 'form' %>
   </div>
 </div>

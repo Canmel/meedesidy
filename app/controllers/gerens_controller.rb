@@ -6,7 +6,7 @@ class GerensController < ApplicationController
     params[:q][:status_eq] ||= Geren.statuses[:active]
     params[:q][:s] = 'id desc'
     @q = Geren.ransack(params[:q])
-    @gerens = @q.result.page(@page).per(@pageSize)
+    @gerens = @q.result.page(@page).per(@page_size)
     @gerens.total_count
   end
 

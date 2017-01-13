@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.pjax
+//= require jquery.datetimepicker
 //= require_tree .
 
 
@@ -32,11 +33,15 @@ $(document).on('ready page:load',function(){
         // 微调布局
         $(".panel").css('margin-top', $(".header").height()+'px');
         init_html();
+        init_datepicker();
     });
 
     $(document).on('submit', '.pjax-form', function(event) {
         $.pjax.submit(event, '[data-pjax-container]',{timeout: 50000});
     });
+
+    init_datepicker();
+    init_menus();
 });
 
 
@@ -50,11 +55,61 @@ function init_html() {
 }
 
 function init_menus() {
-    $(".dcjq-parent").click(function () {
+    // 菜单点击展开／关闭
+    $(".dcjq-parent-menu").click(function () {
+        $(".dcjq-parent-menu").removeClass('active');
         if($(this).next().css('display') == 'none'){
+            $(this).addClass('active');
+            $('.menu-sub').slideUp();
             $(this).next().slideDown();
         }else{
             $(this).next().slideUp();
         }
     });
+
+    // 菜单选中
+    $(".menu-sub").find('a').click(function(){
+        $(".menu-sub").find('a').css('color', '#aeb2b7');
+        $(this).css('color', '#428bca');
+    })
+}
+
+function init_datepicker(){
+    $(".datepicker-start, .datepicker-end, .selectpicker, .datepicker, .monthpicker, " +
+        ".datetimepicker, .datetimepicker-start, .datetimepicker-end").attr("readonly", true);
+    try {
+        $('.datepicker').datetimepicker({
+            format: 'Y-m-d',
+            timepicker: false,
+            lang: 'zh'
+        });
+        $('.monthpicker').datetimepicker({
+            format: 'Y-m-01',
+            timepicker: false,
+            lang: 'zh'
+        });
+        $('.datetimepicker').datetimepicker({
+            format: 'Y-m-d H:i:s',
+            lang: 'zh'
+        });
+        $('.datepicker-start').datetimepicker({
+            format: 'Y-m-d',
+            timepicker: false,
+            lang: 'zh'
+        });
+        $('.datepicker-end').datetimepicker({
+            format: 'Y-m-d',
+            timepicker: false,
+            lang: 'zh'
+        });
+        $('.datetimepicker-start').datetimepicker({
+            format: 'Y-m-d H:i:s',
+            lang: 'zh'
+        });
+        $('.datetimepicker-end').datetimepicker({
+            format: 'Y-m-d H:i:s',
+            lang: 'zh'
+        });
+    } catch (e) {
+    }
 }

@@ -30,9 +30,17 @@ zh:
           attributes:
             seat_num:
               not_an_integer: '座位数量必须是整数'
+              less_than: '座位数量过大'
             name:
               too_long: '车型名称过长(最大长度10)'
-
+        menu:
+          attributes:
+            name:
+              blank: '菜单名称不能为空'
+            source:
+              blank: '菜单地址不能为空'
+            desc:
+              blank: '菜单备注不能为空'
   devise:
     confirmations:
       confirmed: "您的电子邮件地址已成功确认。"
@@ -113,6 +121,10 @@ zh:
       status:
         active: "正常"
         archived: "删除"
+    driver:
+      sex:
+        man: '男'
+        woman: '女'
   views:
       pagination:
         first: "&laquo; 首页"

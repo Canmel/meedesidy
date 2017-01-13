@@ -1,0 +1,10 @@
+<%= bootstrap_form_for(@car, layout: :horizontal, :html => { class: 'pjax-form' }) do |f| %>
+    <%= f.text_field :car_no, label: "车牌号" %>
+    <%= f.text_field :vin, label: "车架号" %>
+    <%= f.text_field :color, label: "颜色" %>
+    <%= f.collection_select(:genre, all_gerens, :id, :name, label: "车型") %>
+    <div class="form-group text-center">
+      <%= link_to '取消', cars_path, :class => 'btn btn-default' %>
+      <%= f.submit "保存", class: "btn btn-primary" %>
+    </div>
+<% end %>

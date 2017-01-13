@@ -1,0 +1,13 @@
+<%= bootstrap_form_for(@driver, layout: :horizontal, :html => { class: 'pjax-form' }) do |f| %>
+    <%= f.text_field :name, label: "司机姓名", help: '必填' %>
+    <%= f.text_field :id_card_no, label: "身份证号", help: '必填' %>
+    <%= f.text_field :phone, label: "手机", help: '必填' %>
+    <%= f.text_field :entry_time, class: "datepicker", label: "入职时间", help: '必填' %>
+    <%= f.text_field :desc, label: "备注", help: '必填' %>
+    <%= f.text_field :sex, label: "性别", help: '必填' %>
+    <%= f.text_field :company_id, label: "公司", help: '必填' %>
+    <div class="form-group text-center">
+      <%= link_to '取消', drivers_path, :class => 'btn btn-default' %>
+      <%= f.submit "保存", class: "btn btn-primary" %>
+    </div>
+<% end %>

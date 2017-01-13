@@ -5,7 +5,7 @@ class RolesController < ApplicationController
     params[:q] ||= ActionController::Parameters.new
     params[:q][:status_eq] = 1
     @q = Role.ransack(params[:q])
-    @roles = @q.result.page(@page).per(@pageSize)
+    @roles = @q.result.page(@page).per(@page_size)
   end
 
   def new
@@ -17,9 +17,10 @@ class RolesController < ApplicationController
     @role.status = Role.statuses[:active]
     if @role.save
       flash_msg '创建成功'
-      redirect_to :roles
+      redirect_to '/roles'
     else
-      flash_msg '创建失败'
+      flash[:role_notice] = '创建失败'
+      p @role.errors.full_messages
       render :new
     end
   end
@@ -31,11 +32,10 @@ class RolesController < ApplicationController
       else
         flash_msg "删除失败: #{@role.operat_error_msg}"
       end
-      redirect_to :roles
     else
       flash_msg 'admin角色不能删除'
-      redirect_to :roles
     end
+    redirect_to :roles
   end
 
   def update

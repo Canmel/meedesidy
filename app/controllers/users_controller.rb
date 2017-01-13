@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     params[:q][:status_eq] ||= User.statuses[:active]
     params[:q][:s] = 'id desc'
     @q = User.ransack(params[:q])
-    @users = @q.result.page(@page).per(@pageSize)
+    @users = @q.result.page(@page).per(@page_size)
     @users.total_count
   end
 

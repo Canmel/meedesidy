@@ -22,7 +22,7 @@
       <tr>
         <th>#</th>
         <th>车型名称</th>
-        <th>车作数</th>
+        <th>车座数</th>
         <th>状态</th>
         <th>操作</th>
       </tr>
@@ -30,7 +30,7 @@
       <tbody>
       <% @gerens.each_with_index do |geren, index| %>
         <tr>
-          <td><%= (@page.to_i-1)*@pageSize+index+1 %></td>
+          <td><%= sequence index %></td>
           <td><%= geren.name %></td>
           <td><%= geren.seat_num %></td>
           <td><%= geren.status_i18n %></td>
