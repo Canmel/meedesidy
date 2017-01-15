@@ -6,4 +6,8 @@ module ApplicationHelper
   def sequence(index)
     (@page.to_i - 1) * @page_size.to_i + index + 1
   end
+
+  def enum_to_select_array(class_name, enum)
+    Driver.sexes.to_a.map { |w| [w[0].humanize, w[0]] }
+  end
 end

@@ -11,7 +11,7 @@ class CreateDriver < ActiveRecord::Migration
       t.integer :company_id, common: '公司'
       t.integer :updater, common: '修改人'
 
-      t.timestamp
+      t.timestamps
     end
   end
 end

@@ -36,12 +36,12 @@
         <tr>
           <td><%= sequence index %></td>
           <td><%= driver.name %></td>
-          <td><%= driver.sex %></td>
-          <td><%= driver.company %></td>
+          <td><%= driver.sex_i18n %></td>
+          <td><%= driver.company&.id %></td>
           <td><%= driver.phone %></td>
           <td><%= driver.entry_time %></td>
-          <td><%= driver.status %></td>
-          <td><%= driver.updater %></td>
+          <td><%= driver.status_i18n %></td>
+          <td><%= driver.updater&.name %></td>
           <td>
             <%= link_to '编辑', edit_driver_path(driver), class: 'label label-success'%>
             <%= link_to '删除', driver, data: {confirm: "确认要删除#{driver.name}?"}, method: :delete, class: "label label-danger" %>

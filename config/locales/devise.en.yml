@@ -30,9 +30,12 @@ zh:
           attributes:
             seat_num:
               not_an_integer: '座位数量必须是整数'
+              not_a_number: '车座数量必须是数字'
               less_than: '座位数量过大'
+              blank: '车座数量必须填写'
             name:
               too_long: '车型名称过长(最大长度10)'
+              blank: '车型名称必须填写'
         menu:
           attributes:
             name:
@@ -41,6 +44,42 @@ zh:
               blank: '菜单地址不能为空'
             desc:
               blank: '菜单备注不能为空'
+        driver:
+          attributes:
+            name:
+              blank: '司机姓名不能为空'
+              taken: '司机姓名已存在'
+            id_card_no:
+              blank: '身份证号不能为空'
+              too_long: '长度过长'
+              too_short: '长度过短'
+              invalid: '格式不正确'
+            entry_time:
+              blank: '入职时间不能为空'
+            phone:
+              blank: '公司电话不能为空'
+              invalid: '格式不正确'
+              too_long: '长度过长'
+              too_short: '长度过短'
+            desc:
+              blank: '备注信息不能为空'
+            sex:
+              blank: '性别必须选择'
+            company_id:
+              blank: '服务公司不能为空'
+        car:
+          attributes:
+            color:
+              blank: '车辆颜色不能为空'
+            vin:
+              too_short: '车架号过短'
+              blank: '车架号不能为空'
+              taken: '车架号已存在'
+            car_no:
+              invalid: '格式不正确'
+              blank: '车牌号不能为空'
+              taken: '车牌号已存在'
+
   devise:
     confirmations:
       confirmed: "您的电子邮件地址已成功确认。"
@@ -125,6 +164,9 @@ zh:
       sex:
         man: '男'
         woman: '女'
+      status:
+        active: '正常'
+        archived: '删除'
   views:
       pagination:
         first: "&laquo; 首页"
