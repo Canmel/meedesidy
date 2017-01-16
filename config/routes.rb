@@ -13,7 +13,12 @@ Rails.application.routes.draw do
   resources :menus
   resources :cars
   resources :gerens
-  resources :drivers
+  resources :companies
+  resources :drivers do
+    collection do
+      get :autocomplete_driver_name
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

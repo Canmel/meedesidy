@@ -24,7 +24,6 @@ class ApplicationController < ActionController::Base
   def edit
   end
 
-
   def admin? user
    user.roles.include? Role.find(ADMIN_ROLE_ID)
   end

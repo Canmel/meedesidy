@@ -14,6 +14,8 @@
 //= require jquery_ujs
 //= require jquery.pjax
 //= require jquery.datetimepicker
+//= require jquery-ui
+//= require autocomplete-rails
 //= require_tree .
 
 
