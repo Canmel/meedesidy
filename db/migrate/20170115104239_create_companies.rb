@@ -7,7 +7,7 @@ class CreateCompanies < ActiveRecord::Migration
       t.string :contact_name, common: '联系人姓名'
       t.string :contact_phone, common: '联系人电话'
       t.string :sort_name, common: '简称'
-      t.integer :status, common: '状态'
+      t.integer :status, common: '状态', default: 1
 
       t.timestamps
     end

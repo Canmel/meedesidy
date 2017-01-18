@@ -228,6 +228,7 @@ DEPENDENCIES
   jquery-datetimepicker-rails
   jquery-rails
   jquery-ui-rails
+  json
   kaminari
   less-rails
   mysql2

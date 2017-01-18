@@ -351,13 +351,17 @@ role_id</columns>
     <column id="121" parent="31" name="sort_name">
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="122" parent="31" name="created_at">
+    <column id="122" parent="31" name="status">
+      <data-type>int(11)|0</data-type>
+      <default-expression>&apos;1&apos;</default-expression>
+    </column>
+    <column id="123" parent="31" name="created_at">
       <data-type>datetime|0</data-type>
     </column>
-    <column id="123" parent="31" name="updated_at">
+    <column id="124" parent="31" name="updated_at">
       <data-type>datetime|0</data-type>
     </column>
-    <key id="124" parent="31" name="PRIMARY">
+    <key id="125" parent="31" name="PRIMARY">
       <columns>id</columns>
       <primary>1</primary>
     </key>

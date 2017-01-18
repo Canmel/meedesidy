@@ -24,7 +24,6 @@ $(document).on('ready page:load',function(){
     $(document).pjax('a:not([data-remote]):not([data-behavior]):not([data-skip-pjax]):not([data-method="delete"])', '[data-pjax-container]',{timeout: 50000});
     // 调整布局
     $(".panel").css('margin-top', $(".header").height()+'px');
-
     // pjax 开始 回调
     $(document).on('pjax:start', function() {
         NProgress.start();
@@ -36,6 +35,7 @@ $(document).on('ready page:load',function(){
         $(".panel").css('margin-top', $(".header").height()+'px');
         init_html();
         init_datepicker();
+        bind_autocomplete();
     });
 
     $(document).on('submit', '.pjax-form', function(event) {
@@ -44,6 +44,7 @@ $(document).on('ready page:load',function(){
 
     init_datepicker();
     init_menus();
+    bind_autocomplete();
 });
 
 
@@ -54,6 +55,12 @@ function init_html() {
     var div_height = win_height - footer_height - header_height - 30;
     $(".panel").css('height', div_height + 'px' );
     $(".panel").css('overflow', 'auto' );
+}
+
+function bind_autocomplete() {
+    $('.asutocomplete').bind('input propertychange', function() {
+        alert('');
+    });
 }
 
 function init_menus() {
@@ -68,7 +75,6 @@ function init_menus() {
             $(this).next().slideUp();
         }
     });
-
     // 菜单选中
     $(".menu-sub").find('a').click(function(){
         $(".menu-sub").find('a').css('color', '#aeb2b7');

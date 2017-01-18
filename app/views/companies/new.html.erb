@@ -6,8 +6,8 @@
     <div class="form">
       <%= bootstrap_form_for(@company, layout: :horizontal, :html => { class: 'pjax-form' }) do |f| %>
           <%= f.text_field :name, label: "公司名称", help: '必填' %>
-          <%= f.text_field :addr, label: "身份证号", help: '必填' %>
-          <%= f.text_field :phone, label: "入职时间", help: '必填' %>
+          <%= f.text_field :addr, label: "地址", help: '必填' %>
+          <%= f.text_field :phone, label: "电话", help: '必填' %>
           <%= f.text_field :contact_name, label: "联系人姓名", help: '必填' %>
           <%= f.text_field :contact_phone, label: "联系人手机", help: '必填' %>
           <%= f.text_field :sort_name, label: "简称", help: '必填' %>

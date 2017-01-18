@@ -11,7 +11,7 @@
           <%= f.text_field :phone, label: "手机", help: '必填' %>
           <%= f.text_field :desc, label: "备注", help: '必填' %>
           <%= f.select :sex, sex_array, { label: "性别"}, {class:"form-control m-b"}%>
-          <%= f.text_field :company_id, label: "公司", help: '必填' %>
+          <%= f.select :company_id, companies_array, label: "公司", help: '必填' %>
           <div class="form-group text-center">
             <%= link_to '取消', drivers_path, :class => 'btn btn-default' %>
             <%= f.submit "保存", class: "btn btn-primary" %>

@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20170115104239) do
     t.string   "contact_name",  limit: 255
     t.string   "contact_phone", limit: 255
     t.string   "sort_name",     limit: 255
-    t.integer  "status",        limit: 4
+    t.integer  "status",        limit: 4,   default: 1
     t.datetime "created_at"
     t.datetime "updated_at"
   end

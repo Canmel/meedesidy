@@ -7,18 +7,17 @@ Rails.application.routes.draw do
 
   get 'home/index'
   get 'users/load_menus'
-  # delete 'auth/logout'
   resources :users
   resources :roles
   resources :menus
   resources :cars
   resources :gerens
   resources :companies
+  get '/drivers/search_company'
   resources :drivers do
-    collection do
-      get :autocomplete_driver_name
-    end
+    get :autocomplete_company_name, on: :collection
   end
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

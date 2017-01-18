@@ -2,8 +2,6 @@ class DriversController < ApplicationController
   before_action :set_global_search_variable, only: :index
   before_action :set_driver, only: [:show, :edit, :update, :destroy]
 
-  autocomplete :driver, name
-
   def index
     @drivers = @q.result.page(@page).per(@page_size)
   end
@@ -33,12 +31,9 @@ class DriversController < ApplicationController
   end
 
   def search_company
-    key_word = params[:q]
-    @drivers = Driver.where("name like '%#{key_word}%'")
-    p @drivers
-    respond_to do |format|
-      format.json { render :json => { :drivers => @drivers.as_json(:only => [:name]) } }
-    end
+    key_word = params[:term]
+    @companies = Company.where("name like '%#{key_word}%'")
+    render :json => @companies.map{|company| {id: company.id, label: company.name, value: company.name, name: company.name}}
   end
 
 
