@@ -10,7 +10,7 @@
     <% load_menus('one_level', nil).each do |menu| %>
       <li class='sub-menu dcjq-parent-li'>
         <a href='javascript:;' class='dcjq-parent-menu'>
-          <i class='fa fa-laptop'></i>
+          <i class='fa <%= menu.icon&.code %>'></i>
           <span><%= menu.name %></span>
           <span class='dcjq-icon'></span></a>
           <ul class='sub menu-sub' style='overflow: hidden; display: none;' id='sub_menu_<%= menu.id %>'>

@@ -50,6 +50,16 @@ class UsersController < ApplicationController
     redirect_to :users
   end
 
+  def login_app
+    # user = User.authenticate(params[:username], params[:password])
+    if params[:username] == '0000' && params[:password] == '1111'
+      render json: { :code => '200' , :msg => '登陆成功' }
+    else
+      render json: { :code => '304' , :msg => '登陆失败，请检查您的用户名密码' }
+    end
+
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_user

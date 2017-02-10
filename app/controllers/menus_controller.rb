@@ -6,6 +6,7 @@ class MenusController < ApplicationController
     params[:q][:status_eq] = 1
     @q = Menu.ransack(params[:q])
     @menus = @q.result.page(@page).per(@page_size)
+    @menus.total_count
   end
 
   def new
@@ -52,7 +53,7 @@ class MenusController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def menu_params
-    params.require(:menu).permit(:name, :id, :desc, :parent_id, :source, :resource_type)
+    params.require(:menu).permit(:name, :id, :desc, :parent_id, :source, :resource_type, :icon_id)
   end
 
   def flash_msg msg

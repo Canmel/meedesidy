@@ -1,6 +1,6 @@
 class DriversController < ApplicationController
+  load_and_authorize_resource
   before_action :set_global_search_variable, only: :index
-  before_action :set_driver, only: [:show, :edit, :update, :destroy]
 
   def index
     @drivers = @q.result.page(@page).per(@page_size)
@@ -38,10 +38,6 @@ class DriversController < ApplicationController
 
 
   private
-  def set_driver
-    @driver = Driver.find(params[:id])
-  end
-  # Never trust parameters from the scary internet, only allow the white list through.
   def driver_params
     params.require(:driver).permit(:name, :id, :id_card_no, :status, :phone, :desc, :sex, :company_id, :entry_time)
   end

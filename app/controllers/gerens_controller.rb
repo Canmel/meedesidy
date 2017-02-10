@@ -1,4 +1,5 @@
 class GerensController < ApplicationController
+  load_and_authorize_resource
   before_action :set_car_gerens, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -38,10 +39,6 @@ class GerensController < ApplicationController
   private
   def flash_msg msg
     flash[:gerens_notice] = msg
-  end
-
-  def set_car_gerens
-    @geren = Geren.find(params[:id])
   end
 
   def geren_params

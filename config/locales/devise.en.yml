@@ -73,6 +73,7 @@ zh:
               blank: '车辆颜色不能为空'
             vin:
               too_short: '车架号过短'
+              too_long: '车架号过长'
               blank: '车架号不能为空'
               taken: '车架号已存在'
             car_no:
@@ -99,6 +100,12 @@ zh:
               invalid: '格式不正确'
             sort_name:
               blank: '不能为空'
+        icon:
+          attributes:
+            name:
+              blank: '名称不能为空'
+            code:
+              blank: 'code不能为空'
 
 
   devise:
@@ -189,6 +196,10 @@ zh:
         active: '正常'
         archived: '删除'
     company:
+      status:
+        active: '正常'
+        archived: '删除'
+    icon:
       status:
         active: '正常'
         archived: '删除'

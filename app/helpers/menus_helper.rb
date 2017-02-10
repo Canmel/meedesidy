@@ -8,4 +8,8 @@ module MenusHelper
   def parents_menus
     Menu.where( resource_type: 1, status: Menu.statuses[:active] )
   end
+
+  def all_icons
+    Icon.where(status: Menu.statuses[:active]).map{ |icon| [icon.name, icon.id] }
+  end
 end

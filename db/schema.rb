@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170115104239) do
+ActiveRecord::Schema.define(version: 20170118040228) do
 
   create_table "cars", force: :cascade do |t|
     t.string   "car_no",     limit: 255
@@ -59,6 +59,14 @@ ActiveRecord::Schema.define(version: 20170115104239) do
     t.integer  "status",     limit: 4,   default: 1
   end
 
+  create_table "icons", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "code",       limit: 255
+    t.integer  "status",     limit: 4,   default: 1
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+  end
+
   create_table "menus", force: :cascade do |t|
     t.string   "name",          limit: 255
     t.string   "desc",          limit: 255
@@ -69,6 +77,7 @@ ActiveRecord::Schema.define(version: 20170115104239) do
     t.datetime "updated_at"
     t.integer  "status",        limit: 4
     t.integer  "resource_type", limit: 4
+    t.integer  "icon_id",       limit: 4
   end
 
   create_table "roles", force: :cascade do |t|

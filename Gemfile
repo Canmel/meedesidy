@@ -29,29 +29,31 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'unicorn'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-gem 'devise'
-gem 'cancan'
-gem 'rolify'
-gem 'mysql2'
-gem 'ransack'
-gem 'bootstrap_form'
+gem 'devise', '4.2.0'
+gem 'cancan', '1.6.10'
+gem 'rolify', '5.1.0'
+gem 'mysql2', '0.4.5'
+gem 'ransack', '1.8.2'
+gem 'bootstrap_form', '2.5.3'
 
-gem 'bcrypt-ruby'
-gem 'enum_help'
-gem 'devise-i18n'
-gem 'pjax_rails'
-gem "font-awesome-rails"
-gem 'enum_help'
-gem "therubyracer"
-gem "less-rails"
-gem "twitter-bootstrap-rails"
-gem 'kaminari'
+gem 'bcrypt-ruby', '3.1.5'
+gem 'enum_help', '0.0.16'
+gem 'devise-i18n', '1.1.1'
+gem 'pjax_rails', '0.4.0'
+gem "font-awesome-rails", '4.7.0.1'
+gem "therubyracer", '0.12.3'
+gem "less-rails", '2.8.0'
+gem "twitter-bootstrap-rails", '3.2.2'
+gem 'kaminari', '1.0.0'
 gem 'sprockets', '3.6.3'
-gem 'jquery-datetimepicker-rails'
-gem 'bootstrap-multiselect-rails'
-gem 'rails4-autocomplete'
-gem 'jquery-ui-rails'
-gem "json"
+gem 'jquery-datetimepicker-rails', '2.4.1.0'
+gem 'bootstrap-multiselect-rails', '0.9.9'
+gem 'rails4-autocomplete', '1.1.1'
+gem 'jquery-ui-rails', '5.0.5'
+gem "json", '1.8.3'
+gem 'useragent', '0.16.8'
+gem 'rubocop','0.46.0'
+gem 'qwer', '0.1.1'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

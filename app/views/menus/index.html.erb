@@ -34,7 +34,7 @@
           <td><%= sequence index %></td>
           <td><%= menu.name %></td>
           <td><%= menu.desc %></td>
-          <td><%= menu.source %></td>
+          <td><%= menu.source.present? ? menu.source : '无' %></td>
           <td><%= menu.resource_type_i18n %></td>
           <td>
             <%= link_to '编辑',edit_menu_path(menu), class: 'label label-success' %>

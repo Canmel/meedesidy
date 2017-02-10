@@ -7,17 +7,19 @@ Rails.application.routes.draw do
 
   get 'home/index'
   get 'users/load_menus'
+  get 'users/login_app'
   resources :users
   resources :roles
   resources :menus
   resources :cars
   resources :gerens
   resources :companies
+  resources :icons
   get '/drivers/search_company'
   resources :drivers do
     get :autocomplete_company_name, on: :collection
   end
-
+  get '*path' => proc { |env| Rails.env.development? ? (raise ActionController::RoutingError, %{No route matches "#{env["PATH_INFO"]}"}) : ApplicationController.action(:render_not_found).call(env) }
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
