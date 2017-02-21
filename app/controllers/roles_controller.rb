@@ -27,7 +27,7 @@ class RolesController < ApplicationController
 
   def destroy
     if @role.name != 'admin'
-      if @role.update_attributes(status: 0)
+      if @role.update_attributes(status: Role.statuses[:archived])
         flash_msg '删除成功'
       else
         flash_msg "删除失败: #{@role.operat_error_msg}"

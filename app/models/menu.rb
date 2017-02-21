@@ -20,9 +20,9 @@ class Menu < ActiveRecord::Base
       menus = []
       roles.each do |role|
         if Menu.resource_types[level] == Menu.resource_types[:one_level]
-          role_menus = role.menus.where(resource_type: Menu.resource_types[level])
+          role_menus = role.menus.where(resource_type: Menu.resource_types[level], status: Menu.active)
         else
-          role_menus = role.menus.where(resource_type: Menu.resource_types[level], parent_id: parent_id)
+          role_menus = role.menus.where(resource_type: Menu.resource_types[level], parent_id: parent_id, status: Menu.active)
         end
         role_menus.each do |menu|
             menus << menu
