@@ -11,7 +11,6 @@ class DeviseCustomed::RegistrationsController < Devise::RegistrationsController
   end
 
   def logout
-    p "===================="
     redirect_to :users
   end
 

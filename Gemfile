@@ -52,7 +52,7 @@ gem 'jquery-ui-rails', '5.0.5'
 gem "json", '1.8.3'
 gem 'useragent', '0.16.8'
 gem 'rubocop','0.46.0'
-gem 'qwer', '0.1.3'
+gem 'qwer', '0.1.5'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

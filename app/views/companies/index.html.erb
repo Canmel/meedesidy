@@ -3,20 +3,18 @@
   <h5 class="page-header">查询条件</h5>
   <div class="dataTables_wrapper form-inline">
     <div>
-    <% model = Qwer::Tmodel.new('companies', 10, 1) %>
+    <% model = Qwer::Tmodel.new('companies', @q ,10, 1) %>
     <%= model.table_seach({ col_num: 3,
-                            action: '/companies',
                             method: 'get',
-                            'charset': 'UTF-8',
-                            form_class: 'form-inline text-left',
                             new: '/companies/new'
                           }, {
                             'q[name_cont]': '名称',
                             'q[sort_name_cont]': '简称',
-                            'q[status_eq]': {name: '状态', type: 'select', data:["all",{k: '1',v: '正常'},{k: 0, v: '删除'}]},
+                            'q[status_eq]': { name: '状态', type: 'select', data: [ "all", { k: '1', v: '正常' }, { k: 0, v: '删除' } ] },
                             'q[phone_cont]': '电话',
                             'q[id_eq]': 'ID',
-                            'q[created_at]': {name: '创建时间'} # data / data_time
+                            'q[created_at_gteq]': { name: '创建开始时间', css: 'datepicker' }, # data / data_time
+                            'q[created_at_lteq]': { name: '创建截止时间', css: 'datepicker' }
                           }) %>
     </div>
   </div>

@@ -54,7 +54,7 @@ class CompaniesController < ApplicationController
 
   def set_global_search_variable
     params[:q] ||= ActionController::Parameters.new
-    params[:q][:status_eq] = Company.statuses[:active]
+    # params[:q][:status_eq] = Company.statuses[:active]
     @q = Company.ransack(params[:q])
   end
 end
