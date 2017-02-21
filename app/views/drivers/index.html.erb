@@ -6,6 +6,8 @@
     <%= search_form_for @q, :html => {:class => 'pjax-form'} do |f| %>
         <%= f.label "姓名：", class: "control-label" %>
         <%= f.search_field :name_cont, class: 'form-control' %>
+        <%= f.label "状态：", class: "control-label" %>
+        <%= f.select(:status_eq, "<option value=''>#{t('全部')}</option>".html_safe+ options_for_select(drivers_colect.collect { |g| [g['v'], g['k']] }, @q.status_eq), {}, {:class => 'form-control'}) %>
         <%= link_to '新增', :new_driver, class: "btn btn-success green" %>
         <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#search_model">查询</button>
     <% end %>

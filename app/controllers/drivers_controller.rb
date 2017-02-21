@@ -30,11 +30,20 @@ class DriversController < ApplicationController
     end
   end
 
-  def search_company
-    key_word = params[:term]
-    @companies = Company.where("name like '%#{key_word}%'")
-    render :json => @companies.map{|company| {id: company.id, label: company.name, value: company.name, name: company.name}}
+  def destroy
+    if @driver.update(status: Driver.statuses[:archived])
+      flash_msg '删除成功'
+    else
+      flash_msg '删除失败'
+    end
+    redirect_to :drivers
   end
+
+  # def search_company
+  #   key_word = params[:term]
+  #   @companies = Company.where("name like '%#{key_word}%'")
+  #   render :json => @companies.map{|company| {id: company.id, label: company.name, value: company.name, name: company.name}}
+  # end
 
 
   private
@@ -48,7 +57,7 @@ class DriversController < ApplicationController
 
   def set_global_search_variable
     params[:q] ||= ActionController::Parameters.new
-    params[:q][:status_eq] = Car.statuses[:active]
+    # params[:q][:status_eq] = Car.statuses[:active]
     @q = Driver.ransack(params[:q])
   end
 end
