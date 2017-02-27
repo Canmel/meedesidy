@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
   # load_and_authorize_resource param_method: :user_params
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :qrcode]
   # before_filter :authenticate_user!
   respond_to :html
+
   def index
     params[:q] ||= ActionController::Parameters.new
     params[:q][:status_eq] ||= User.statuses[:active]
@@ -19,6 +20,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      save_qrcode @user
       flash_msg '创建用户成功'
       redirect_to '/users'
     else
@@ -60,6 +62,21 @@ class UsersController < ApplicationController
 
   end
 
+  def primitive_url
+    require 'qiniu'
+    user = User.find(params[:id])
+    file_name = user&.email&.split('@')[0]
+    file_name ||= ""
+    code, result, response_headers = Qiniu::Storage.stat(QINIU_BUCKET, "#{file_name}.png")
+    if code == 200
+      primitive_url = "http://olzjsogr4.bkt.clouddn.com/#{file_name}.png"
+      download_url = Qiniu::Auth.authorize_download_url(primitive_url)
+      render json: { :code => '200' ,:name => user.name , :data => download_url } if download_url.present?
+    else
+      render json: { code: 'error' ,msg: 'no such file or directory'}
+    end
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_user
@@ -75,3 +92,4 @@ class UsersController < ApplicationController
     flash[:user_notice] = msg
   end
 end
+

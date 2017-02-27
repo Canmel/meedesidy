@@ -3,14 +3,9 @@
   <h5 class="page-header">查询条件</h5>
   <div class="dataTables_wrapper form-inline">
     <div>
-    <%= search_form_for @q, :html => {:class => 'pjax-form'} do |f| %>
-        <%= f.label "车牌号：", class: "control-label" %>
-        <%= f.search_field :car_no_cont, class: 'form-control' %>
-        <%= f.label "车架号：", class: "control-label" %>
-        <%= f.search_field :vin_cont, class: 'form-control' %>
-        <%= link_to '新增', :new_car, class: "btn btn-success green" %>
-        <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#search_model">查询</button>
-    <% end %>
+      <% model = Qwer::Tmodel.new('cars', @q ,10, 1) %>
+
+      <%= model.table_seach({},{'q[car_no_cont]': '车牌号','q[vin_cont]': '车架号'}) %>
     </div>
   </div>
   <h3 class="sub-header">车辆列表
@@ -19,31 +14,12 @@
     <% end %>
   </h3>
   <div class="table-responsive">
-    <table class="table table-striped table-hover" id="editable-sample">
-      <thead>
-      <tr>
-        <th>#</th>
-        <th>车牌号</th>
-        <th>车架号</th>
-        <th>颜色</th>
-        <th>操作</th>
-      </tr>
-      </thead>
-      <tbody>
-      <% @cars.each_with_index do |car, index| %>
-        <tr>
-          <td><%= sequence index %></td>
-          <td><%= car.car_no %></td>
-          <td><%= car.vin %></td>
-          <td><%= car.color %></td>
-          <td>
-            <%= link_to '编辑', edit_car_path(car), class: 'label label-success'%>
-            <%= link_to '删除', car, data: {confirm: "确认要删除#{car.car_no}?"}, method: :delete, class: "label label-danger" %>
-          </td>
-        </tr>
-      <% end %>
-      </tbody>
-    </table>
+    <%= model.table_data({car_no: '车牌号',
+                          vin: '车架号',
+                          color: '颜色'},
+                         {edit: {name: '编辑', css: 'label label-success'},
+                          del: {name: '删除', css: 'label label-danger'}
+                         },@cars) %>
     共<%= @cars.total_count %>条 <%= @cars.total_pages %>页 <%= paginate @cars %>
   </div>
 </div>

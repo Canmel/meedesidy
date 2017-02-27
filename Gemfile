@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+# gem "rubyist-aasm", :source => "http://gems.github.com"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.7.1'
@@ -52,7 +52,10 @@ gem 'jquery-ui-rails', '5.0.5'
 gem "json", '1.8.3'
 gem 'useragent', '0.16.8'
 gem 'rubocop','0.46.0'
-gem 'qwer', '0.1.5'
+gem 'qwer', '0.1.7'
+gem 'rails-observers', '0.1.2'
+gem 'qiniu', '6.8.1'
+gem 'rqrcode_png', '0.1.5'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

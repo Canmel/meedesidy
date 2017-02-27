@@ -8,11 +8,12 @@ class ApplicationController < ActionController::Base
   ADMIN_ROLE_ID = 2
 
   def valid_login
-    user_agent =  request.user_agent
-    user_agent_parsed = UserAgent.parse(user_agent)
-    if current_user.nil? && user_agent_parsed.platform != 'Android'
-      # redirect_to '/auth/login' if request.url.split('/').last != 'login'
-    end
+    # user_agent =  request.user_agent
+    # user_agent_parsed = UserAgent.parse(user_agent)
+    # if current_user.nil? && user_agent_parsed.platform != 'Android'
+    #   # redirect_to '/auth/login' if request.url.split('/').last != 'login'
+    # end
+    true
   end
 
   def current_ability

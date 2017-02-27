@@ -11,6 +11,7 @@
     <% end %>
     </div>
   </div>
+
   <h3 class="sub-header">用户列表
     <% if flash[:user_notice] %>
         <div class="notice text-center"><span class="label label-info"><%= flash[:user_notice] %></span></div>
@@ -39,11 +40,53 @@
           <td>
             <%= link_to '编辑', edit_user_path(user), class: 'label label-success'%>
             <%= link_to '删除', user, data: {confirm: "确认要删除#{user.name}?"}, method: :delete, class: "label label-danger" %>
+            <a class="label label-success" href="##" data-toggle="modal" data-target="#myModal" name = "qr_code" user_id="<%= user.id %>">二维码</a>
           </td>
         </tr>
       <% end %>
       </tbody>
     </table>
     共<%= @users.total_count %>条 <%= @users.total_pages %>页 <%= paginate @users %>
+  </div>
+</div>
+
+<script>
+$(function () {
+  $("a[name='qr_code']").click(function () {
+    var user_id = $(this).attr("user_id");
+    $("#car_rqrcode").remove();
+//    异步获取用户的二维码下载地址
+    $.ajax({
+      url: "/users/" + user_id + "/primitive_url",
+      method: 'GET',
+      success: function (data) {
+        if(data["code"] == '200'){
+//          将获取的下载地址放回ｈｔｍｌ中
+          $("#myModalLabel").text(data['name']);
+          $("#modal_div").append('<img id="car_rqrcode" src="'+ data['data'] +'" width="240" height="240">');
+        }else{
+          $("#modal_div").append('<span id="car_rqrcode">抱歉！！未找到二维码信息，请更新用户，然后重新保存！</span>');
+        }
+    } });
+  })
+})
+</script>
+
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" style="width: 400px;margin-left: 100px;" align="center">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">模态框（Modal）标题</h4>
+      </div>
+      <div class="modal-body" id="modal_div">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">确认</button>
+        <!--<button type="button" class="btn btn-primary">确认</button>-->
+      </div>
+    </div>
   </div>
 </div>
