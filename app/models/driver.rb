@@ -1,4 +1,4 @@
-class Driver < Aasm
+class Driver < ActiveRecord::Base
   belongs_to :updater, class_name: 'User', foreign_key: 'updater', primary_key: 'id'
   belongs_to :company
   enum sex: { man: 1, woman: 0 }
