@@ -6,10 +6,6 @@ class DriversController < ApplicationController
     @drivers = @q.result.page(@page).per(@page_size)
   end
 
-  def new
-    @driver = Driver.new
-  end
-
   def create
     @driver = Driver.new(driver_params)
     @driver.updater = current_user

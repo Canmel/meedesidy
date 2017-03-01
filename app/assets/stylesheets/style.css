@@ -2670,7 +2670,7 @@ ul.inbox-pagination li {
 }
 
 .error-wrapper .icon-500 {
-	background: url("500_icon.png") no-repeat;
+	background: url("500.png") no-repeat;
 	width: 289px;
 	height: 274px;
 	display: inline-block;

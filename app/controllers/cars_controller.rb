@@ -3,12 +3,8 @@ class CarsController < ApplicationController
   before_action :set_global_search_variable, only: :index
 
   def index
-    p @q
-    @cars = @q.result.page(@page).per(@page_size)
-  end
-
-  def new
     @car = Car.new
+    @cars = @q.result.page(@page).per(@page_size)
   end
 
   def create
@@ -41,9 +37,8 @@ class CarsController < ApplicationController
   end
 
   private
-  # Never trust parameters from the scary internet, only allow the white list through.
   def car_params
-    params.require(:car).permit(:car_no, :vin, :color, :status, :creater, :genre_id)
+    params.require(:car).permit(:car_no, :vin, :color, :geren_id)
   end
 
   def set_global_search_variable
