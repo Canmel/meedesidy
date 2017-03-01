@@ -30,7 +30,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'devise', '4.2.0'
-gem 'cancan', '1.6.10'
+gem 'cancancan', '1.15.0'
 gem 'rolify', '5.1.0'
 gem 'mysql2', '0.4.5'
 gem 'ransack', '1.8.2'
@@ -53,7 +53,6 @@ gem "json", '1.8.3'
 gem 'useragent', '0.16.8'
 gem 'rubocop','0.46.0'
 gem 'qwer', '0.1.7'
-gem 'rails-observers', '0.1.2'
 gem 'qiniu', '6.8.1'
 gem 'rqrcode_png', '0.1.5'
 group :development, :test do
