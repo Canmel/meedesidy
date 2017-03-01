@@ -8,12 +8,13 @@ class Car < ActiveRecord::Base
   validates :color, presence: true
   # validates :regist_date, presence: { message: "上牌日期必须填写" }
 
-  enum status: { archived: 0, active: 2 }
+  enum status: { archived: 0, active: 1, renting: 2 }
   enum operate_type: { free: 0, airport: 1, express: 2, lease: 3, thir: 4, spare: 5 }
 
   belongs_to :geren
   belongs_to :company
   belongs_to :driver
 
+  attr_accessor :driver_name, :driver_phone
 
 end

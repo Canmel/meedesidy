@@ -60,4 +60,15 @@ module CarHelper
     html_str
   end
 
+  def grant_car_render car
+    "<a class='label meedesidy_btn_1' modal_car_no='#{car.car_no}' modal_car_geren='#{car.geren&.name}' data-toggle='modal' href='##' data-target='#myModal' name='grant' data='#{car.id}'>发车</a>".html_safe if car.archived? || car.company_id.nil?
+  end
+
+  def bind_car_render car
+    link_to '绑定', bind_car_path(car), class: 'label meedesidy_btn_2' if car.active? || car.company.present?
+  end
+
+  def all_car_operate_type
+    Car.operate_types_i18n.map{ |item| [item[1], item[0]] }
+  end
 end

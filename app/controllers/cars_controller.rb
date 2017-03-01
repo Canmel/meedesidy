@@ -1,6 +1,8 @@
 class CarsController < ApplicationController
   load_and_authorize_resource
   before_action :set_global_search_variable, only: :index
+  autocomplete :driver, :name, :extra_data => [:phone]
+
 
   def index
     @car = Car.new
@@ -40,14 +42,22 @@ class CarsController < ApplicationController
   # 发车
   # 造成数据库影响：
   # 1. car关联company
-  # 2. company状态改为激活状态
-
+  # 2. company状态改为[激活]状态
+  # 可以激活
+  #   1. status = 0(入库)
+  #   2. company.nil? == true
   def grant
     @car = Car.find(params[:id])
     if @car.present? && params[:company_id].present?
       @car.company_id = params[:company_id]
+      @car.status = Car.statuses[:active]
       if @car.save
         flash_msg '发车成功'
+        save_log(Log.log_types[:grant],
+                 nil,
+                 "#{current_user.name} 发车 #{@car.car_no} 至 #{@car.company.name} 成功",
+                 car_id: @car.id,
+                 company_id: @car.company.id)
         render :json => { :code => "200", :result => '发车成功' }
       else
         flash_msg '发车失败'
@@ -59,6 +69,11 @@ class CarsController < ApplicationController
     end
   end
 
+  def bind_driver
+    redirect_to :cars
+
+  end
+
   private
   def car_params
     params.require(:car).permit(:car_no, :vin, :color, :geren_id, :company_id, :driver_id, :operater)
@@ -66,7 +81,6 @@ class CarsController < ApplicationController
 
   def set_global_search_variable
     params[:q] ||= ActionController::Parameters.new
-    params[:q][:status_eq] = Car.statuses[:active]
     @q = Car.ransack(params[:q])
   end
 

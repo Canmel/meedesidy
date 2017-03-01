@@ -24,8 +24,11 @@ Rails.application.routes.draw do
 
   # 基本数据路由
   resources :cars do
+    get :autocomplete_driver_name, :on => :collection
     member do
       post 'grant'
+      get 'bind_driver'
+      get 'bind'
     end
   end
   resources :gerens

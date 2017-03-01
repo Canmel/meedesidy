@@ -197,7 +197,8 @@ zh:
         spare: "备用车"
       status:
         active: "激活"
-        archived: "删除"
+        archived: "入库"
+        renting: "租赁中"
     geren:
       status:
         active: "正常"

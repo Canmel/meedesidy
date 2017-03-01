@@ -4,19 +4,18 @@
     <%= f.text_field :vin, label: "车架号" %>
     <%= f.text_field :color, label: "颜色" %>
     <%= f.collection_select(:geren_id, all_gerens, :id, :name, label: "车型") %>
-
+    <%= f.select :operate_type, all_car_operate_type, { label: "营运类型"}, {class:"form-control m-b"}%>
     <% if @car.id.present? %>
       <%= form_module_title_render "车辆绑定数据" %>
       <div class="form-group">
         <label class="control-label col-sm-2 required" for="car_car_no">所属公司</label>
         <div class="col-sm-10">
-        <p class="form-control-static"><%= @car.driver&.name %></p>
+        <p class="form-control-static"><%= @car.company&.name %></p>
       </div>
       </div>
         <%= f.static_control label: "绑定司机" do %>
             <%= @car.driver&.name %>
         <% end %>
-        <%= f.static_control :operate_type_i18n, label: "营运类型" %>
       <% end %>
 
       <div class="form-group text-center">

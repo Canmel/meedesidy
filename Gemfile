@@ -47,6 +47,7 @@ gem 'kaminari', '1.0.0'
 gem 'sprockets', '3.6.3'
 gem 'jquery-datetimepicker-rails', '2.4.1.0'
 gem 'bootstrap-multiselect-rails', '0.9.9'
+# 自动补全
 gem 'rails4-autocomplete', '1.1.1'
 gem 'jquery-ui-rails', '5.0.5'
 gem "json", '1.8.3'
@@ -54,6 +55,7 @@ gem 'useragent', '0.16.8'
 gem 'rubocop','0.46.0'
 gem 'qwer', '0.1.7'
 gem 'qiniu', '6.8.1'
+# 二维码
 gem 'rqrcode_png', '0.1.5'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

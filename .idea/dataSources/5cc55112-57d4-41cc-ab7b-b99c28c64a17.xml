@@ -431,7 +431,7 @@ role_id</columns>
       <data-type>int(11)|0</data-type>
       <sequence-identity>1</sequence-identity>
     </column>
-    <column id="145" parent="34" name="type">
+    <column id="145" parent="34" name="log_type">
       <data-type>int(11)|0</data-type>
     </column>
     <column id="146" parent="34" name="operater">

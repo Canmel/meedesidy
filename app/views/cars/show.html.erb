@@ -1,9 +1,43 @@
-edit.html.erb<% provide(:title, '编辑车辆') %>
-<div class="panel col-md-12 col-lg-11 col-sm-12 col-xs-12">
+<% provide(:title, '编辑车辆') %>
+<div>
   <h5 class="page-header" id="page_title_by_menu">编辑车辆</h5>
   <div style="width: 60%;">
     <div class="form">
-      <%= render :partial => 'form' %>
+      <%= bootstrap_form_for(@car, layout: :horizontal, :html => { class: 'pjax-form' }) do |f| %>
+          <%= form_module_title_render "车辆基本数据" %>
+          <%= f.static_control :car_no, label: "车牌号" %>
+          <%= f.static_control :vin, label: "车架号" %>
+          <%= f.static_control :color, label: "颜色" %>
+          <div class="form-group">
+            <label class="control-label col-sm-2 required" for="car_car_no">车型</label>
+            <div class="col-sm-10">
+              <p class="form-control-static"><%= @car.geren&.name %></p>
+            </div>
+          </div>
+          <%= f.static_control :operate_type_i18n, label: "营运类型" %>
+          <% if @car.id.present? %>
+              <%= form_module_title_render "车辆绑定数据" %>
+              <div class="form-group">
+                <label class="control-label col-sm-2 required" for="car_car_no">所属公司</label>
+                <div class="col-sm-10">
+                  <p class="form-control-static"><%= @car.company&.name %></p>
+                </div>
+              </div>
+              <%= f.static_control label: "绑定司机" do %>
+                  <%= @car.driver&.name %>
+              <% end %>
+          <% end %>
+          <div class="form-group text-right">
+            <%= link_to '取消', cars_path, :class => 'btn btn-default' %>
+          </div>
+      <% end %>
+
+      <style>
+        .form-control-static{
+          color: #000000;
+          font-size: 16px;
+        }
+      </style>
     </div>
   </div>
 </div>

@@ -3,7 +3,14 @@ class DriversController < ApplicationController
   before_action :set_global_search_variable, only: :index
 
   def index
-    @drivers = @q.result.page(@page).per(@page_size)
+    respond_to do |format|
+      format.html do
+        @drivers = @q.result.page(@page).per(@page_size)
+      end
+      format.json do
+        render json: @driver.to_json
+      end
+    end
   end
 
   def create

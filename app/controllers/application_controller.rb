@@ -42,7 +42,8 @@ class ApplicationController < ActionController::Base
    user.roles.include? Role.find(ADMIN_ROLE_ID)
   end
 
-  def save_log( log_type, operater, remark, **args)
+  def save_log( log_type, operater=nil, remark, **args)
+    operater ||= current_user
     log = Log.new
     log.log_type = log_type
     log.operater = operater

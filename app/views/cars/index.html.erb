@@ -8,6 +8,8 @@
         <%= f.search_field :car_no_cont, class: 'form-control' %>
         <%= f.label "车架号：", class: "control-label" %>
         <%= f.search_field :vin_cont, class: 'form-control' %>
+          <%= f.label "司机姓名：", class: "control-label" %>
+          <%= f.search_field :driver_name_cont, class: 'form-control' %>
         <%= link_to '新增', :new_car, class: "btn meedesidy_btn_new" %>
         <button type="submit" class="btn meedesidy_btn_query" data-toggle="modal" data-target="#search_model">查询</button>
     <% end %>
@@ -29,6 +31,7 @@
         <th>车架号</th>
         <th>车型</th>
         <th>颜色</th>
+        <th>状态</th>
         <th>服务公司</th>
         <th>操作</th>
       </tr>
@@ -37,15 +40,17 @@
       <% @cars.each_with_index do |car, index| %>
         <tr>
           <td><%= sequence index %></td>
-          <td><%= car.car_no %></td>
+          <td><%= link_to (car.car_no), car_path(car), "data-skip-pjax": true %></td>
           <td><%= car.vin %></td>
           <td><%= car.geren&.name %></td>
           <td><%= car.color %></td>
+          <td><%= car.status_i18n %></td>
           <td><%= car.company.present? ? car.company&.sort_name : "未发车" %></td>
           <td>
             <%= link_to '编辑', edit_car_path(car), class: 'label meedesidy_btn_edit'%>
             <%= link_to '删除', car, data: {confirm: "确认要删除#{car.car_no}?"}, method: :delete, class: "label meedesidy_btn_delete" %>
-            <a class="label meedesidy_btn_1" modal_car_no="<%= car.car_no %>" modal_car_geren="<%= car.geren&.name %>" data-toggle="modal" href="##" data-target="#myModal" name="grant" data="<%= car.id %>">发车</a>
+            <%= grant_car_render car %>
+            <%= bind_car_render car %>
           </td>
         </tr>
       <% end %>

@@ -1,0 +1,70 @@
+edit.html.erb<% provide(:title, '绑定车辆') %>
+<div class="panel col-md-12 col-lg-11 col-sm-12 col-xs-12" style="width: 100%;">
+  <h5 class="page-header" id="page_title_by_menu">绑定车辆</h5>
+  <div style="width: 60%;">
+    <div class="form">
+      <%= bootstrap_form_for(@car, layout: :horizontal, :html => { class: 'pjax-form' }) do |f| %>
+          <%= form_module_title_render "待绑定车辆数据" %>
+          <%= f.static_control :car_no, label: "车牌号" %>
+          <%= f.static_control :vin, label: "车架号" %>
+          <%= f.static_control :color, label: "颜色" %>
+          <div class="form-group">
+            <label class="control-label col-sm-2 required" for="car_car_no">型号</label>
+            <div class="col-sm-10">
+              <p class="form-control-static"><%= @car.geren&.name %></p>
+            </div>
+          </div>
+          <%= f.static_control :operate_type_i18n, label: "营运类型" %>
+          <div class="form-group">
+            <label class="control-label col-sm-2 required" for="car_car_no">所属公司</label>
+            <div class="col-sm-10">
+              <p class="form-control-static"><%= @car.company&.name %></p>
+            </div>
+          </div>
+          <% if @car.id.present? %>
+              <%= form_module_title_render "绑定司机数据" %>
+              <div class="form-group">
+                <label class="control-label col-sm-2 required" for="car_car_no">绑定司机</label>
+                <div class="col-sm-10">
+                  <%= f.autocomplete_field :driver_name, autocomplete_driver_name_cars_path, :id_element => "#car_driver_id" %>
+                </div>
+              </div>
+              <%= f.phone_field :driver_phone, label: "手机号码", readonly: true%>
+              <%= f.hidden_field :driver_id, label: "司机ＩＤ" %>
+              <div class="form-group">
+              </div>
+          <% end %>
+
+          <div class="form-group text-center">
+            <%= link_to '取消', cars_path, :class => 'btn btn-default' %>
+            <%= link_to "保存", "", class: "btn meedesidy_btn_save", id: "bind_car" %>
+          </div>
+      <% end %>
+
+      <style>
+        .form-control-static{
+          color: #000000;
+          font-size: 16px;
+        }
+      </style>
+    </div>
+  </div>
+</div>
+<script>
+  $(function () {
+    $('#car_driver_name').bind('railsAutocomplete.select', function(event, data){
+      /* Do something here */
+      console.info(data.item.phone);
+      if(data.item.phone != null ){
+        $("#car_driver_phone").val(data.item.phone);
+      }
+    });
+
+    $("#bind_car").click(function () {
+      var driver_id = $("#car_driver_id").val();
+      var car_id = <%= @car.id %>;
+
+      $.get("/cars/"+ car_id +"/bind_driver?driver_id="+ driver_id);
+    })
+  })
+</script>
