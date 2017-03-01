@@ -11,15 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170222092146) do
-
-  create_table "aasms", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.string   "code",       limit: 255
-    t.integer  "status",     limit: 4,   default: 1
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(version: 20170301040916) do
 
   create_table "budgets", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -27,13 +19,16 @@ ActiveRecord::Schema.define(version: 20170222092146) do
   end
 
   create_table "cars", force: :cascade do |t|
-    t.string   "car_no",     limit: 255
-    t.string   "vin",        limit: 255
-    t.string   "color",      limit: 255
-    t.integer  "geren_id",   limit: 4
-    t.integer  "status",     limit: 4
-    t.integer  "creater_id", limit: 4
-    t.integer  "updater_id", limit: 4
+    t.string   "car_no",       limit: 255
+    t.string   "vin",          limit: 255
+    t.string   "color",        limit: 255
+    t.integer  "geren_id",     limit: 4
+    t.integer  "status",       limit: 4,   default: 1
+    t.integer  "creater_id",   limit: 4
+    t.integer  "updater_id",   limit: 4
+    t.integer  "company_id",   limit: 4
+    t.integer  "driver_id",    limit: 4
+    t.integer  "operate_type", limit: 4,   default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -78,6 +73,18 @@ ActiveRecord::Schema.define(version: 20170222092146) do
     t.integer  "status",     limit: 4,   default: 1
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
+  end
+
+  create_table "logs", force: :cascade do |t|
+    t.integer  "log_type",   limit: 4
+    t.integer  "operater",   limit: 4
+    t.integer  "status",     limit: 4,   default: 1
+    t.integer  "car_id",     limit: 4
+    t.integer  "driver_id",  limit: 4
+    t.integer  "company_id", limit: 4
+    t.string   "remark",     limit: 255, default: ""
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "menus", force: :cascade do |t|

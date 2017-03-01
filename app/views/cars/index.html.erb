@@ -8,15 +8,17 @@
         <%= f.search_field :car_no_cont, class: 'form-control' %>
         <%= f.label "车架号：", class: "control-label" %>
         <%= f.search_field :vin_cont, class: 'form-control' %>
-        <%= link_to '新增', :new_car, class: "btn btn-success green" %>
-        <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#search_model">查询</button>
+        <%= link_to '新增', :new_car, class: "btn meedesidy_btn_new" %>
+        <button type="submit" class="btn meedesidy_btn_query" data-toggle="modal" data-target="#search_model">查询</button>
     <% end %>
     </div>
   </div>
   <h3 class="sub-header">车辆列表
+    <div class="notice text-center">
     <% if flash[:car_notice] %>
-        <div class="notice text-center"><span class="label label-info"><%= flash[:car_notice] %></span></div>
+        <span class="label meedesidy_notice_info"><%= flash[:car_notice] %></span>
     <% end %>
+    </div>
   </h3>
   <div class="table-responsive">
     <table class="table table-striped table-hover" id="editable-sample">
@@ -27,6 +29,7 @@
         <th>车架号</th>
         <th>车型</th>
         <th>颜色</th>
+        <th>服务公司</th>
         <th>操作</th>
       </tr>
       </thead>
@@ -38,10 +41,11 @@
           <td><%= car.vin %></td>
           <td><%= car.geren&.name %></td>
           <td><%= car.color %></td>
+          <td><%= car.company.present? ? car.company&.sort_name : "未发车" %></td>
           <td>
-            <%= link_to '编辑', edit_car_path(car), class: 'label label-success'%>
-            <%= link_to '删除', car, data: {confirm: "确认要删除#{car.car_no}?"}, method: :delete, class: "label label-danger" %>
-            <a class="label label-success" modal_car_no="<%= car.car_no %>" modal_car_geren="<%= car.geren&.name %>" data-toggle="modal" href="##" data-target="#myModal" name="grant" data="<%= car.id %>">发车</a>
+            <%= link_to '编辑', edit_car_path(car), class: 'label meedesidy_btn_edit'%>
+            <%= link_to '删除', car, data: {confirm: "确认要删除#{car.car_no}?"}, method: :delete, class: "label meedesidy_btn_delete" %>
+            <a class="label meedesidy_btn_1" modal_car_no="<%= car.car_no %>" modal_car_geren="<%= car.geren&.name %>" data-toggle="modal" href="##" data-target="#myModal" name="grant" data="<%= car.id %>">发车</a>
           </td>
         </tr>
       <% end %>
@@ -50,9 +54,8 @@
     共<%= @cars.total_count %>条 <%= @cars.total_pages %>页 <%= paginate @cars %>
   </div>
 </div>
-
 <!--发车模态-->
-<%= model_render%>
+<%= model_render %>
 <script>
   $(function () {
     $("a[name='grant']").click(function () {
@@ -60,11 +63,33 @@
       var modal_car_no = $(this).attr("modal_car_no");
       var modal_car_geren = $(this).attr("modal_car_geren");
       $("#myModalLabel").text(modal_car_no+ " | " + modal_car_geren);
-
       $("#p_company").text(modal_car_no);
       $("#p_geren").text(modal_car_geren);
+      $("input[name='id']").val(data);
     });
+    
+    $("#grant_confirm").click(function () {
+      $.ajax({
+        url: '/cars/'+  $("input[name='id']").val() +'/grant',
+        data: { company_id: $("#car_company_id").val() },
+        method: 'POST',
+        success: function(data){
+          if(data["result"] != null){
+            showResult(data["result"]);
+          }
+
+
+          setTimeout(function () {
+            $("#car_search").submit()
+          }, 500);
+        }
+      })
+
+    })
+
   })
-
-
+  function showResult(result) {
+    $("#myModal").modal('hide');
+    $(".notice").html("<div class='notice text-center'><span class='label meedesidy_notice_info'>"+ result +"</span></div>")
+  }
 </script>

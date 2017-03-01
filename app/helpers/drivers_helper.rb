@@ -7,9 +7,9 @@ module DriversHelper
     Company.where(status: 1).map{ |company| [company.name, company.id] }
   end
 
-  def drivers_colect
+  def drivers_status_colect
     @driver_status = []
-    @driver_status << { "k" => "1", "v" => "可用" }
-    @driver_status << { "k" => "0", "v" => "删除" }
+    @driver_status << { "k" => Driver.statuses[:activate], "v" => "可用" }
+    @driver_status << { "k" => Driver.statuses[:archived], "v" => "删除" }
   end
 end

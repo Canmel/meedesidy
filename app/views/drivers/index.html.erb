@@ -7,15 +7,15 @@
         <%= f.label "姓名：", class: "control-label" %>
         <%= f.search_field :name_cont, class: 'form-control' %>
         <%= f.label "状态：", class: "control-label" %>
-        <%= f.select(:status_eq, "<option value=''>#{t('全部')}</option>".html_safe+ options_for_select(drivers_colect.collect { |g| [g['v'], g['k']] }, @q.status_eq), {}, {:class => 'form-control'}) %>
-        <%= link_to '新增', :new_driver, class: "btn btn-success green" %>
-        <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#search_model">查询</button>
+        <%= f.select(:status_eq, "<option value=''>#{t('全部')}</option>".html_safe+ options_for_select(enum_colect("Driver", "statuses").collect { |g| [g['v'], g['k']] }, @q.status_eq), {}, {:class => 'form-control'}) %>
+        <%= link_to '新增', :new_driver, class: "btn meedesidy_btn_new" %>
+        <button type="submit" class="btn meedesidy_btn_query" data-toggle="modal" data-target="#search_model">查询</button>
     <% end %>
     </div>
   </div>
   <h3 class="sub-header">司机列表
     <% if flash[:driver_notice] %>
-        <div class="notice text-center"><span class="label label-info"><%= flash[:driver_notice] %></span></div>
+        <div class="notice text-center"><span class="label meedesidy_notice_info"><%= flash[:driver_notice] %></span></div>
     <% end %>
   </h3>
   <div class="table-responsive">
@@ -45,8 +45,8 @@
           <td><%= driver.status_i18n %></td>
           <td><%= driver.updater&.name %></td>
           <td>
-            <%= link_to '编辑', edit_driver_path(driver), class: 'label label-success'%>
-            <%= link_to '删除', driver, data: {confirm: "确认要删除#{driver.name}?"}, method: :delete, class: "label label-danger" %>
+            <%= link_to '编辑', edit_driver_path(driver), class: 'label meedesidy_btn_edit'%>
+            <%= link_to '删除', driver, data: {confirm: "确认要删除#{driver.name}?"}, method: :delete, class: "label meedesidy_btn_delete" %>
           </td>
         </tr>
       <% end %>

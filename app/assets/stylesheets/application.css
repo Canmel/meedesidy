@@ -16,3 +16,85 @@
  *= require bootstrap-multiselect
  *= require jquery.datetimepicker
  */
+
+.meedesidy_bg_1{
+    background-color: #999;
+}
+
+.meedesidy_bg_2{
+    background-color: #ccc;
+}
+
+.meedesidy_bg_header{
+    background-color: #24292e;
+}
+
+.meedesidy_bg_footer{
+    z-index: 0;
+    background: #999;
+    color: #fff;
+    padding: 10px 0;
+}
+
+.meedesidy_bg_left{
+    z-index: 1;
+    width: 210px;
+    height: 100%;
+    position: fixed;
+    background: #333;
+}
+
+.meedesidy_logo{
+    color: #ffffff;
+}
+
+.meedesidy_btn_delete{
+    background-color: #333;
+}
+
+.meedesidy_btn_query{
+    color: #fff;
+    background-color: #333333;
+    border-color: #333333;
+}
+
+.meedesidy_btn_new{
+    color: #fff;
+    background-color: #555;
+    border-color: #555;
+}
+
+.meedesidy_btn_export{
+    color: #fff;
+    background-color: #000000;
+    border-color: #000000;
+}
+
+.meedesidy_btn_edit{
+    background-color: #6e6e6e;
+}
+
+.meedesidy_btn_save{
+    color: #fff;
+    background-color: #000000;
+    border-color: #000000;
+}
+
+.meedesidy_btn_1{
+    background-color: #999;
+}
+
+.meedesidy_btn_2{
+    background-color: #080808;
+}
+
+.meedesidy_btn_confirm{
+    color: #ffffff;
+    background-color: #777;
+    border-color: #777;
+}
+
+.meedesidy_notice_info{
+    background-color: #777
+}
+

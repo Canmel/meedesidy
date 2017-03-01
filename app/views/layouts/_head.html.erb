@@ -1,9 +1,11 @@
-<header class="header white-bg">
+<header class="header white-bg meedesidy_bg_header">
   <div class="sidebar-toggle-box">
     <div  data-placement="right" class="fa fa-bars tooltips">
     </div>
   </div>
-  <%= link_to "Meedesidy", home_index_path, class: "logo" %>
+  <div style="color: #ffffff;">
+    <%= link_to "Meedesidy", home_index_path, class: "logo meedesidy_logo" %>
+  </div>
   <div class="top-nav ">
     <ul class="nav pull-right" style="margin-top: 10px;">
       <% if current_user %>

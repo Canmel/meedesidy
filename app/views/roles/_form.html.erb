@@ -4,6 +4,6 @@
     <%= f.collection_check_boxes :menu_ids, all_menu, :id, :name, label: "菜单", inline: true %>
     <div class="form-group text-center">
       <%= link_to '取消', roles_path, :class => 'btn btn-default' %>
-      <%= f.submit "保存", class: "btn btn-primary" %>
+      <%= f.submit "保存", class: "btn meedesidy_btn_save" %>
     </div>
 <% end %>

@@ -5,6 +5,6 @@
     <%= f.collection_check_boxes :role_ids, all_role, :id, :desc, label: "角色", inline: true %>
     <div class="form-group text-center">
       <%= link_to '取消', users_path, :class => 'btn btn-default' %>
-      <%= f.submit "保存", class: "btn btn-primary" %>
+      <%= f.submit "保存", class: "btn meedesidy_btn_save" %>
     </div>
 <% end %>

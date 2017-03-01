@@ -25,8 +25,6 @@ module Cup
     config.i18n.default_locale = :zh
     config.active_record.raise_in_transactional_callbacks = true
     config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
-    config.active_record.observers = :user_observe
-
     config.qiniu_download_url = "http://olzjsogr4.bkt.clouddn.com"
     config.qiniu_bucket = "meedisedy-users"
   end

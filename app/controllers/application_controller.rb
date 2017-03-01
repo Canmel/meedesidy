@@ -42,6 +42,17 @@ class ApplicationController < ActionController::Base
    user.roles.include? Role.find(ADMIN_ROLE_ID)
   end
 
+  def save_log( log_type, operater, remark, **args)
+    log = Log.new
+    log.log_type = log_type
+    log.operater = operater
+    log.remark = remark
+    log.car_id = args[:car_id]
+    log.driver_id = args[:driver_id]
+    log.company_id = args[:company_id]
+    log.save
+  end
+
   def self.rescue_errors
     rescue_from Exception, :with => :render_error
     rescue_from NoMemoryError, :with => :render_error

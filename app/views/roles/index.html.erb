@@ -6,14 +6,14 @@
     <%= search_form_for @q, :html => {:class => 'pjax-form'} do |f| %>
         <%= f.label "角色名称：", class: "control-label" %>
         <%= f.search_field :name_cont, class: 'form-control' %>
-        <%= link_to '新增', :new_role, class: "btn btn-success green" %>
-        <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#search_model">查询</button>
+        <%= link_to '新增', :new_role, class: "btn meedesidy_btn_new" %>
+        <button type="submit" class="btn meedesidy_btn_query" data-toggle="modal" data-target="#search_model">查询</button>
     <% end %>
     </div>
   </div>
   <h3 class="sub-header">角色列表
     <% if flash[:role_notice] %>
-        <div class="notice text-center"><span class="label label-info"><%= flash[:role_notice] %></span></div>
+        <div class="notice text-center"><span class="label meedesidy_notice_info"><%= flash[:role_notice] %></span></div>
     <% end %>
   </h3>
   <div class="table-responsive">
@@ -33,8 +33,8 @@
             <td><%= role.name %></td>
             <td><%= role.desc %></td>
             <td>
-              <%= link_to '编辑',edit_role_path(role), class: 'label label-success' %>
-              <%= link_to '删除', role, data: {confirm: "确认要删除#{role.name}?"}, method: :delete, class: "label label-danger" %>
+              <%= link_to '编辑',edit_role_path(role), class: 'label meedesidy_btn_edit' %>
+              <%= link_to '删除', role, data: {confirm: "确认要删除#{role.name}?"}, method: :delete, class: "label meedesidy_btn_delete" %>
             </td>
           </tr>
       <% end %>

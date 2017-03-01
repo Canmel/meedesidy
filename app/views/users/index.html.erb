@@ -6,15 +6,15 @@
     <%= search_form_for @q, :html => {:class => 'pjax-form'} do |f| %>
         <%= f.label "邮箱：", class: "control-label" %>
         <%= f.search_field :email_cont, class: 'form-control' %>
-        <%= link_to '新增', :new_user, class: "btn btn-success green"%>
-        <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#search_model">查询</button>
+        <%= link_to '新增', :new_user, class: "btn meedesidy_btn_new"%>
+        <button type="submit" class="btn meedesidy_btn_query" data-toggle="modal" data-target="#search_model">查询</button>
     <% end %>
     </div>
   </div>
 
   <h3 class="sub-header">用户列表
     <% if flash[:user_notice] %>
-        <div class="notice text-center"><span class="label label-info"><%= flash[:user_notice] %></span></div>
+        <div class="notice text-center"><span class="label meedesidy_notice_info"><%= flash[:user_notice] %></span></div>
     <% end %>
   </h3>
   <div class="table-responsive">
@@ -38,9 +38,9 @@
           <td><%= user.roles.pluck(:name) %></td>
           <td><%= user.status_i18n %></td>
           <td>
-            <%= link_to '编辑', edit_user_path(user), class: 'label label-success'%>
-            <%= link_to '删除', user, data: {confirm: "确认要删除#{user.name}?"}, method: :delete, class: "label label-danger" %>
-            <a class="label label-success" href="##" data-toggle="modal" data-target="#myModal" name = "qr_code" user_id="<%= user.id %>">二维码</a>
+            <%= link_to '编辑', edit_user_path(user), class: 'label meedesidy_btn_edit'%>
+            <%= link_to '删除', user, data: {confirm: "确认要删除#{user.name}?"}, method: :delete, class: "label meedesidy_btn_delete" %>
+            <a class="label meedesidy_btn_1" href="##" data-toggle="modal" data-target="#myModal" name = "qr_code" user_id="<%= user.id %>">二维码</a>
           </td>
         </tr>
       <% end %>
@@ -72,21 +72,5 @@ $(function () {
 })
 </script>
 
+<%= qrcode_modal_render %>
 
-
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content" style="width: 400px;margin-left: 100px;" align="center">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">正在加载。。。</h4>
-      </div>
-      <div class="modal-body" id="modal_div">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">确认</button>
-        <!--<button type="button" class="btn btn-primary">确认</button>-->
-      </div>
-    </div>
-  </div>
-</div>

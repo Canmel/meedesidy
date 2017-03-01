@@ -169,6 +169,13 @@ zh:
         other: "%{count} 条错误使 %{resource} 不能正常保存:"
   hello: "你好"
   enums:
+    log:
+      status:
+        active: "正常"
+        archived: "删除"
+      log_type:
+        sys: "系统日志"
+        grant: "发车记录"
     user:
       status:
         active: "正常"
@@ -181,8 +188,15 @@ zh:
         one_level: "一级菜单"
         two_level: "二级菜单"
     car:
+      operate_type:
+        free: "空闲"
+        airport: "机场业务"
+        express: "快车"
+        lease: "车组"
+        thir: "第三方"
+        spare: "备用车"
       status:
-        active: "正常"
+        active: "激活"
         archived: "删除"
     geren:
       status:

@@ -6,14 +6,14 @@
     <%= search_form_for @q, :html => {:class => 'pjax-form'} do |f| %>
         <%= f.label "图标名称：", class: "control-label" %>
         <%= f.search_field :name_cont, class: 'form-control' %>
-        <%= link_to '新增', :new_icon, class: "btn btn-success green" %>
-        <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#search_model">查询</button>
+        <%= link_to '新增', :new_icon, class: "btn meedesidy_btn_new" %>
+        <button type="submit" class="btn meedesidy_btn_query" data-toggle="modal" data-target="#search_model">查询</button>
     <% end %>
     </div>
   </div>
   <h3 class="sub-header">图标列表
     <% if flash[:icons_notice] %>
-        <div class="notice text-center"><span class="label label-info"><%= flash[:icons_notice] %></span></div>
+        <div class="notice text-center"><span class="label meedesidy_notice_info"><%= flash[:icons_notice] %></span></div>
     <% end %>
   </h3>
   <div class="table-responsive">
@@ -35,8 +35,8 @@
           <td><%= icon.code %></td>
           <td><%= icon.status_i18n %></td>
           <td>
-            <%= link_to '编辑', edit_icon_path(icon), class: 'label label-success'%>
-            <%= link_to '删除', icon, data: {confirm: "确认要删除#{icon.name}?"}, method: :delete, class: "label label-danger" %>
+            <%= link_to '编辑', edit_icon_path(icon), class: 'label meedesidy_btn_edit'%>
+            <%= link_to '删除', icon, data: {confirm: "确认要删除#{icon.name}?"}, method: :delete, class: "label meedesidy_btn_delete" %>
           </td>
         </tr>
       <% end %>

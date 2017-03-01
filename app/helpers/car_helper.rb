@@ -1,10 +1,14 @@
 module CarHelper
+
+  def car_company_render car
+    car.company.present? ? car.company&.sort_name : "未发车"
+  end
   
   def model_render
-    "<div class='modal fade' id='myModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>
+    "<div class='modal fade' id='myModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='false'>
       <div class='modal-dialog'>
     <div class='modal-content' align='center'>
-      <div class='modal-header'>
+      <div class='modal-header meedesidy_bg_1'>
         <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
         <h4 class='modal-title' id='myModalLabel'>正在加载。。。</h4>
       </div>
@@ -27,23 +31,20 @@ module CarHelper
                 </div>
               </td>
               <td style='width: 1px; background-color: rgba(0, 0, 0, 0.25); '></td> <td>
-              <form class='pjax-form form-horizontal' role='form' id='new_car' action='/cars' accept-charset='UTF-8' method='post'>
-                <input name='utf8' type='hidden' value='✓'>
-                <input type='hidden' name='authenticity_token' value='HSoeb7nUxTZWu/agiISqy3gKbBmyGc036BkhxI0O5KI4ROQrjT2DJTbbYrZMvdYL1GouBBIG5J8OlENBdQfTjw=='>
+                <input type='hidden' name='id'>
                 <div class='form-group'><label class='control-label col-sm-4' for='car_company_id'>发往服务公司</label><div class='col-sm-6'>
                 <select class='form-control' name='car[company_id]' id='car_company_id'>
-                   #{options}
+                   #{all_companies_options}
                 </select>
                 </div>
-                </div></form>
+                </div>
               </td>
             </tr>
-
           </table>
         </div>
       </div>
-      <div class='modal-footer'>
-        <button type='button' class='btn btn-default' data-dismiss='modal'>确认</button>
+      <div class='modal-footer meedesidy_bg_2' style='padding: 3px 22px 5px;'>
+        <button type='button' class='btn meedesidy_btn_confirm' id='grant_confirm'>确认</button>
         <!--<button type='button' class='btn btn-primary'>确认</button>-->
       </div>
       </div>
@@ -51,13 +52,11 @@ module CarHelper
     </div>".html_safe
   end
 
-  def options
+  def all_companies_options
     html_str = ""
     all_company.each do |item|
-      p item
-      html_str << "<option>#{item.name}</option>"
+      html_str << "<option value='#{item.id}' >#{item.name}</option>"
     end
-    p html_str
     html_str
   end
 

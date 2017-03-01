@@ -23,12 +23,17 @@ Rails.application.routes.draw do
   resources :icons
 
   # 基本数据路由
-  resources :cars
+  resources :cars do
+    member do
+      post 'grant'
+    end
+  end
   resources :gerens
   resources :companies
 
   # 业务路由
   resources :budgets
+  resources :logs
 
   get '/drivers/search_company'
   resources :drivers do
