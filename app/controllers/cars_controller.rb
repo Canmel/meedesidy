@@ -69,9 +69,75 @@ class CarsController < ApplicationController
     end
   end
 
+# 绑定司机
+# 造成数据库影响：
+#   1. car 关联　司机driver
+#   2. car 状态　为３　租赁中
+#  可以绑定
+#     1. car　状态为2 激活状态
+#     2. car 没有关联　司机
   def bind_driver
-    redirect_to :cars
+    @car = Car.find(params[:id])
+    if @car.binded?
+      flash_msg "该车辆已经绑定过了"
+      redirect_to :cars
+    else
+      @car.driver_id = car_params[:driver_id]
+      @car.status = Car.statuses[:renting]
+      if @car.valid_driver? && @car.save
+        flash_msg "绑定车辆成功"
+        redirect_to :cars
+      else
+        render :bind
+      end
+    end
+  end
 
+  # 解绑车辆
+  # 造成数据库影响：
+  # 1. car 解除已关联的司机ID
+  # 2. car 状态由３【租赁中】=> ２【激活】
+  # 解绑需要
+  # 1. car 已经绑定了司机
+  # 2. car 状态为３【租赁中】
+  def relieve
+    # 检查数据！如果不是符合要求的数据不予解绑
+    if @car.binded?
+      @car.driver = nil
+      @car.status = Car.statuses[:active]
+      if @car.save
+        flash_msg '解绑车辆成功'
+      else
+        flash_msg '解绑车辆失败'
+      end
+    else
+      flash_msg '车辆未绑定或无司机信息'
+    end
+    redirect_to :cars
+  end
+
+  # 退车
+  # 造成数据库影响
+  # 1. car 解除已关联的　公司
+  # 2. car 状态由２【激活】　=> １【入库】
+  # 退车需要
+  #   1. car 未绑定司机
+  #   2. car 状态为２【激活】
+  #   3. 已绑定公司
+  def back
+    p @car
+    if @car.granted?
+      @car.status = Car.statuses[:archived]
+      @car.company = nil
+      if @car.save
+        flash_msg '退车成功'
+      else
+        flash_msg '退车失败'
+      end
+    else
+      flash_msg '数据不正确或该车辆不是激活车辆'
+    end
+    redirect_to :cars
   end
 
   private

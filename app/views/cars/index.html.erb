@@ -33,6 +33,7 @@
         <th>颜色</th>
         <th>状态</th>
         <th>服务公司</th>
+        <th>绑定司机</th>
         <th>操作</th>
       </tr>
       </thead>
@@ -46,9 +47,11 @@
           <td><%= car.color %></td>
           <td><%= car.status_i18n %></td>
           <td><%= car.company.present? ? car.company&.sort_name : "未发车" %></td>
+          <td><%= car.driver.present? ? car.driver&.name : "未绑定" %></td>
           <td>
-            <%= link_to '编辑', edit_car_path(car), class: 'label meedesidy_btn_edit'%>
-            <%= link_to '删除', car, data: {confirm: "确认要删除#{car.car_no}?"}, method: :delete, class: "label meedesidy_btn_delete" %>
+            <%= edit_car_render car %>
+            <%= delete_car_render car %>
+            <%= back_car_render car %>
             <%= grant_car_render car %>
             <%= bind_car_render car %>
           </td>
@@ -61,8 +64,13 @@
 </div>
 <!--发车模态-->
 <%= model_render %>
+
+<%= relieve_modal_render %>
+
+<%= back_modal_render %>
 <script>
   $(function () {
+//    操作－>发车
     $("a[name='grant']").click(function () {
       var data = $(this).attr("data");
       var modal_car_no = $(this).attr("modal_car_no");
@@ -72,7 +80,35 @@
       $("#p_geren").text(modal_car_geren);
       $("input[name='id']").val(data);
     });
-    
+
+//    操作－>解绑
+    $("a[name='relieve']").click(function () {
+      var data = $(this).attr("data");
+      var modal_car_no = $(this).attr("modal_car_no");
+      var modal_car_geren = $(this).attr("modal_car_geren");
+      $("#relieveModalLabel").text(modal_car_no + " | " + modal_car_geren);
+      $("#relieve_car_no").text($(this).attr("modal_car_no"));
+      $("#relieve_geren").text($(this).attr("modal_car_geren"));
+      $("#relieve_company").text($(this).attr("modal_company"));
+      $("#relieve_driver").text($(this).attr("modal_driver"));
+      $("input[name='id']").val(data);
+      $("#relieve_btn").attr('href','/cars/'+data+'/relieve');
+    });
+
+//    操作－>退车
+    $("a[name='back']").click(function () {
+      var data = $(this).attr("data");
+      var modal_car_no = $(this).attr("modal_car_no");
+      var modal_car_geren = $(this).attr("modal_car_geren");
+      $("#backModalLabel").text(modal_car_no + " | " + modal_car_geren);
+      $("#back_car_no").text($(this).attr("modal_car_no"));
+      $("#back_geren").text($(this).attr("modal_car_geren"));
+      $("#back_company").text($(this).attr("modal_car_company"));
+      $("input[name='id']").val(data);
+      $("#back_btn").attr('href','/cars/'+data+'/back');
+    });
+
+//    发车确认
     $("#grant_confirm").click(function () {
       $.ajax({
         url: '/cars/'+  $("input[name='id']").val() +'/grant',
@@ -82,17 +118,14 @@
           if(data["result"] != null){
             showResult(data["result"]);
           }
-
-
           setTimeout(function () {
             $("#car_search").submit()
           }, 500);
         }
       })
-
     })
 
-  })
+  });
   function showResult(result) {
     $("#myModal").modal('hide');
     $(".notice").html("<div class='notice text-center'><span class='label meedesidy_notice_info'>"+ result +"</span></div>")

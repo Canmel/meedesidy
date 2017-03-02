@@ -27,10 +27,13 @@ Rails.application.routes.draw do
     get :autocomplete_driver_name, :on => :collection
     member do
       post 'grant'
-      get 'bind_driver'
       get 'bind'
+      get 'back'
+      get 'relieve'
     end
   end
+  # post 'cars/relieve', to: 'cars#relieve'
+  post 'cars/bind_driver', to: 'cars#bind_driver'
   resources :gerens
   resources :companies
 

@@ -17,4 +17,27 @@ class Car < ActiveRecord::Base
 
   attr_accessor :driver_name, :driver_phone
 
+  def valid_driver?
+    if driver_id.present?
+      return true
+    else
+      self.errors.add(:driver_name, "司机不能为空")
+      self.errors.add(:driver_phone, "手机号不能为空")
+      return false
+    end
+  end
+
+# 车辆是否已经绑定
+  def binded?
+    self.renting? && self.driver_id.present?
+  end
+# 车辆是否是发车状态（即隶属于某个服务公司）
+  def granted?
+    self.active? && self.company_id.present?
+  end
+
+# 车辆处于入库阶段
+  def godowned?
+    self.archived? && self.company.nil?
+  end
 end

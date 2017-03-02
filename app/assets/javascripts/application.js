@@ -59,7 +59,6 @@ function init_html() {
 
 function bind_autocomplete() {
     $('.asutocomplete').bind('input propertychange', function() {
-        alert('');
     });
 }
 
