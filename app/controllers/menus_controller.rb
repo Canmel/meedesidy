@@ -19,7 +19,7 @@ class MenusController < ApplicationController
     @menu.parent_id=nil unless @menu.resource_type == Menu.resource_types[:one_level]
     if @menu.save
       flash_msg '创建成功'
-      save_log(Log.log_types[:sys], current_user, "#{current_user.name} 创建菜单 #{@menu.name} 成功！")
+      save_log(Log.log_types[:sys], "#{current_user.name} 创建菜单 #{@menu.name} 成功！")
       redirect_to :menus
     else
       flash_msg '创建失败'
@@ -30,7 +30,7 @@ class MenusController < ApplicationController
   def update
     if @menu.update(menu_params)
       flash_msg "编辑成功"
-      save_log(Log.log_types[:sys], current_user, "#{current_user.name} 修改菜单 #{@menu.name} 成功！")
+      save_log(Log.log_types[:sys], "#{current_user.name} 修改菜单 #{@menu.name} 成功！")
       redirect_to :menus
     else
       flash_msg "编辑失败"
@@ -40,7 +40,7 @@ class MenusController < ApplicationController
 
   def destroy
     if @menu.update_attributes(status: 0)
-      save_log(Log.log_types[:sys], current_user, "#{current_user.name} 删除菜单 #{@menu.name} 成功！")
+      save_log(Log.log_types[:sys], "#{current_user.name} 删除菜单 #{@menu.name} 成功！")
       flash_msg '删除成功'
     else
       flash_msg '删除失败'

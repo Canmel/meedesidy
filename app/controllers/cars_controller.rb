@@ -13,7 +13,7 @@ class CarsController < ApplicationController
     @car = Car.new(car_params)
     if @car.save
       flash_msg '创建车辆成功'
-      save_log(Log.log_types[:basic], current_user, "#{current_user.name} 创建车辆 #{@car.car_no} 成功", car_id: @car.id)
+      save_log(Log.log_types[:basic], "#{current_user.name} 创建车辆 #{@car.car_no} 成功", car_id: @car.id)
       redirect_to :cars
     else
       flash_msg '创建车辆失败'
@@ -24,7 +24,9 @@ class CarsController < ApplicationController
   def update
     if @car.update(car_params)
       flash_msg '修改车辆成功'
+      save_log(Log.log_types[:basic], "#{current_user.name} 创建车辆 #{@car.car_no} 基础参数成功", car_id: @car.id)
       redirect_to :cars
+
     else
       flash_msg '修改车辆失败'
       render :edit
@@ -34,6 +36,7 @@ class CarsController < ApplicationController
   def destroy
     if @car.update(status: 0)
       flash_msg '删除车辆成功'
+      save_log(Log.log_types[:basic],"#{current_user.name} 删除车辆　#{@car.car_no} 成功", car_id: @car.id)
     else
       flash_msg "删除失败: #{@car.operat_error_msg}"
     end
@@ -54,7 +57,6 @@ class CarsController < ApplicationController
       if @car.save
         flash_msg '发车成功'
         save_log(Log.log_types[:grant],
-                 nil,
                  "#{current_user.name} 发车 #{@car.car_no} 至 #{@car.company.name} 成功",
                  car_id: @car.id,
                  company_id: @car.company.id)
@@ -86,6 +88,7 @@ class CarsController < ApplicationController
       @car.status = Car.statuses[:renting]
       if @car.valid_driver? && @car.save
         flash_msg "绑定车辆成功"
+        save_log(Log.log_types[:bind], "#{current_user.name}　绑定车辆　#{@car.car_no} 司机 #{@car.driver&.name} 成功")
         redirect_to :cars
       else
         render :bind
@@ -107,6 +110,7 @@ class CarsController < ApplicationController
       @car.status = Car.statuses[:active]
       if @car.save
         flash_msg '解绑车辆成功'
+        save_log(Log.log_types[:relieve], "#{current_user.name}　解绑车辆　#{@car.car_no} 成功")
       else
         flash_msg '解绑车辆失败'
       end
@@ -130,6 +134,7 @@ class CarsController < ApplicationController
       @car.company = nil
       if @car.save
         flash_msg '退车成功'
+        save_log(Log.log_types[:back], "#{current_user.name}　退车　#{@car.car_no} 成功")
       else
         flash_msg '退车失败'
       end

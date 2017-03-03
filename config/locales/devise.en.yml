@@ -176,6 +176,10 @@ zh:
       log_type:
         sys: "系统日志"
         grant: "发车记录"
+        basic: "基本数据"
+        bind: "绑定"
+        relieve: "解绑"
+        back: "退车"
     user:
       status:
         active: "正常"

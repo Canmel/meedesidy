@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash_msg '创建用户成功'
-      save_log(Log.log_types[:sys], current_user.id, "#{current_user.name} 创建用户 #{@user.name} 成功！")
+      save_log(Log.log_types[:sys], "#{current_user.name} 创建用户 #{@user.name} 成功！")
       redirect_to '/users'
     else
       flash_msg '创建用户失败'
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
     if @user.update_without_password(user_params)
       flash_msg '修改用户成功'
       redirect_to :users
-      save_log(Log.log_types[:sys], current_user.id, "#{current_user.name} 修改用户 #{@user.name} 成功！")
+      save_log(Log.log_types[:sys], "#{current_user.name} 修改用户 #{@user.name} 成功！")
     else
       flash_msg '修改用户失败'
       render :edit
@@ -42,7 +42,7 @@ class UsersController < ApplicationController
     else
       if @user.update_attribute(:status, User.statuses[:archived])
         flash_msg "删除成功"
-        save_log(Log.log_types[:sys], current_user.id, "#{current_user.name} 删除用户 #{@user.name} 成功！")
+        save_log(Log.log_types[:sys], "#{current_user.name} 删除用户 #{@user.name} 成功！")
       else
         flash_msg '删除失败'
       end
