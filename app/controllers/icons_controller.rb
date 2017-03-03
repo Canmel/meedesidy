@@ -1,4 +1,5 @@
 class IconsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_icon, only: [:update, :destroy, :edit]
 
   def index
@@ -7,10 +8,6 @@ class IconsController < ApplicationController
     @q = Icon.ransack(params[:q])
     @icons = @q.result.page(@page).per(@page_size)
     @icons.total_count
-  end
-
-  def new
-    @icon = Icon.new
   end
 
   def create

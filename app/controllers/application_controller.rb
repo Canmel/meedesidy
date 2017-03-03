@@ -74,4 +74,11 @@ class ApplicationController < ActionController::Base
    render :file => "/public/500.html", :status => 500
   end
 
+  rescue_from CanCan::AccessDenied do |_exception|
+    if current_user
+      render file: "#{Rails.root}/public/422.html", status: 403, layout: false
+    else
+      redirect_to "/"
+    end
+  end
 end
