@@ -36,6 +36,7 @@ Rails.application.routes.draw do
   post 'cars/bind_driver', to: 'cars#bind_driver'
   resources :gerens
   resources :companies
+  resources :settlementers
 
   # 业务路由
   resources :budgets

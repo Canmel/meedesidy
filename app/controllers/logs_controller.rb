@@ -6,6 +6,7 @@ class LogsController < ApplicationController
     params[:q] ||= ActionController::Parameters.new
     params[:q][:status_eq] ||= Log.statuses[:active]
     params[:q][:s] = 'id desc'
+    params[:q][:created_at_lteq] = params[:q][:created_at_lteq].to_date.end_of_day if params[:q][:created_at_lteq].present?
     @q = Log.ransack(params[:q])
     @logs = @q.result
     @logs = @logs.page(@page).per(@page_size)

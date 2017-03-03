@@ -5,7 +5,10 @@
     <div>
     <%= search_form_for @q, :html => {:class => 'pjax-form'} do |f| %>
         <%= f.label "日志类型：", class: "control-label" %>
-          <%= f.select(:log_type_eq, "<option value=''>#{t('全部')}</option>".html_safe+ options_for_select(enum_colect("Log","log_types").collect { |g| [g['v'], g['k']] }, @q.log_type_eq), {}, {:class => 'form-control'}) %>
+        <%= f.select(:log_type_eq, "<option value=''>#{t('全部')}</option>".html_safe+ options_for_select(enum_colect("Log","log_types").collect { |g| [g['v'], g['k']] }, @q.log_type_eq), {}, {:class => 'form-control'}) %>
+        <%= f.label "时间范围：", class: "control-label" %>
+        <%= f.date_field :created_at_gteq, class: "form-control datepicker" %>-
+        <%= f.date_field :created_at_lteq, class: "form-control datepicker" %>
         <button type="submit" class="btn meedesidy_btn_query" data-toggle="modal" data-target="#search_model">查询</button>
     <% end %>
     </div>
@@ -16,7 +19,10 @@
       <thead>
       <tr>
         <th>#</th>
-        <th>名称</th>
+        <th>时间</th>
+        <th>关联车辆</th>
+        <th>关联公司</th>
+        <th>关联司机</th>
         <th>备注</th>
         <th>操作人</th>
         <th>操作</th>
@@ -26,7 +32,10 @@
       <% @logs.each_with_index do |log, index| %>
           <tr>
             <td><%= sequence index %></td>
-            <td><%= log.log_type_i18n %></td>
+            <td><%= log.created_at.strftime('%m-%d %H:%M')%></td>
+            <td><%= log.car&.car_no %></td>
+            <td><%= log.company&.name %></td>
+            <td><%= log.driver&.name %></td>
             <td><%= log.remark %></td>
             <td><%= log.operater&.name %></td>
             <td>

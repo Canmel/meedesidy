@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   # skip_before_filter :verify_authenticity_token
   protect_from_forgery with: :null_session
   before_action :record_request, :valid_login
-
   ADMIN_ROLE_ID = 2
 
   def valid_login

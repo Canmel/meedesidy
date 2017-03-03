@@ -90,7 +90,9 @@ class CarsController < ApplicationController
       @car.status = Car.statuses[:renting]
       if @car.valid_driver? && @car.save
         flash_msg "绑定车辆成功"
-        save_log(Log.log_types[:bind], "#{current_user.name}　绑定车辆　#{@car.car_no} 司机 #{@car.driver&.name} 成功")
+        save_log(Log.log_types[:bind],
+                 "#{current_user.name}　绑定车辆　#{@car.car_no} 司机 #{@car.driver&.name} 成功",
+                 car_id: @car.id, driver_id: @car.driver&.id, company_id: @car.company&.id)
         redirect_to :cars
       else
         render :bind
@@ -108,11 +110,16 @@ class CarsController < ApplicationController
   def relieve
     # 检查数据！如果不是符合要求的数据不予解绑
     if @car.binded?
+      driver_id = @car.driver&.id
       @car.driver = nil
       @car.status = Car.statuses[:active]
       if @car.save
         flash_msg '解绑车辆成功'
-        save_log(Log.log_types[:relieve], "#{current_user.name}　解绑车辆　#{@car.car_no} 成功")
+        save_log(Log.log_types[:relieve],
+                 "#{current_user.name}　解绑车辆　#{@car.car_no} 成功",
+                 car_id: @car.id,
+                 driver_id: driver_id,
+                 company_id: @car.company&.id)
       else
         flash_msg '解绑车辆失败'
       end
@@ -132,11 +139,13 @@ class CarsController < ApplicationController
   #   3. 已绑定公司
   def back
     if @car.granted?
+      company_id = @car.company&.id
       @car.status = Car.statuses[:archived]
       @car.company = nil
       if @car.save
         flash_msg '退车成功'
-        save_log(Log.log_types[:back], "#{current_user.name}　退车　#{@car.car_no} 成功")
+        save_log(Log.log_types[:back],
+                 "#{current_user.name}　退车　#{@car.car_no} 成功", car_id: @car.id, company_id: company_id )
       else
         flash_msg '退车失败'
       end

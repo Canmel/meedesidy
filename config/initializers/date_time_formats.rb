@@ -1,6 +1,14 @@
-Time::DATE_FORMATS.merge!(
-    :full => '%B %d, %Y at %I:%M %p',
-    :md => '%m-%d',
-    :mdy => '%y-%m-%d',
-    :time => '%I:%M %p'
-)
+Time::DATE_FORMATS[:year_month_day] = '%Y-%m-%d'
+Time::DATE_FORMATS[:year_month] = '%Y-%m'
+Time::DATE_FORMATS[:month_day] = '%m-%d'
+Time::DATE_FORMATS[:sort_time] = '%m-%d %H:%M'
+Time::DATE_FORMATS[:first_day] = '%Y-%m-01'
+Time::DATE_FORMATS[:time_to_s] = '%Y%m%d%H%M%S'
+Time::DATE_FORMATS[:full] = '%Y-%m-%d %H:%M:%S'
+
+Date::DATE_FORMATS[:year_month_day] = '%Y-%m-%d'
+Date::DATE_FORMATS[:year_month] = '%Y-%m'
+Date::DATE_FORMATS[:month_day] = '%m-%d'
+Date::DATE_FORMATS[:first_day] = '%Y-%m-01'
+Date::DATE_FORMATS[:time_to_s] = '%Y%m%d%H%M%S'
+Date::DATE_FORMATS[:full] = '%Y-%m-%d %H:%M:%S'

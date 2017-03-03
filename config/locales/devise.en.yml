@@ -169,6 +169,13 @@ zh:
         other: "%{count} 条错误使 %{resource} 不能正常保存:"
   hello: "你好"
   enums:
+    settlementer:
+      status:
+        active: "正常"
+        archived: "删除"
+      charger:
+        balance: "账户余额"
+        account: "对公账户"
     log:
       status:
         active: "正常"
@@ -177,9 +184,9 @@ zh:
         sys: "系统日志"
         grant: "发车记录"
         basic: "基本数据"
-        bind: "绑定"
-        relieve: "解绑"
-        back: "退车"
+        bind: "绑定记录"
+        relieve: "解绑记录"
+        back: "退车记录"
     user:
       status:
         active: "正常"

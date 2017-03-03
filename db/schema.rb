@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170301040916) do
+ActiveRecord::Schema.define(version: 20170303101916) do
 
   create_table "budgets", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -19,16 +19,36 @@ ActiveRecord::Schema.define(version: 20170301040916) do
   end
 
   create_table "cars", force: :cascade do |t|
-    t.string   "car_no",       limit: 255
-    t.string   "vin",          limit: 255
-    t.string   "color",        limit: 255
-    t.integer  "geren_id",     limit: 4
-    t.integer  "status",       limit: 4,   default: 1
-    t.integer  "creater_id",   limit: 4
-    t.integer  "updater_id",   limit: 4
-    t.integer  "company_id",   limit: 4
-    t.integer  "driver_id",    limit: 4
-    t.integer  "operate_type", limit: 4,   default: 0
+    t.string   "car_no",         limit: 255
+    t.string   "vin",            limit: 255
+    t.string   "color",          limit: 255
+    t.integer  "geren_id",       limit: 4
+    t.integer  "status",         limit: 4,   default: 1
+    t.integer  "creater_id",     limit: 4
+    t.integer  "updater_id",     limit: 4
+    t.integer  "company_id",     limit: 4
+    t.integer  "driver_id",      limit: 4
+    t.integer  "operate_type",   limit: 4,   default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "distance",       limit: 4,   default: 0
+    t.float    "balance",        limit: 53,  default: 0.0
+    t.integer  "charge_rule_id", limit: 4
+    t.integer  "change_status",  limit: 4,   default: 0
+  end
+
+  create_table "change_records", force: :cascade do |t|
+    t.integer  "station_id",      limit: 4
+    t.integer  "drive_distance",  limit: 4,  default: 0
+    t.integer  "charge_distance", limit: 4,  default: 0
+    t.integer  "total_distance",  limit: 4,  default: 0
+    t.integer  "company_id",      limit: 4
+    t.integer  "driver",          limit: 4
+    t.integer  "car",             limit: 4
+    t.integer  "change_count",    limit: 4,  default: 1
+    t.float    "expend_balance",  limit: 24, default: 0.0
+    t.float    "expend_gift",     limit: 24, default: 0.0
+    t.float    "expend_count",    limit: 24, default: 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -57,6 +77,7 @@ ActiveRecord::Schema.define(version: 20170301040916) do
     t.integer  "updater",    limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "id_card",    limit: 255, default: ""
   end
 
   create_table "gerens", force: :cascade do |t|
@@ -117,6 +138,17 @@ ActiveRecord::Schema.define(version: 20170301040916) do
   create_table "roles_menus", id: false, force: :cascade do |t|
     t.integer "role_id", limit: 4
     t.integer "menu_id", limit: 4
+  end
+
+  create_table "settlementers", force: :cascade do |t|
+    t.string  "name",          limit: 255
+    t.string  "desc",          limit: 255
+    t.integer "free_distance", limit: 4,   default: 0
+    t.integer "min_distance",  limit: 4,   default: 0
+    t.integer "max_distance",  limit: 4,   default: 0
+    t.float   "price",         limit: 24,  default: 0.0
+    t.integer "charger",       limit: 4,   default: 0
+    t.string  "account_num",   limit: 255
   end
 
   create_table "users", force: :cascade do |t|
