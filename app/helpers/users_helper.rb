@@ -14,13 +14,13 @@ module UsersHelper
   "<div class='modal fade' id='myModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>
   <div class='modal-dialog'>
   <div class='modal-content' style='width: 400px;margin-left: 100px;' align='center'>
-  <div class='modal-header'>
+  <div class='modal-header meedesidy_bg_1'>
   <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
         <h4 class='modal-title' id='myModalLabel'>正在加载。。。</h4>
   </div>
       <div class='modal-body' id='modal_div'>
       </div>
-  <div class='modal-footer'>
+  <div class='modal-footer meedesidy_bg_2'>
   <button type='button' class='btn btn-default' data-dismiss='modal'>确认</button>
       </div>
   </div>

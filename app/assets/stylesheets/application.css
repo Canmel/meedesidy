@@ -98,3 +98,6 @@
     background-color: #777
 }
 
+a.meedesidy_bg_3:active, a.meedesidy_bg_3:hover  {
+    background-color: red;
+}

@@ -1,8 +1,14 @@
-<section class="wrapper">
-  <% if can? :read, Car %>
-  sssdddddddddddddddddddd
 
-  <% end %>
-<h1>sssssssssssssssssssssssssssss</h1>
-  <%= current_user.has_role? :admin %>
-</section>
+
+<% provide(:title, '日志信息') %>
+<div class="panel col-md-12 col-lg-12 col-sm-12 col-xs-12">
+  <section class="wrapper">
+    <% if can? :read, Car %>
+        sssdddddddddddddddddddd
+
+    <% end %>
+    <h1>sssssssssssssssssssssssssssss</h1>
+    <%= current_user.has_role? :admin %>
+    <p><%= current_user.name %></p>
+  </section>
+</div>

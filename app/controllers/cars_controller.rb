@@ -7,10 +7,12 @@ class CarsController < ApplicationController
   def index
     @car = Car.new
     @cars = @q.result.page(@page).per(@page_size)
+    @cars.total_count
   end
 
   def create
     @car = Car.new(car_params)
+    @car.status = Car.statuses[:archived]
     if @car.save
       flash_msg '创建车辆成功'
       save_log(Log.log_types[:basic], "#{current_user.name} 创建车辆 #{@car.car_no} 成功", car_id: @car.id)
