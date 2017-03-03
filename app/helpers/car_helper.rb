@@ -53,7 +53,7 @@ module CarHelper
   end
 
   def back_modal_render
-    "<div class='modal fade' id='backModal' tabindex='-1' role='dialog' aria-labelledby='backModalLabel' aria-hidden='false'>
+    "<div class='modal fade' id='backModal' tabindex='-1' role='dialog' aria-labelledby='backModalLabel'>
       <div class='modal-dialog'>
     <div class='modal-content' align='center'>
       <div class='modal-header meedesidy_bg_1'>
@@ -93,7 +93,7 @@ module CarHelper
         </div>
       </div>
       <div class='modal-footer meedesidy_bg_2' style='padding: 3px 22px 5px;'>
-          <a data-confirm='确认要退车吗?' class='btn meedesidy_btn_confirm pjax-form' rel='' data-method='get' id='back_btn'>退车</a>
+          <a class='btn meedesidy_btn_confirm' data-dismiss='modal' id='back_btn'>退车</a>
       </div>
       </div>
     </div>
@@ -145,7 +145,7 @@ module CarHelper
         </div>
       </div>
       <div class='modal-footer meedesidy_bg_2' style='padding: 3px 22px 5px;'>
-          <a data-confirm='确认要解绑吗?' class='btn meedesidy_btn_confirm pjax-form' rel='' data-method='get' id='relieve_btn'>解绑</a>
+          <a data-confirm='确认要解绑吗?' class='btn meedesidy_btn_confirm' id='relieve_btn'>解绑</a>
       </div>
       </div>
     </div>

@@ -125,7 +125,6 @@ class CarsController < ApplicationController
   #   2. car 状态为２【激活】
   #   3. 已绑定公司
   def back
-    p @car
     if @car.granted?
       @car.status = Car.statuses[:archived]
       @car.company = nil
@@ -135,7 +134,7 @@ class CarsController < ApplicationController
         flash_msg '退车失败'
       end
     else
-      flash_msg '数据不正确或该车辆不是激活车辆'
+      flash_msg '数据不正确或该车辆不是激活状态'
     end
     redirect_to :cars
   end

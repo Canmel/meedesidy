@@ -62,6 +62,7 @@
     共<%= @cars.total_count %>条 <%= @cars.total_pages %>页 <%= paginate @cars %>
   </div>
 </div>
+
 <!--发车模态-->
 <%= model_render %>
 
@@ -70,6 +71,8 @@
 <%= back_modal_render %>
 <script>
   $(function () {
+
+    $(".modal-backdrop").remove();
 //    操作－>发车
     $("a[name='grant']").click(function () {
       var data = $(this).attr("data");
@@ -95,7 +98,7 @@
       $("#relieve_btn").attr('href','/cars/'+data+'/relieve');
     });
 
-//    操作－>退车
+//    操作－>back_btn
     $("a[name='back']").click(function () {
       var data = $(this).attr("data");
       var modal_car_no = $(this).attr("modal_car_no");
@@ -121,6 +124,7 @@
           setTimeout(function () {
             $("#car_search").submit()
           }, 500);
+
         }
       })
     })
