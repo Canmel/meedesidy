@@ -6,7 +6,7 @@
       <%= bootstrap_form_for(@car, url: '/cars/bind_driver', layout: :horizontal, method: 'post') do |f| %>
           <table style="width: 100%;">
             <tr>
-              <td style="width: 49%;">
+              <td style="width: 49%;vertical-align: top;">
                 <%= form_module_title_render "待绑定车辆数据" %>
                 <%= f.static_control :car_no, label: "车牌号" %>
                 <%= f.static_control :vin, label: "车架号" %>
@@ -29,8 +29,12 @@
                     <%= f.static_control label: "手机号码" do %>
                         <%= @car.driver&.phone %>
                     <% end %>
+                    <%= f.static_control label: "收费规则" do %>
+                        <%= @car.settlementer&.name %>
+                    <% end %>
                     <%= f.hidden_field :driver_id, label: "司机ＩＤ", value: @car.driver&.id %>
                     <div class="form-group">
+
                     </div>
                 <% end %>
                 <div class="form-group">
@@ -40,8 +44,7 @@
                   </div>
                 </div>
                 <div class="form-group text-center">
-                  <%= link_to '取消', cars_path, :class => 'btn btn-default' %>
-                  <%= f.submit "保存", class: "btn meedesidy_btn_save" %>
+                  <%= link_to '返回', cars_path, :class => 'btn btn-default' %>
                 </div>
               </td>
             </tr>

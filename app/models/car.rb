@@ -10,12 +10,18 @@ class Car < ActiveRecord::Base
 
   enum status: { archived: 0, active: 1, renting: 2 }
   enum operate_type: { free: 0, airport: 1, express: 2, lease: 3, thir: 4, spare: 5 }
+  enum change_status: { first_change: 0, normal_change: 1, last_change: 0 }
 
   belongs_to :geren
   belongs_to :company
   belongs_to :driver
+  belongs_to :settlementer, class_name: 'Settlementer' ,foreign_key: 'charge_rule_id', primary_key: 'id'
+
 
   attr_accessor :driver_name, :driver_phone
+
+  after_update :update_qrcode
+  after_save :create_qrcode
 
   def valid_driver?
     if driver_id.present?
@@ -25,6 +31,29 @@ class Car < ActiveRecord::Base
       self.errors.add(:driver_phone, "手机号不能为空")
       return false
     end
+  end
+
+  # 创建二维码
+  def create_qrcode
+    require 'qiniu'
+    require 'rqrcode_png'
+    require 'util/qiniu_util'
+    qr  = RQRCode::QRCode.new("#{car_no};#{change_status}", size: 6, level: :h)
+    png = qr.to_img
+    png.resize(200, 200).save("public/cars/rqrcode/temp_car.png")
+    info = QiniuUtil.upload2qiniu!("public/cars/rqrcode/temp_car.png", car_no)
+  end
+
+  # 更新二维码
+  def update_qrcode
+    require 'qiniu'
+    require 'rqrcode_png'
+    require 'util/qiniu_util'
+    QiniuUtil.deleteQiniuRqrcode car_no
+    qr  = RQRCode::QRCode.new("#{car_no};#{change_status}", size: 6, level: :h)
+    png = qr.to_img
+    png.resize(200, 200).save("public/cars/rqrcode/temp_car.png")
+    info = QiniuUtil.upload2qiniu!("public/cars/rqrcode/temp_car.png", car_no)
   end
 
 # 车辆是否已经绑定

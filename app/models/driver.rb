@@ -1,6 +1,8 @@
 class Driver < ActiveRecord::Base
   belongs_to :updater, class_name: 'User', foreign_key: 'updater', primary_key: 'id'
   belongs_to :company
+  has_many :car
+
   enum sex: { man: 1, woman: 0 }
   enum status: { active: 1, archived: 0 }
 

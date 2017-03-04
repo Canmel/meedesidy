@@ -1,6 +1,5 @@
 class GerensController < ApplicationController
   load_and_authorize_resource
-  before_action :set_car_gerens, only: [:show, :edit, :update, :destroy]
 
   def index
     params[:q] ||= ActionController::Parameters.new

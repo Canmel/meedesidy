@@ -30,6 +30,7 @@ Rails.application.routes.draw do
       get 'bind'
       get 'back'
       get 'relieve'
+      get 'primitive_url'
     end
   end
   # post 'cars/relieve', to: 'cars#relieve'

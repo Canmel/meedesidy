@@ -32,7 +32,8 @@
                       <%= f.text_field :driver_name, data: { autocomplete: autocomplete_driver_name_cars_path, :id_element => "#car_driver_id" }, label: "司机姓名", help: "必填", value: @car.driver&.name%>
                       <%= f.phone_field :driver_phone, label: "手机号码", readonly: true, value: @car.driver&.phone %>
                       <%= f.hidden_field :driver_id, label: "司机ＩＤ", value: @car.driver&.id %>
-                      <div class="form-group">
+                      <%= f.select :settlementer, settlements_array, label: "换电规则" %>
+                    <div class="form-group">
                     </div>
                 <% end %>
                 <div class="form-group text-center">

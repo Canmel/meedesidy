@@ -4,6 +4,21 @@ zh:
   activerecord:
     errors:
       models:
+        settlementer:
+          attributes:
+            name:
+              blank: '规则名称不能为空'
+              too_long: '规则名称不要超过15个字符'
+            free_distance:
+              blank: '免费里程不能为空'
+            min_distance:
+              blank: '最小里程不能为空'
+            max_distance:
+              blank: '最大里程不能为空'
+            price:
+              blank: '单价不能为空'
+            desc:
+              too_long: '备注过长'
         role:
           attributes:
             name:
@@ -210,6 +225,10 @@ zh:
         active: "激活"
         archived: "入库"
         renting: "租赁中"
+      change_status:
+        first_change: '第一次换电'
+        normal_change: '普通换电'
+        last_change: '退车换电'
     geren:
       status:
         active: "正常"

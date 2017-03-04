@@ -7,7 +7,7 @@
         <%= f.label "姓名：", class: "control-label" %>
         <%= f.search_field :name_cont, class: 'form-control' %>
         <%= f.label "状态：", class: "control-label" %>
-        <%= f.select(:status_eq, "<option value=''>#{t('全部')}</option>".html_safe+ options_for_select(enum_colect("Driver", "statuses").collect { |g| [g['v'], g['k']] }, @q.status_eq), {}, {:class => 'form-control'}) %>
+        <%= f.select(:status_eq, "<option value=''>#{t('全部')}</option>".html_safe+ options_for_select(enum_colect("Settlementer", "statuses").collect { |g| [g['v'], g['k']] }, @q.status_eq), {}, {:class => 'form-control'}) %>
         <%= link_to '新增', :new_driver, class: "btn meedesidy_btn_new" %>
         <button type="submit" class="btn meedesidy_btn_query" data-toggle="modal" data-target="#search_model">查询</button>
     <% end %>

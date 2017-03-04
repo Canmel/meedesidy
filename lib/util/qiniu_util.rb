@@ -18,14 +18,12 @@ class QiniuUtil
     end
   end
 
-  def self.upload2qiniu!(file, name = nil)
+  def self.upload2qiniu!(file_path, name = nil)
     require 'qiniu'
 
     putpolicy = Qiniu::Auth::PutPolicy.new(QINIU_BUCKET, "#{name}.png", 3600)
 
     uptoken = Qiniu::Auth.generate_uptoken(putpolicy)
-
-    file_path = "public/users/rqrcode/temp_user.png"
 
     result = Qiniu.upload_file uptoken: uptoken, file: file_path, bucket: QINIU_BUCKET, key: "#{name}.png"
 

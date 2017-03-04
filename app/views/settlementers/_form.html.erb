@@ -1,11 +1,11 @@
 <%= bootstrap_form_for(@settlementer, layout: :horizontal, :html => { class: 'pjax-form', style: {width: '60%'} }) do |f| %>
-    <%= f.text_field :name, label: "名称", help: '必填'  %>
+    <%= f.text_field :name, label: "名称", help: '必填', placeholder: '15个字符之内' %>
     <%= f.number_field :free_distance, min: 0, max: 1, label: "免费里程", help: '必填'  %>
     <%= f.number_field :min_distance, min: 0, label: '最小收费里程', help: '必填'  %>
     <%= f.number_field :max_distance, max: 1000, label: '最大收费里程', help: '必填'  %>
     <%= f.text_field :price, label: '每公里单价', help: '必填' ,placeholder: '单位：元/公里'%>
     <%= f.text_field :account_num, label: "对公收费账户" %>
-    <%= f.text_field :desc, label: "备注" %>
+    <%= f.text_field :desc, label: "备注", placeholder: '50个字符之内' %>
     <div class="form-group text-center">
       <%= link_to '取消', roles_path, :class => 'btn btn-default' %>
       <%= f.submit "保存", class: "btn meedesidy_btn_save" %>

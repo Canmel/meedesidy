@@ -3,6 +3,28 @@ module CarHelper
   def car_company_render car
     car.company.present? ? car.company&.sort_name : "未发车"
   end
+
+  def car_qr_code_render car
+    "<a class='label meedesidy_btn_1' href='##' data-toggle='modal' data-target='#qrCodeModal' name = 'qr_code' car_id='#{car.id}'>二维码</a>".html_safe
+  end
+
+  def car_qr_code_modal_render
+    "<div class='modal fade' id='qrCodeModal' tabindex='-1' role='dialog' aria-labelledby='qrCodeModal' aria-hidden='true'>
+      <div class='modal-dialog'>
+      <div class='modal-content' style='width: 400px;margin-left: 100px;' align='center'>
+      <div class='modal-header meedesidy_bg_1'>
+      <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
+            <h4 class='modal-title' id='myModalLabel'>正在加载。。。</h4>
+      </div>
+          <div class='modal-body' id='qr_modal_div'>
+          </div>
+      <div class='modal-footer meedesidy_bg_2'>
+      <button type='button' class='btn btn-default' data-dismiss='modal'>确认</button>
+          </div>
+      </div>
+      </div>
+    </div>".html_safe
+  end
   
   def model_render
     "<div class='modal fade' id='myModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='false'>

@@ -545,30 +545,36 @@ role_id</columns>
       <data-type>int(11)|0</data-type>
       <sequence-identity>1</sequence-identity>
     </column>
-    <column id="178" parent="36" name="free_distance">
+    <column id="178" parent="36" name="name">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="179" parent="36" name="desc">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="180" parent="36" name="free_distance">
       <data-type>int(11)|0</data-type>
       <default-expression>&apos;0&apos;</default-expression>
     </column>
-    <column id="179" parent="36" name="min_distance">
+    <column id="181" parent="36" name="min_distance">
       <data-type>int(11)|0</data-type>
       <default-expression>&apos;0&apos;</default-expression>
     </column>
-    <column id="180" parent="36" name="max_distance">
+    <column id="182" parent="36" name="max_distance">
       <data-type>int(11)|0</data-type>
       <default-expression>&apos;0&apos;</default-expression>
     </column>
-    <column id="181" parent="36" name="price">
+    <column id="183" parent="36" name="price">
       <data-type>float|0</data-type>
       <default-expression>&apos;0&apos;</default-expression>
     </column>
-    <column id="182" parent="36" name="charger">
+    <column id="184" parent="36" name="charger">
       <data-type>int(11)|0</data-type>
       <default-expression>&apos;0&apos;</default-expression>
     </column>
-    <column id="183" parent="36" name="account_num">
+    <column id="185" parent="36" name="account_num">
       <data-type>varchar(255)|0</data-type>
     </column>
-    <key id="184" parent="36" name="PRIMARY">
+    <key id="186" parent="36" name="PRIMARY">
       <columns>id</columns>
       <primary>1</primary>
     </key>

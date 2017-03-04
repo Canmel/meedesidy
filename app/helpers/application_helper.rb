@@ -19,10 +19,18 @@ module ApplicationHelper
   # 枚举类型的option的集合　[{"k" => "0", "v" => "1"}]
   def enum_colect class_name, enum
     collect_class = class_name.constantize
-    @enum_select_colect = []
+    @enum_select_colectt = []
     collect_class.send(enum).length.times{ |index|
-      @enum_select_colect << { "k" => collect_class.send(enum).values[index], "v" => collect_class.send("#{enum}_i18n").values[index] }
+      @enum_select_colectt << { "k" => collect_class.send(enum).values[index], "v" => collect_class.send("#{enum}_i18n").values[index] }
     }
-    @enum_select_colect
+    @enum_select_colectt
+  end
+
+  def class_colect class_name, colum
+    collect_class = class_name.constantize
+    @colum_select_collect = []
+    collect_class.all.map { | item |
+      @colum_select_collect << { "k" => item.send(colum), "v" => item.send(colum)}
+    }
   end
 end

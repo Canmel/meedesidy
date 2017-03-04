@@ -23,6 +23,7 @@
         <th>#</th>
         <th>规则名称</th>
         <th>收费对象</th>
+        <th>收费区间</th>
         <th>操作</th>
       </tr>
       </thead>
@@ -32,6 +33,7 @@
             <td><%= sequence index %></td>
             <td><%= item.name %></td>
             <td><%= item.charger_i18n %></td>
+            <td><%= item.min_distance %>～<%= item.max_distance %></td>
             <td>
               <%= link_to '编辑',edit_settlementer_path(item), class: 'label meedesidy_btn_edit' %>
               <%= link_to '删除', item, data: {confirm: "确认要删除#{item.name}?"}, method: :delete, class: "label meedesidy_btn_delete" %>

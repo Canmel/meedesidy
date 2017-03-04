@@ -1,5 +1,6 @@
 class Company < ActiveRecord::Base
   belongs_to :driver
+  has_many :car
 
   VALID_PHONE_REGEX      = /1[0-9]{10}/i
   validates :addr, :name, :contact_name, :contact_phone, :phone, :sort_name, presence: true

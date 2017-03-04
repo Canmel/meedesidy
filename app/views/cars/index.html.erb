@@ -49,6 +49,7 @@
           <td><%= car.company.present? ? car.company&.sort_name : "未发车" %></td>
           <td><%= car.driver.present? ? car.driver&.name : "未绑定" %></td>
           <td>
+            <%= car_qr_code_render car %>
             <%= edit_car_render car %>
             <%= delete_car_render car %>
             <%= back_car_render car %>
@@ -65,14 +66,33 @@
 
 <!--发车模态-->
 <%= model_render %>
-
+<!--解绑模态-->
 <%= relieve_modal_render %>
-
+<!--退车模态-->
 <%= back_modal_render %>
+<!--二维码模态-->
+<%= car_qr_code_modal_render %>
 <script>
   $(function () {
-
     $(".modal-backdrop").remove();
+    $("a[name='qr_code']").click(function () {
+      var car_id = $(this).attr("car_id");
+      $("#car_rqrcode").remove();
+//    异步获取用户的二维码下载地址
+      $.ajax({
+        url: "/cars/" + car_id + "/primitive_url",
+        method: 'GET',
+        success: function (data) {
+          if(data["code"] == '200'){
+//          将获取的下载地址放回ｈｔｍｌ中
+            $("#myModalLabel").text(data['name']);
+            $("#qr_modal_div").append('<img id="car_rqrcode" src="'+ data['data'] +'" width="240" height="240">');
+          }else{
+            $("#qr_modal_div").append('<span id="car_rqrcode">抱歉！！未找到二维码信息，请更新车辆，然后重新保存！</span>');
+          }
+        } });
+    })
+
 //    操作－>发车
     $("a[name='grant']").click(function () {
       var data = $(this).attr("data");
@@ -134,4 +154,10 @@
     $("#myModal").modal('hide');
     $(".notice").html("<div class='notice text-center'><span class='label meedesidy_notice_info'>"+ result +"</span></div>")
   }
+</script>
+
+<script>
+  $(function () {
+
+  })
 </script>

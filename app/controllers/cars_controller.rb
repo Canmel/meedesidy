@@ -88,6 +88,8 @@ class CarsController < ApplicationController
     else
       @car.driver_id = car_params[:driver_id]
       @car.status = Car.statuses[:renting]
+      @car.charge_rule_id = car_params[:settlementer]
+      p @car
       if @car.valid_driver? && @car.save
         flash_msg "绑定车辆成功"
         save_log(Log.log_types[:bind],
@@ -104,6 +106,7 @@ class CarsController < ApplicationController
   # 造成数据库影响：
   # 1. car 解除已关联的司机ID
   # 2. car 状态由３【租赁中】=> ２【激活】
+  # 3. car 清除收费规则
   # 解绑需要
   # 1. car 已经绑定了司机
   # 2. car 状态为３【租赁中】
@@ -113,6 +116,7 @@ class CarsController < ApplicationController
       driver_id = @car.driver&.id
       @car.driver = nil
       @car.status = Car.statuses[:active]
+      @car.charge_rule_id = nil
       if @car.save
         flash_msg '解绑车辆成功'
         save_log(Log.log_types[:relieve],
@@ -155,9 +159,25 @@ class CarsController < ApplicationController
     redirect_to :cars
   end
 
+  def primitive_url
+    require 'qiniu'
+    car = Car.find(params[:id])
+    file_name = car.car_no
+    file_name ||= ""
+    code, result, response_headers = Qiniu::Storage.stat(QINIU_BUCKET, "#{file_name}.png")
+    if code == 200
+      primitive_url = "http://olzjsogr4.bkt.clouddn.com/#{file_name}.png"
+      download_url = Qiniu::Auth.authorize_download_url(primitive_url)
+      p "=============================================="
+      render json: { :code => '200' ,:name => car.car_no , :data => download_url } if download_url.present?
+    else
+      render json: { code: 'error' ,msg: 'no such file or directory'}
+    end
+  end
+
   private
   def car_params
-    params.require(:car).permit(:car_no, :vin, :color, :geren_id, :company_id, :driver_id, :operater)
+    params.require(:car).permit(:car_no, :vin, :color, :geren_id, :company_id, :driver_id, :operater, :settlementer)
   end
 
   def set_global_search_variable
