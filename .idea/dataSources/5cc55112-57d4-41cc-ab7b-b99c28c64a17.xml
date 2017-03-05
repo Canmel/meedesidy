@@ -508,10 +508,10 @@ role_id</columns>
     <column id="167" parent="35" name="company_id">
       <data-type>int(11)|0</data-type>
     </column>
-    <column id="168" parent="35" name="driver">
+    <column id="168" parent="35" name="driver_id">
       <data-type>int(11)|0</data-type>
     </column>
-    <column id="169" parent="35" name="car">
+    <column id="169" parent="35" name="car_id">
       <data-type>int(11)|0</data-type>
     </column>
     <column id="170" parent="35" name="change_count">
@@ -530,51 +530,55 @@ role_id</columns>
       <data-type>float|0</data-type>
       <default-expression>&apos;0&apos;</default-expression>
     </column>
-    <column id="174" parent="35" name="created_at">
+    <column id="174" parent="35" name="status">
+      <data-type>int(11)|0</data-type>
+      <default-expression>&apos;1&apos;</default-expression>
+    </column>
+    <column id="175" parent="35" name="created_at">
       <data-type>datetime|0</data-type>
     </column>
-    <column id="175" parent="35" name="updated_at">
+    <column id="176" parent="35" name="updated_at">
       <data-type>datetime|0</data-type>
     </column>
-    <key id="176" parent="35" name="PRIMARY">
+    <key id="177" parent="35" name="PRIMARY">
       <columns>id</columns>
       <primary>1</primary>
     </key>
-    <column id="177" parent="36" name="id">
+    <column id="178" parent="36" name="id">
       <mandatory>1</mandatory>
       <data-type>int(11)|0</data-type>
       <sequence-identity>1</sequence-identity>
     </column>
-    <column id="178" parent="36" name="name">
+    <column id="179" parent="36" name="name">
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="179" parent="36" name="desc">
+    <column id="180" parent="36" name="desc">
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="180" parent="36" name="free_distance">
+    <column id="181" parent="36" name="free_distance">
       <data-type>int(11)|0</data-type>
       <default-expression>&apos;0&apos;</default-expression>
     </column>
-    <column id="181" parent="36" name="min_distance">
+    <column id="182" parent="36" name="min_distance">
       <data-type>int(11)|0</data-type>
       <default-expression>&apos;0&apos;</default-expression>
     </column>
-    <column id="182" parent="36" name="max_distance">
+    <column id="183" parent="36" name="max_distance">
       <data-type>int(11)|0</data-type>
       <default-expression>&apos;0&apos;</default-expression>
     </column>
-    <column id="183" parent="36" name="price">
+    <column id="184" parent="36" name="price">
       <data-type>float|0</data-type>
       <default-expression>&apos;0&apos;</default-expression>
     </column>
-    <column id="184" parent="36" name="charger">
+    <column id="185" parent="36" name="charger">
       <data-type>int(11)|0</data-type>
       <default-expression>&apos;0&apos;</default-expression>
     </column>
-    <column id="185" parent="36" name="account_num">
+    <column id="186" parent="36" name="account_num">
       <data-type>varchar(255)|0</data-type>
     </column>
-    <key id="186" parent="36" name="PRIMARY">
+    <key id="187" parent="36" name="PRIMARY">
       <columns>id</columns>
       <primary>1</primary>
     </key>

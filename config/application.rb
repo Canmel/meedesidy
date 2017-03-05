@@ -27,5 +27,16 @@ module Cup
     config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
     config.qiniu_download_url = "http://olzjsogr4.bkt.clouddn.com"
     config.qiniu_bucket = "meedisedy-users"
+
+    config.generators do |g|
+      g.test_framework :rspec,
+                       fixtures: true,             #为各模型生成测试固件
+                       view_specs: false,       #不生成“视图测试”
+                       helper_specs: false,    #生成控制器时不生成对应的帮助方法测试文件
+                       routing_specs: false,   #不生成针对 config/routes.rb 的测试文件
+                       controller_specs: true,
+                       request_specs: false
+      g.fixture_replacement :factory_girl, dir: "spec/factories"
+    end
   end
 end

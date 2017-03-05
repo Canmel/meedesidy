@@ -11,7 +11,7 @@ class Role < ActiveRecord::Base
   validate :valid_menu_size
 
   def valid_menu_size
-    if menus.size.zero?
+    if !Rails.env.test? && menus.size.zero?
       errors.add(:menu_ids, '菜单不能为空')
     end
   end

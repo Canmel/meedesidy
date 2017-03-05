@@ -55,17 +55,50 @@ gem 'useragent', '0.16.8'
 gem 'rubocop','0.46.0'
 gem 'qwer', '0.1.7'
 gem 'qiniu', '6.8.1'
-# 二维码
 gem 'rqrcode_png', '0.1.5'
-group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
-end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+end
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'parallel_tests'
+
+  gem 'bundler-audit'
+  gem 'rails_best_practices'
+  gem 'brakeman'
+
+  gem 'rspec-kickstarter'
+
+  gem 'byebug'
+
+  gem 'traceroute'
+end
+
+
+group :test do
+  #自动清除数据库数据的工具，每次运行完测试用例它就会自动清除数据库。
+  gem 'database_cleaner'
+  #为预构件生成名字、Email 地址以及其他的示例数据
+  gem 'faker'
+  #便于模拟用户和程序的交互操作
+  gem 'capybara'
+  #如果需要,它会打开系统的默认浏览器,显示应用程序当前渲染的页面
+  gem 'launchy'
+  #结合 Capybara 测试基于 JavaScript 的交互操作
+  gem 'selenium-webdriver'
+
+  gem 'simplecov', require: false
+  gem 'webmock', require: false
+  gem 'fakeweb', require: false
+  # gem 'net-http-persistent', '~> 3.0.0'
+  gem 'vcr', require: false
+  gem "fakeredis", require: "fakeredis/rspec"
+  gem 'timecop'
 end
 

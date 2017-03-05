@@ -38,6 +38,7 @@ class Car < ActiveRecord::Base
     require 'qiniu'
     require 'rqrcode_png'
     require 'util/qiniu_util'
+    return if Rails.env.test?
     qr  = RQRCode::QRCode.new("#{car_no};#{change_status}", size: 6, level: :h)
     png = qr.to_img
     png.resize(200, 200).save("public/cars/rqrcode/temp_car.png")
@@ -49,6 +50,7 @@ class Car < ActiveRecord::Base
     require 'qiniu'
     require 'rqrcode_png'
     require 'util/qiniu_util'
+    return if Rails.env.test?
     QiniuUtil.deleteQiniuRqrcode car_no
     qr  = RQRCode::QRCode.new("#{car_no};#{change_status}", size: 6, level: :h)
     png = qr.to_img
