@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170303101916) do
+ActiveRecord::Schema.define(version: 20170304094139) do
 
   create_table "budgets", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -43,12 +43,13 @@ ActiveRecord::Schema.define(version: 20170303101916) do
     t.integer  "charge_distance", limit: 4,  default: 0
     t.integer  "total_distance",  limit: 4,  default: 0
     t.integer  "company_id",      limit: 4
-    t.integer  "driver",          limit: 4
-    t.integer  "car",             limit: 4
+    t.integer  "driver_id",       limit: 4
+    t.integer  "car_id",          limit: 4
     t.integer  "change_count",    limit: 4,  default: 1
     t.float    "expend_balance",  limit: 24, default: 0.0
     t.float    "expend_gift",     limit: 24, default: 0.0
     t.float    "expend_count",    limit: 24, default: 0.0
+    t.integer  "status",          limit: 4,  default: 1
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,0 +1,9 @@
+<%= bootstrap_form_for(@change_record, layout: :horizontal, :html => { class: 'pjax-form' }) do |f| %>
+    <%= f.text_field :car_no, label: "车牌号", help: '必填' %>
+
+    <%= f.number_field :total_distance, label: '总行驶里程', help: '必填' %>
+    <div class="form-group text-center">
+      <%= link_to '取消', change_records_path, :class => 'btn btn-default' %>
+      <%= f.submit "保存", class: "btn meedesidy_btn_save" %>
+    </div>
+<% end %>

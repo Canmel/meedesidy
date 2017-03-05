@@ -32,6 +32,7 @@
         <th>车型</th>
         <th>颜色</th>
         <th>状态</th>
+        <th>行驶里程</th>
         <th>服务公司</th>
         <th>绑定司机</th>
         <th>操作</th>
@@ -46,6 +47,7 @@
           <td><%= car.geren&.name %></td>
           <td><%= car.color %></td>
           <td><%= car.status_i18n %></td>
+          <td><%= car.distance %></td>
           <td><%= car.company.present? ? car.company&.sort_name : "未发车" %></td>
           <td><%= car.driver.present? ? car.driver&.name : "未绑定" %></td>
           <td>

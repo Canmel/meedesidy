@@ -7,12 +7,13 @@ class Settlementer < ActiveRecord::Base
   validates :name, presence: true, length: { maximum: 15 }
   # 备注： 最大长度50个字符
   validates :desc, length: { maximum: 50 }
-  # 免费里程
-  validates :free_distance, presence: true
-  # 最小收费里程
-  validates :min_distance, presence: true
-  # 最大收费里程
-  validates :max_distance, presence: true
-  # 每公里收费单价
-  validates :price, presence: true
+  # 免费里程 |最小收费里程 |最大收费里程 |每公里收费单价
+  validates :free_distance, :min_distance, :max_distance, :price, presence: true
+
+  # 结算
+  def check_out
+
+
+  end
+
 end

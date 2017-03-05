@@ -42,6 +42,7 @@ Rails.application.routes.draw do
   # 业务路由
   resources :budgets
   resources :logs
+  resources :change_records
 
   get '/drivers/search_company'
   resources :drivers do

@@ -42,6 +42,7 @@ class CarsController < ApplicationController
     else
       flash_msg "删除失败: #{@car.operat_error_msg}"
     end
+    redirect_to :cars
   end
 
   # 发车

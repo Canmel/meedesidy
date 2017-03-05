@@ -6,7 +6,8 @@ class Log < ActiveRecord::Base
   # back: 退车
   # bind: 绑定
   # relieve: 解绑
-  enum log_type: { sys: 1, grant: 2, basic: 3, back: 4, bind: 5, relieve: 6 }
+  # record
+  enum log_type: { sys: 1, grant: 2, basic: 3, back: 4, bind: 5, relieve: 6, record: 7 }
 
   belongs_to :operater, class_name: 'User' ,foreign_key: 'operater', primary_key: 'id'
   belongs_to :company

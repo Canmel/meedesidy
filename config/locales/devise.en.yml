@@ -184,6 +184,10 @@ zh:
         other: "%{count} 条错误使 %{resource} 不能正常保存:"
   hello: "你好"
   enums:
+    change_record:
+      status:
+        active: "正常"
+        archived: "删除"
     settlementer:
       status:
         active: "正常"
@@ -202,6 +206,7 @@ zh:
         bind: "绑定记录"
         relieve: "解绑记录"
         back: "退车记录"
+        record: "换电记录"
     user:
       status:
         active: "正常"
