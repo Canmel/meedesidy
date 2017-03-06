@@ -108,16 +108,24 @@ class CarsController < ApplicationController
   # 1. car 解除已关联的司机ID
   # 2. car 状态由３【租赁中】=> ２【激活】
   # 3. car 清除收费规则
+  # 4. car 换电状态置为0
   # 解绑需要
   # 1. car 已经绑定了司机
   # 2. car 状态为３【租赁中】
+  # 3. 绑定的车，有余额不能解绑
   def relieve
+    if @car.balance?
+      flash_msg '车辆有未使用余额，不能解绑'
+      redirect_to :cars
+      return
+    end
     # 检查数据！如果不是符合要求的数据不予解绑
     if @car.binded?
       driver_id = @car.driver&.id
       @car.driver = nil
       @car.status = Car.statuses[:active]
       @car.charge_rule_id = nil
+      @car.change_status = Car.change_statuses[:first_change]
       if @car.save
         flash_msg '解绑车辆成功'
         save_log(Log.log_types[:relieve],
@@ -160,6 +168,8 @@ class CarsController < ApplicationController
     redirect_to :cars
   end
 
+  # 获取二维码url
+  # 二维码保存在七牛，获取图片的链接
   def primitive_url
     require 'qiniu'
     car = Car.find(params[:id])

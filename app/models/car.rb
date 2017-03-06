@@ -71,4 +71,9 @@ class Car < ActiveRecord::Base
   def godowned?
     self.archived? && self.company.nil?
   end
+
+  # 是否还有余额
+  def balance?
+    self.balance > 0
+  end
 end

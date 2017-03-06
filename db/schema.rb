@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170304094139) do
+ActiveRecord::Schema.define(version: 20170306120715) do
 
   create_table "budgets", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -79,6 +79,16 @@ ActiveRecord::Schema.define(version: 20170304094139) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "id_card",    limit: 255, default: ""
+  end
+
+  create_table "finances", force: :cascade do |t|
+    t.float    "fee",         limit: 24,  default: 0.0
+    t.integer  "car_id",      limit: 4
+    t.integer  "log_type",    limit: 4
+    t.string   "account_num", limit: 255
+    t.string   "remark",      limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "gerens", force: :cascade do |t|
