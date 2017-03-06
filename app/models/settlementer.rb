@@ -9,11 +9,4 @@ class Settlementer < ActiveRecord::Base
   validates :desc, length: { maximum: 50 }
   # 免费里程 |最小收费里程 |最大收费里程 |每公里收费单价
   validates :free_distance, :min_distance, :max_distance, :price, presence: true
-
-  # 结算
-  def check_out
-
-
-  end
-
 end
