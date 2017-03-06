@@ -87,7 +87,7 @@
         success: function (data) {
           if(data["code"] == '200'){
 //          将获取的下载地址放回ｈｔｍｌ中
-            $("#myModalLabel").text(data['name']);
+            $("#qrCodeLabel").text(data['name']);
             $("#qr_modal_div").append('<img id="car_rqrcode" src="'+ data['data'] +'" width="240" height="240">');
           }else{
             $("#qr_modal_div").append('<span id="car_rqrcode">抱歉！！未找到二维码信息，请更新车辆，然后重新保存！</span>');

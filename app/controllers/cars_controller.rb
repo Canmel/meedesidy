@@ -169,7 +169,6 @@ class CarsController < ApplicationController
     if code == 200
       primitive_url = "http://olzjsogr4.bkt.clouddn.com/#{file_name}.png"
       download_url = Qiniu::Auth.authorize_download_url(primitive_url)
-      p "=============================================="
       render json: { :code => '200' ,:name => car.car_no , :data => download_url } if download_url.present?
     else
       render json: { code: 'error' ,msg: 'no such file or directory'}

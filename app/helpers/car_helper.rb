@@ -14,7 +14,7 @@ module CarHelper
       <div class='modal-content' style='width: 400px;margin-left: 100px;' align='center'>
       <div class='modal-header meedesidy_bg_1'>
       <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
-            <h4 class='modal-title' id='myModalLabel'>正在加载。。。</h4>
+            <h4 class='modal-title' id='qrCodeLabel'>正在加载。。。</h4>
       </div>
           <div class='modal-body' id='qr_modal_div'>
           </div>
