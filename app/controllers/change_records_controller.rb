@@ -13,6 +13,12 @@ class ChangeRecordsController < ApplicationController
       car = Car.find_by_car_no(@change_record.car_no)
       # 结算
       result = CheckOutUtil.instance.check_out car, @change_record
+      # 按照结算信息，判断能否结算　｜　余额是否充足
+      if result[:expend_balance] > car.balance
+        flash_msg '车辆余额不足，不能换电，请及时充值'
+        redirect_to :change_records
+        return
+      end
       # 获取结算结果并开始组合结算数据
       @change_record.save_check_out_result result
       # 保存换电记录
