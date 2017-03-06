@@ -33,6 +33,7 @@
                         <%= @car.settlementer&.name %>
                     <% end %>
                     <%= f.hidden_field :driver_id, label: "司机ＩＤ", value: @car.driver&.id %>
+                    <%= f.static_control :balance, label: "绑定余额" if @car.binded? %>
                     <%= f.static_control :change_status_i18n, label: "换电状态" if @car.binded? %>
                 <% end %>
                 <div class="form-group">

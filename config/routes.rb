@@ -43,6 +43,8 @@ Rails.application.routes.draw do
   resources :budgets
   resources :logs
   resources :change_records
+  resources :finances
+
 
   get '/drivers/search_company'
   resources :drivers do

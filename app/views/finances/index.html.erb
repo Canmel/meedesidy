@@ -1,0 +1,46 @@
+<% provide(:title, '财务日志信息') %>
+<div class="panel col-md-12 col-lg-12 col-sm-12 col-xs-12">
+  <h5 class="page-header">查询条件</h5>
+  <div class="dataTables_wrapper form-inline">
+    <div>
+    <%= search_form_for @q, :html => {:class => 'pjax-form'} do |f| %>
+        <%= f.label "日志名称：", class: "control-label" %>
+        <%= f.search_field :remark_cont, class: 'form-control' %>
+        <%= link_to '充值', :new_finance, class: "btn meedesidy_btn_new" %>
+        <button type="submit" class="btn meedesidy_btn_query" data-toggle="modal" data-target="#search_model">查询</button>
+    <% end %>
+    </div>
+  </div>
+  <h3 class="sub-header">日志列表
+    <% if flash[:finance_notice] %>
+        <div class="notice text-center"><span class="label meedesidy_notice_info"><%= flash[:finance_notice] %></span></div>
+    <% end %>
+  </h3>
+  <div class="table-responsive">
+    <table class="table table-striped table-hover" id="editable-sample">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>图标名称</th>
+        <th>CODE</th>
+        <th>状态</th>
+        <th>操作</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @finances.each_with_index do |item, index| %>
+        <tr>
+          <td><%= sequence index %></td>
+          <td><%= item.name %></td>
+          <td><%= item.code %></td>
+          <td><%= item.status_i18n %></td>
+          <td>
+            <%= link_to '编辑', edit_finance_path(item), class: 'label meedesidy_btn_edit'%>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+    共<%= @finances.total_count %>条 <%= @finances.total_pages %>页 <%= paginate @finances %>
+  </div>
+</div>
