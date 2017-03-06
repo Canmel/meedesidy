@@ -50,6 +50,7 @@ class UsersController < ApplicationController
     redirect_to :users
   end
 
+  # app登录借口，不需要权限
   def login_app
     # user = User.authenticate(params[:username], params[:password])
     if params[:username] == '0000' && params[:password] == '1111'
@@ -60,6 +61,7 @@ class UsersController < ApplicationController
 
   end
 
+  # 获取用户二维码地址
   def primitive_url
     require 'qiniu'
     user = User.find(params[:id])
