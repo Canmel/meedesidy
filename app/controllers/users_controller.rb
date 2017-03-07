@@ -27,6 +27,17 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_without_password(user_params)
+      require 'qiniu'
+      require 'rqrcode_png'
+      require 'util/qiniu_util'
+      return if !@user.email.present?
+      email_name = get_email_name @user.email
+      QiniuUtil.deleteQiniuRqrcode email_name
+      qr  = RQRCode::QRCode.new("#{@user.name};#{@user.email}", size: 6, level: :h)
+      png = qr.to_img
+      png.resize(200, 200).save("public/users/rqrcode/temp_user.png")
+      info = QiniuUtil.upload2qiniu!("public/users/rqrcode/temp_user.png", email_name)
+
       flash_msg '修改用户成功'
       redirect_to :users
       save_log(Log.log_types[:sys], "#{current_user.name} 修改用户 #{@user.name} 成功！")
@@ -90,6 +101,12 @@ class UsersController < ApplicationController
   
   def flash_msg msg
     flash[:user_notice] = msg
+  end
+
+  def get_email_name email
+    return nil if !email.present?
+    email_names = email.to_s.split "@"
+    email_name = email_names[0]
   end
 end
 

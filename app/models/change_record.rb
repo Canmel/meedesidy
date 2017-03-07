@@ -5,6 +5,8 @@ class ChangeRecord < ActiveRecord::Base
 
   enum status: { active: 1, archived: 0 }
 
+  enum change_type: { first_change: 0, normal_change: 1, last_change: 2 }
+
   validates :total_distance, :drive_distance, presence: true
   validate :car_info_valid, on: :create
 
@@ -23,6 +25,7 @@ class ChangeRecord < ActiveRecord::Base
     self.expend_balance = result[:expend_balance]
     self.expend_gift = result[:expend_gift]
     self.expend_count = result[:expend_count]
+    self.charge_distance = result[:charge_distance]
   end
 
 
@@ -30,10 +33,12 @@ class ChangeRecord < ActiveRecord::Base
   # 修改车辆信息
   # 1. 车辆换电状态如果是首次换电 => 普通换电
   # 2. 修改车辆行驶里程
+  # 3. 修改余额
   def change_car_info
     car = Car.find_by_car_no car_no
     car.distance = self.total_distance
     car.change_status = Car.change_statuses[:normal_change]
+    car.balance = car.balance - self.expend_balance
     car.save
   end
 

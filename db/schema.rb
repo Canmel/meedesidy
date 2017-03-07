@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20170306120715) do
     t.float    "expend_gift",     limit: 24, default: 0.0
     t.float    "expend_count",    limit: 24, default: 0.0
     t.integer  "status",          limit: 4,  default: 1
+    t.integer  "change_type",     limit: 4,  default: 1
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -87,6 +88,7 @@ ActiveRecord::Schema.define(version: 20170306120715) do
     t.integer  "log_type",    limit: 4
     t.string   "account_num", limit: 255
     t.string   "remark",      limit: 255
+    t.integer  "operater",    limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end

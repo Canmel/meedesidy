@@ -14,7 +14,7 @@
     <% end %>
     </div>
   </div>
-  <h3 class="sub-header">记录列表
+  <h3 class="sub-header">换电记录列表
     <div class="notice text-center">
       <% if flash[:change_record_notice] %>
           <span class="label meedesidy_notice_info"><%= flash[:change_record_notice] %></span>
@@ -30,8 +30,10 @@
         <th>车牌号</th>
         <th>服务公司</th>
         <th>司机</th>
-        <th>本次行驶里程</th>
-        <th>总行驶里程</th>
+        <th>里程</th>
+        <th>总里程</th>
+        <th>收费(余额/礼品)</th>
+        <th>类型</th>
         <th>操作</th>
       </tr>
       </thead>
@@ -45,6 +47,8 @@
             <td><%= item.driver&.name %></td>
             <td><%= item.drive_distance %></td>
             <td><%= item.total_distance %></td>
+            <td><%= "#{item.expend_balance}/#{item.expend_gift}" %></td>
+            <td><%= item.change_type_i18n %></td>
             <td>
               <%= link_to '删除', item, data: {confirm: "确认要删除这条记录?"}, method: :delete, class: "label meedesidy_btn_delete" %>
             </td>

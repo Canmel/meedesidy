@@ -7,6 +7,7 @@ class CreateFinances < ActiveRecord::Migration
       t.integer :car_id, comment: '车辆'
       t.string :account_num, comment: '对公账户'
       t.string :remark, comment: '备注'
+      t.integer :operater, comment: '操作人'
 
       t.timestamps
     end

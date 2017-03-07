@@ -192,6 +192,10 @@ zh:
       status:
         active: "正常"
         archived: "删除"
+      change_type:
+        first_change: '第一次换电'
+        normal_change: '普通换电'
+        last_change: '退车换电'
     settlementer:
       status:
         active: "正常"

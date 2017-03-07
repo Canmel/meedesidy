@@ -25,6 +25,16 @@ class CarsController < ApplicationController
 
   def update
     if @car.update(car_params)
+      require 'qiniu'
+      require 'rqrcode_png'
+      require 'util/qiniu_util'
+      return if Rails.env.test?
+      QiniuUtil.deleteQiniuRqrcode car_no
+      qr  = RQRCode::QRCode.new("#{car_no};#{change_status}", size: 6, level: :h)
+      png = qr.to_img
+      png.resize(200, 200).save("public/cars/rqrcode/temp_car.png")
+      info = QiniuUtil.upload2qiniu!("public/cars/rqrcode/temp_car.png", car_no)
+
       flash_msg '修改车辆成功'
       save_log(Log.log_types[:basic], "#{current_user.name} 创建车辆 #{@car.car_no} 基础参数成功", car_id: @car.id)
       redirect_to :cars

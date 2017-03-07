@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   validate :valid_user_roles
 
   # after_save 将回调函数包含在同一个事务中，那么要么全部成功，要么全部失败。回调函数中的抛出的异常会导致整个操作失败
-  after_save :create_qrcode if !Rails.env.test?
+  after_create :create_qrcode if !Rails.env.test?
 
   after_update :update_qrcode if !Rails.env.test?
 
@@ -48,16 +48,7 @@ class User < ActiveRecord::Base
   end
 
   def update_qrcode
-    require 'qiniu'
-    require 'rqrcode_png'
-    require 'util/qiniu_util'
-    return if !email.present?
-    email_name = get_email_name email
-    QiniuUtil.deleteQiniuRqrcode email_name
-    qr  = RQRCode::QRCode.new("#{name};#{email}", size: 6, level: :h)
-    png = qr.to_img
-    png.resize(200, 200).save("public/users/rqrcode/temp_user.png")
-    info = QiniuUtil.upload2qiniu!("public/users/rqrcode/temp_user.png", email_name)
+    true
   end
 
   def do_sth_after_commit
