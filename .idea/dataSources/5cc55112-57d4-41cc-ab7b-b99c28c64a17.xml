@@ -40,577 +40,617 @@
     <table id="35" parent="1" name="change_records"/>
     <table id="36" parent="1" name="settlementers"/>
     <table id="37" parent="1" name="finances"/>
-    <column id="38" parent="22" name="id">
+    <table id="38" parent="1" name="refunds"/>
+    <column id="39" parent="22" name="id">
       <mandatory>1</mandatory>
       <data-type>int(11)|0</data-type>
       <sequence-identity>1</sequence-identity>
     </column>
-    <column id="39" parent="22" name="name">
+    <column id="40" parent="22" name="name">
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="40" parent="22" name="desc">
+    <column id="41" parent="22" name="desc">
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="41" parent="22" name="source">
+    <column id="42" parent="22" name="source">
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="42" parent="22" name="parent_id">
+    <column id="43" parent="22" name="parent_id">
       <data-type>int(11)|0</data-type>
     </column>
-    <column id="43" parent="22" name="resource_id">
+    <column id="44" parent="22" name="resource_id">
       <data-type>int(11)|0</data-type>
     </column>
-    <column id="44" parent="22" name="created_at">
+    <column id="45" parent="22" name="created_at">
       <data-type>datetime|0</data-type>
     </column>
-    <column id="45" parent="22" name="updated_at">
+    <column id="46" parent="22" name="updated_at">
       <data-type>datetime|0</data-type>
     </column>
-    <column id="46" parent="22" name="status">
+    <column id="47" parent="22" name="status">
       <data-type>int(11)|0</data-type>
     </column>
-    <column id="47" parent="22" name="resource_type">
+    <column id="48" parent="22" name="resource_type">
       <data-type>int(11)|0</data-type>
     </column>
-    <column id="48" parent="22" name="icon_id">
+    <column id="49" parent="22" name="icon_id">
       <data-type>int(11)|0</data-type>
     </column>
-    <key id="49" parent="22" name="PRIMARY">
+    <key id="50" parent="22" name="PRIMARY">
       <columns>id</columns>
       <primary>1</primary>
     </key>
-    <column id="50" parent="23" name="id">
+    <column id="51" parent="23" name="id">
       <mandatory>1</mandatory>
       <data-type>int(11)|0</data-type>
       <sequence-identity>1</sequence-identity>
     </column>
-    <column id="51" parent="23" name="name">
+    <column id="52" parent="23" name="name">
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="52" parent="23" name="resource_id">
+    <column id="53" parent="23" name="resource_id">
       <data-type>int(11)|0</data-type>
     </column>
-    <column id="53" parent="23" name="resource_type">
+    <column id="54" parent="23" name="resource_type">
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="54" parent="23" name="created_at">
+    <column id="55" parent="23" name="created_at">
       <data-type>datetime|0</data-type>
     </column>
-    <column id="55" parent="23" name="updated_at">
+    <column id="56" parent="23" name="updated_at">
       <data-type>datetime|0</data-type>
     </column>
-    <column id="56" parent="23" name="desc">
+    <column id="57" parent="23" name="desc">
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="57" parent="23" name="level">
+    <column id="58" parent="23" name="level">
       <data-type>int(11)|0</data-type>
     </column>
-    <column id="58" parent="23" name="status">
+    <column id="59" parent="23" name="status">
       <data-type>int(11)|0</data-type>
     </column>
-    <index id="59" parent="23" name="index_roles_on_name">
+    <index id="60" parent="23" name="index_roles_on_name">
       <columns>name</columns>
       <desc-columns></desc-columns>
     </index>
-    <index id="60" parent="23" name="index_roles_on_name_and_resource_type_and_resource_id">
+    <index id="61" parent="23" name="index_roles_on_name_and_resource_type_and_resource_id">
       <columns>name
 resource_type
 resource_id</columns>
       <desc-columns></desc-columns>
     </index>
-    <key id="61" parent="23" name="PRIMARY">
+    <key id="62" parent="23" name="PRIMARY">
       <columns>id</columns>
       <primary>1</primary>
     </key>
-    <column id="62" parent="24" name="role_id">
+    <column id="63" parent="24" name="role_id">
       <data-type>int(11)|0</data-type>
     </column>
-    <column id="63" parent="24" name="menu_id">
+    <column id="64" parent="24" name="menu_id">
       <data-type>int(11)|0</data-type>
     </column>
-    <column id="64" parent="25" name="version">
+    <column id="65" parent="25" name="version">
       <mandatory>1</mandatory>
       <data-type>varchar(255)|0</data-type>
     </column>
-    <index id="65" parent="25" name="unique_schema_migrations">
+    <index id="66" parent="25" name="unique_schema_migrations">
       <columns>version</columns>
       <desc-columns></desc-columns>
       <unique>1</unique>
     </index>
-    <key id="66" parent="25" name="unique_schema_migrations">
+    <key id="67" parent="25" name="unique_schema_migrations">
       <columns>version</columns>
       <underlying-index>unique_schema_migrations</underlying-index>
     </key>
-    <column id="67" parent="26" name="id">
+    <column id="68" parent="26" name="id">
       <mandatory>1</mandatory>
       <data-type>int(11)|0</data-type>
       <sequence-identity>1</sequence-identity>
     </column>
-    <column id="68" parent="26" name="email">
+    <column id="69" parent="26" name="email">
       <mandatory>1</mandatory>
       <data-type>varchar(255)|0</data-type>
       <default-expression>&apos;&apos;</default-expression>
     </column>
-    <column id="69" parent="26" name="encrypted_password">
+    <column id="70" parent="26" name="encrypted_password">
       <mandatory>1</mandatory>
       <data-type>varchar(255)|0</data-type>
       <default-expression>&apos;&apos;</default-expression>
     </column>
-    <column id="70" parent="26" name="reset_password_token">
+    <column id="71" parent="26" name="reset_password_token">
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="71" parent="26" name="reset_password_sent_at">
+    <column id="72" parent="26" name="reset_password_sent_at">
       <data-type>datetime|0</data-type>
     </column>
-    <column id="72" parent="26" name="remember_created_at">
+    <column id="73" parent="26" name="remember_created_at">
       <data-type>datetime|0</data-type>
     </column>
-    <column id="73" parent="26" name="sign_in_count">
+    <column id="74" parent="26" name="sign_in_count">
       <mandatory>1</mandatory>
       <data-type>int(11)|0</data-type>
       <default-expression>&apos;0&apos;</default-expression>
     </column>
-    <column id="74" parent="26" name="current_sign_in_at">
+    <column id="75" parent="26" name="current_sign_in_at">
       <data-type>datetime|0</data-type>
     </column>
-    <column id="75" parent="26" name="last_sign_in_at">
+    <column id="76" parent="26" name="last_sign_in_at">
       <data-type>datetime|0</data-type>
     </column>
-    <column id="76" parent="26" name="current_sign_in_ip">
+    <column id="77" parent="26" name="current_sign_in_ip">
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="77" parent="26" name="last_sign_in_ip">
+    <column id="78" parent="26" name="last_sign_in_ip">
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="78" parent="26" name="created_at">
+    <column id="79" parent="26" name="created_at">
       <mandatory>1</mandatory>
       <data-type>datetime|0</data-type>
     </column>
-    <column id="79" parent="26" name="updated_at">
+    <column id="80" parent="26" name="updated_at">
       <mandatory>1</mandatory>
       <data-type>datetime|0</data-type>
     </column>
-    <column id="80" parent="26" name="name">
+    <column id="81" parent="26" name="name">
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="81" parent="26" name="group">
+    <column id="82" parent="26" name="group">
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="82" parent="26" name="status">
+    <column id="83" parent="26" name="status">
       <data-type>int(11)|0</data-type>
       <default-expression>&apos;1&apos;</default-expression>
     </column>
-    <index id="83" parent="26" name="index_users_on_email">
+    <index id="84" parent="26" name="index_users_on_email">
       <columns>email</columns>
       <desc-columns></desc-columns>
       <unique>1</unique>
     </index>
-    <index id="84" parent="26" name="index_users_on_reset_password_token">
+    <index id="85" parent="26" name="index_users_on_reset_password_token">
       <columns>reset_password_token</columns>
       <desc-columns></desc-columns>
       <unique>1</unique>
     </index>
-    <key id="85" parent="26" name="PRIMARY">
+    <key id="86" parent="26" name="PRIMARY">
       <columns>id</columns>
       <primary>1</primary>
     </key>
-    <key id="86" parent="26" name="index_users_on_email">
+    <key id="87" parent="26" name="index_users_on_email">
       <columns>email</columns>
       <underlying-index>index_users_on_email</underlying-index>
     </key>
-    <key id="87" parent="26" name="index_users_on_reset_password_token">
+    <key id="88" parent="26" name="index_users_on_reset_password_token">
       <columns>reset_password_token</columns>
       <underlying-index>index_users_on_reset_password_token</underlying-index>
     </key>
-    <column id="88" parent="27" name="user_id">
+    <column id="89" parent="27" name="user_id">
       <data-type>int(11)|0</data-type>
     </column>
-    <column id="89" parent="27" name="role_id">
+    <column id="90" parent="27" name="role_id">
       <data-type>int(11)|0</data-type>
     </column>
-    <index id="90" parent="27" name="index_users_roles_on_user_id_and_role_id">
+    <index id="91" parent="27" name="index_users_roles_on_user_id_and_role_id">
       <columns>user_id
 role_id</columns>
       <desc-columns></desc-columns>
     </index>
-    <column id="91" parent="28" name="id">
+    <column id="92" parent="28" name="id">
       <mandatory>1</mandatory>
       <data-type>int(11)|0</data-type>
       <sequence-identity>1</sequence-identity>
     </column>
-    <column id="92" parent="28" name="car_no">
+    <column id="93" parent="28" name="car_no">
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="93" parent="28" name="vin">
+    <column id="94" parent="28" name="vin">
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="94" parent="28" name="color">
+    <column id="95" parent="28" name="color">
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="95" parent="28" name="geren_id">
+    <column id="96" parent="28" name="geren_id">
       <data-type>int(11)|0</data-type>
     </column>
-    <column id="96" parent="28" name="status">
+    <column id="97" parent="28" name="status">
       <data-type>int(11)|0</data-type>
       <default-expression>&apos;1&apos;</default-expression>
     </column>
-    <column id="97" parent="28" name="creater_id">
+    <column id="98" parent="28" name="creater_id">
       <data-type>int(11)|0</data-type>
     </column>
-    <column id="98" parent="28" name="updater_id">
+    <column id="99" parent="28" name="updater_id">
       <data-type>int(11)|0</data-type>
     </column>
-    <column id="99" parent="28" name="company_id">
+    <column id="100" parent="28" name="company_id">
       <data-type>int(11)|0</data-type>
     </column>
-    <column id="100" parent="28" name="driver_id">
+    <column id="101" parent="28" name="driver_id">
       <data-type>int(11)|0</data-type>
     </column>
-    <column id="101" parent="28" name="operate_type">
-      <data-type>int(11)|0</data-type>
-      <default-expression>&apos;0&apos;</default-expression>
-    </column>
-    <column id="102" parent="28" name="created_at">
-      <data-type>datetime|0</data-type>
-    </column>
-    <column id="103" parent="28" name="updated_at">
-      <data-type>datetime|0</data-type>
-    </column>
-    <column id="104" parent="28" name="distance">
+    <column id="102" parent="28" name="operate_type">
       <data-type>int(11)|0</data-type>
       <default-expression>&apos;0&apos;</default-expression>
     </column>
-    <column id="105" parent="28" name="balance">
+    <column id="103" parent="28" name="created_at">
+      <data-type>datetime|0</data-type>
+    </column>
+    <column id="104" parent="28" name="updated_at">
+      <data-type>datetime|0</data-type>
+    </column>
+    <column id="105" parent="28" name="distance">
+      <data-type>int(11)|0</data-type>
+      <default-expression>&apos;0&apos;</default-expression>
+    </column>
+    <column id="106" parent="28" name="balance">
       <data-type>double|0</data-type>
       <default-expression>&apos;0&apos;</default-expression>
     </column>
-    <column id="106" parent="28" name="charge_rule_id">
+    <column id="107" parent="28" name="charge_rule_id">
       <data-type>int(11)|0</data-type>
     </column>
-    <column id="107" parent="28" name="change_status">
+    <column id="108" parent="28" name="change_status">
       <data-type>int(11)|0</data-type>
       <default-expression>&apos;0&apos;</default-expression>
     </column>
-    <key id="108" parent="28" name="PRIMARY">
+    <key id="109" parent="28" name="PRIMARY">
       <columns>id</columns>
       <primary>1</primary>
     </key>
-    <column id="109" parent="29" name="id">
+    <column id="110" parent="29" name="id">
       <mandatory>1</mandatory>
       <data-type>int(11)|0</data-type>
       <sequence-identity>1</sequence-identity>
     </column>
-    <column id="110" parent="29" name="name">
+    <column id="111" parent="29" name="name">
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="111" parent="29" name="seat_num">
+    <column id="112" parent="29" name="seat_num">
       <data-type>int(11)|0</data-type>
     </column>
-    <column id="112" parent="29" name="created_at">
+    <column id="113" parent="29" name="created_at">
       <data-type>datetime|0</data-type>
     </column>
-    <column id="113" parent="29" name="updated_at">
+    <column id="114" parent="29" name="updated_at">
       <data-type>datetime|0</data-type>
     </column>
-    <column id="114" parent="29" name="status">
+    <column id="115" parent="29" name="status">
       <data-type>int(11)|0</data-type>
       <default-expression>&apos;1&apos;</default-expression>
     </column>
-    <key id="115" parent="29" name="PRIMARY">
+    <key id="116" parent="29" name="PRIMARY">
       <columns>id</columns>
       <primary>1</primary>
     </key>
-    <column id="116" parent="30" name="id">
+    <column id="117" parent="30" name="id">
       <mandatory>1</mandatory>
       <data-type>int(11)|0</data-type>
       <sequence-identity>1</sequence-identity>
     </column>
-    <column id="117" parent="30" name="name">
+    <column id="118" parent="30" name="name">
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="118" parent="30" name="id_card_no">
+    <column id="119" parent="30" name="id_card_no">
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="119" parent="30" name="phone">
+    <column id="120" parent="30" name="phone">
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="120" parent="30" name="entry_time">
+    <column id="121" parent="30" name="entry_time">
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="121" parent="30" name="desc">
+    <column id="122" parent="30" name="desc">
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="122" parent="30" name="sex">
+    <column id="123" parent="30" name="sex">
       <data-type>int(11)|0</data-type>
     </column>
-    <column id="123" parent="30" name="status">
+    <column id="124" parent="30" name="status">
       <data-type>int(11)|0</data-type>
       <default-expression>&apos;1&apos;</default-expression>
     </column>
-    <column id="124" parent="30" name="company_id">
+    <column id="125" parent="30" name="company_id">
       <data-type>int(11)|0</data-type>
     </column>
-    <column id="125" parent="30" name="updater">
+    <column id="126" parent="30" name="updater">
       <data-type>int(11)|0</data-type>
     </column>
-    <column id="126" parent="30" name="created_at">
+    <column id="127" parent="30" name="created_at">
       <data-type>datetime|0</data-type>
     </column>
-    <column id="127" parent="30" name="updated_at">
+    <column id="128" parent="30" name="updated_at">
       <data-type>datetime|0</data-type>
     </column>
-    <column id="128" parent="30" name="id_card">
+    <column id="129" parent="30" name="id_card">
       <data-type>varchar(255)|0</data-type>
       <default-expression>&apos;&apos;</default-expression>
     </column>
-    <key id="129" parent="30" name="PRIMARY">
+    <key id="130" parent="30" name="PRIMARY">
       <columns>id</columns>
       <primary>1</primary>
     </key>
-    <column id="130" parent="31" name="id">
+    <column id="131" parent="31" name="id">
       <mandatory>1</mandatory>
       <data-type>int(11)|0</data-type>
       <sequence-identity>1</sequence-identity>
     </column>
-    <column id="131" parent="31" name="name">
+    <column id="132" parent="31" name="name">
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="132" parent="31" name="addr">
+    <column id="133" parent="31" name="addr">
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="133" parent="31" name="phone">
+    <column id="134" parent="31" name="phone">
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="134" parent="31" name="contact_name">
+    <column id="135" parent="31" name="contact_name">
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="135" parent="31" name="contact_phone">
+    <column id="136" parent="31" name="contact_phone">
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="136" parent="31" name="sort_name">
+    <column id="137" parent="31" name="sort_name">
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="137" parent="31" name="status">
+    <column id="138" parent="31" name="status">
       <data-type>int(11)|0</data-type>
       <default-expression>&apos;1&apos;</default-expression>
     </column>
-    <column id="138" parent="31" name="created_at">
+    <column id="139" parent="31" name="created_at">
       <data-type>datetime|0</data-type>
     </column>
-    <column id="139" parent="31" name="updated_at">
+    <column id="140" parent="31" name="updated_at">
       <data-type>datetime|0</data-type>
     </column>
-    <key id="140" parent="31" name="PRIMARY">
+    <key id="141" parent="31" name="PRIMARY">
       <columns>id</columns>
       <primary>1</primary>
     </key>
-    <column id="141" parent="32" name="id">
+    <column id="142" parent="32" name="id">
       <mandatory>1</mandatory>
       <data-type>int(11)|0</data-type>
       <sequence-identity>1</sequence-identity>
     </column>
-    <column id="142" parent="32" name="name">
+    <column id="143" parent="32" name="name">
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="143" parent="32" name="code">
+    <column id="144" parent="32" name="code">
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="144" parent="32" name="status">
+    <column id="145" parent="32" name="status">
       <data-type>int(11)|0</data-type>
       <default-expression>&apos;1&apos;</default-expression>
     </column>
-    <column id="145" parent="32" name="created_at">
+    <column id="146" parent="32" name="created_at">
       <mandatory>1</mandatory>
       <data-type>datetime|0</data-type>
     </column>
-    <column id="146" parent="32" name="updated_at">
+    <column id="147" parent="32" name="updated_at">
       <mandatory>1</mandatory>
       <data-type>datetime|0</data-type>
     </column>
-    <key id="147" parent="32" name="PRIMARY">
+    <key id="148" parent="32" name="PRIMARY">
       <columns>id</columns>
       <primary>1</primary>
     </key>
-    <column id="148" parent="33" name="id">
+    <column id="149" parent="33" name="id">
       <mandatory>1</mandatory>
       <data-type>int(11)|0</data-type>
       <sequence-identity>1</sequence-identity>
     </column>
-    <column id="149" parent="33" name="created_at">
+    <column id="150" parent="33" name="created_at">
       <mandatory>1</mandatory>
       <data-type>datetime|0</data-type>
     </column>
-    <column id="150" parent="33" name="updated_at">
+    <column id="151" parent="33" name="updated_at">
       <mandatory>1</mandatory>
       <data-type>datetime|0</data-type>
     </column>
-    <key id="151" parent="33" name="PRIMARY">
+    <key id="152" parent="33" name="PRIMARY">
       <columns>id</columns>
       <primary>1</primary>
     </key>
-    <column id="152" parent="34" name="id">
+    <column id="153" parent="34" name="id">
       <mandatory>1</mandatory>
       <data-type>int(11)|0</data-type>
       <sequence-identity>1</sequence-identity>
     </column>
-    <column id="153" parent="34" name="log_type">
+    <column id="154" parent="34" name="log_type">
       <data-type>int(11)|0</data-type>
     </column>
-    <column id="154" parent="34" name="operater">
+    <column id="155" parent="34" name="operater">
       <data-type>int(11)|0</data-type>
     </column>
-    <column id="155" parent="34" name="status">
+    <column id="156" parent="34" name="status">
       <data-type>int(11)|0</data-type>
       <default-expression>&apos;1&apos;</default-expression>
     </column>
-    <column id="156" parent="34" name="car_id">
+    <column id="157" parent="34" name="car_id">
       <data-type>int(11)|0</data-type>
     </column>
-    <column id="157" parent="34" name="driver_id">
+    <column id="158" parent="34" name="driver_id">
       <data-type>int(11)|0</data-type>
     </column>
-    <column id="158" parent="34" name="company_id">
+    <column id="159" parent="34" name="company_id">
       <data-type>int(11)|0</data-type>
     </column>
-    <column id="159" parent="34" name="remark">
+    <column id="160" parent="34" name="remark">
       <data-type>varchar(255)|0</data-type>
       <default-expression>&apos;&apos;</default-expression>
     </column>
-    <column id="160" parent="34" name="created_at">
+    <column id="161" parent="34" name="created_at">
       <data-type>datetime|0</data-type>
     </column>
-    <column id="161" parent="34" name="updated_at">
+    <column id="162" parent="34" name="updated_at">
       <data-type>datetime|0</data-type>
     </column>
-    <key id="162" parent="34" name="PRIMARY">
+    <key id="163" parent="34" name="PRIMARY">
       <columns>id</columns>
       <primary>1</primary>
     </key>
-    <column id="163" parent="35" name="id">
+    <column id="164" parent="35" name="id">
       <mandatory>1</mandatory>
       <data-type>int(11)|0</data-type>
       <sequence-identity>1</sequence-identity>
     </column>
-    <column id="164" parent="35" name="station_id">
+    <column id="165" parent="35" name="station_id">
       <data-type>int(11)|0</data-type>
     </column>
-    <column id="165" parent="35" name="drive_distance">
-      <data-type>int(11)|0</data-type>
-      <default-expression>&apos;0&apos;</default-expression>
-    </column>
-    <column id="166" parent="35" name="charge_distance">
+    <column id="166" parent="35" name="drive_distance">
       <data-type>int(11)|0</data-type>
       <default-expression>&apos;0&apos;</default-expression>
     </column>
-    <column id="167" parent="35" name="total_distance">
+    <column id="167" parent="35" name="charge_distance">
       <data-type>int(11)|0</data-type>
       <default-expression>&apos;0&apos;</default-expression>
     </column>
-    <column id="168" parent="35" name="company_id">
+    <column id="168" parent="35" name="total_distance">
+      <data-type>int(11)|0</data-type>
+      <default-expression>&apos;0&apos;</default-expression>
+    </column>
+    <column id="169" parent="35" name="company_id">
       <data-type>int(11)|0</data-type>
     </column>
-    <column id="169" parent="35" name="driver_id">
+    <column id="170" parent="35" name="driver_id">
       <data-type>int(11)|0</data-type>
     </column>
-    <column id="170" parent="35" name="car_id">
+    <column id="171" parent="35" name="car_id">
       <data-type>int(11)|0</data-type>
     </column>
-    <column id="171" parent="35" name="change_count">
+    <column id="172" parent="35" name="change_count">
       <data-type>int(11)|0</data-type>
       <default-expression>&apos;1&apos;</default-expression>
     </column>
-    <column id="172" parent="35" name="expend_balance">
+    <column id="173" parent="35" name="expend_balance">
       <data-type>float|0</data-type>
       <default-expression>&apos;0&apos;</default-expression>
     </column>
-    <column id="173" parent="35" name="expend_gift">
+    <column id="174" parent="35" name="expend_gift">
       <data-type>float|0</data-type>
       <default-expression>&apos;0&apos;</default-expression>
     </column>
-    <column id="174" parent="35" name="expend_count">
+    <column id="175" parent="35" name="expend_count">
       <data-type>float|0</data-type>
       <default-expression>&apos;0&apos;</default-expression>
     </column>
-    <column id="175" parent="35" name="status">
+    <column id="176" parent="35" name="status">
       <data-type>int(11)|0</data-type>
       <default-expression>&apos;1&apos;</default-expression>
     </column>
-    <column id="176" parent="35" name="created_at">
+    <column id="177" parent="35" name="change_type">
+      <data-type>int(11)|0</data-type>
+      <default-expression>&apos;1&apos;</default-expression>
+    </column>
+    <column id="178" parent="35" name="created_at">
       <data-type>datetime|0</data-type>
     </column>
-    <column id="177" parent="35" name="updated_at">
+    <column id="179" parent="35" name="updated_at">
       <data-type>datetime|0</data-type>
     </column>
-    <key id="178" parent="35" name="PRIMARY">
+    <key id="180" parent="35" name="PRIMARY">
       <columns>id</columns>
       <primary>1</primary>
     </key>
-    <column id="179" parent="36" name="id">
+    <column id="181" parent="36" name="id">
       <mandatory>1</mandatory>
       <data-type>int(11)|0</data-type>
       <sequence-identity>1</sequence-identity>
     </column>
-    <column id="180" parent="36" name="name">
+    <column id="182" parent="36" name="name">
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="181" parent="36" name="desc">
+    <column id="183" parent="36" name="desc">
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="182" parent="36" name="free_distance">
+    <column id="184" parent="36" name="free_distance">
       <data-type>int(11)|0</data-type>
       <default-expression>&apos;0&apos;</default-expression>
     </column>
-    <column id="183" parent="36" name="min_distance">
+    <column id="185" parent="36" name="min_distance">
       <data-type>int(11)|0</data-type>
       <default-expression>&apos;0&apos;</default-expression>
     </column>
-    <column id="184" parent="36" name="max_distance">
+    <column id="186" parent="36" name="max_distance">
       <data-type>int(11)|0</data-type>
       <default-expression>&apos;0&apos;</default-expression>
     </column>
-    <column id="185" parent="36" name="price">
+    <column id="187" parent="36" name="price">
       <data-type>float|0</data-type>
       <default-expression>&apos;0&apos;</default-expression>
     </column>
-    <column id="186" parent="36" name="charger">
+    <column id="188" parent="36" name="charger">
       <data-type>int(11)|0</data-type>
       <default-expression>&apos;0&apos;</default-expression>
     </column>
-    <column id="187" parent="36" name="account_num">
+    <column id="189" parent="36" name="account_num">
       <data-type>varchar(255)|0</data-type>
     </column>
-    <key id="188" parent="36" name="PRIMARY">
+    <key id="190" parent="36" name="PRIMARY">
       <columns>id</columns>
       <primary>1</primary>
     </key>
-    <column id="189" parent="37" name="id">
+    <column id="191" parent="37" name="id">
       <mandatory>1</mandatory>
       <data-type>int(11)|0</data-type>
       <sequence-identity>1</sequence-identity>
     </column>
-    <column id="190" parent="37" name="fee">
+    <column id="192" parent="37" name="fee">
       <data-type>float|0</data-type>
       <default-expression>&apos;0&apos;</default-expression>
     </column>
-    <column id="191" parent="37" name="car_id">
+    <column id="193" parent="37" name="car_id">
       <data-type>int(11)|0</data-type>
     </column>
-    <column id="192" parent="37" name="log_type">
+    <column id="194" parent="37" name="log_type">
       <data-type>int(11)|0</data-type>
     </column>
-    <column id="193" parent="37" name="account_num">
+    <column id="195" parent="37" name="account_num">
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="194" parent="37" name="remark">
+    <column id="196" parent="37" name="remark">
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="195" parent="37" name="created_at">
+    <column id="197" parent="37" name="operater">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="198" parent="37" name="created_at">
       <data-type>datetime|0</data-type>
     </column>
-    <column id="196" parent="37" name="updated_at">
+    <column id="199" parent="37" name="updated_at">
       <data-type>datetime|0</data-type>
     </column>
-    <key id="197" parent="37" name="PRIMARY">
+    <key id="200" parent="37" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="201" parent="38" name="id">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="202" parent="38" name="fee">
+      <data-type>float|0</data-type>
+      <default-expression>&apos;0&apos;</default-expression>
+    </column>
+    <column id="203" parent="38" name="car_id">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="204" parent="38" name="operater">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="205" parent="38" name="remark">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="206" parent="38" name="status">
+      <data-type>int(11)|0</data-type>
+      <default-expression>&apos;1&apos;</default-expression>
+    </column>
+    <column id="207" parent="38" name="created_at">
+      <data-type>datetime|0</data-type>
+    </column>
+    <column id="208" parent="38" name="updated_at">
+      <data-type>datetime|0</data-type>
+    </column>
+    <key id="209" parent="38" name="PRIMARY">
       <columns>id</columns>
       <primary>1</primary>
     </key>

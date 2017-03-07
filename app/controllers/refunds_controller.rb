@@ -13,22 +13,30 @@ load_and_authorize_resource
 
   # 同意
   def agree
-    if @refund.update(status: Refund.statuses[:active])
+    ActiveRecord::Base.transaction do
+    if @refund.update!(status: Refund.statuses[:active])
       if @refund.active?
-        @refund.car.update(:balance => @refund.car.balance - @refund.fee)
+        # @refund.car.update!(:balance => @refund.car.balance - @refund.fee)
         # 产生一条财务记录
-        finance = Finance.new(car: @refund.car, fee: @refund.fee, log_type: Finance.log_types[:refund], operater: current_user)
-        finance.save
+        finance = Finance.new(account_type: 0, car_no: @refund.car.car_no, car_id: @refund.car.id, fee: @refund.fee, log_type: Finance.log_types[:refund], operater: current_user)
+        # p finance.valid?
+        finance.save!
+        flash_msg '审批成功'
       end
-      flash[:notice] = '审批成功'
     else
-      flash[:notice] = '审批成功'
+      flash_msg '审批成功'
     end
     redirect_to :refunds
+    end
   end
 
   # 驳回
   def reject
 
+  end
+
+  private
+  def flash_msg msg
+    flash[:refund_notice] = msg
   end
 end

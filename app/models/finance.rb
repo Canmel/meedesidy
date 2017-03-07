@@ -30,6 +30,7 @@ class Finance < ActiveRecord::Base
 
   # 更新余额
   def update_fee
+    p "===================="
     if self.car.present? && self.fee > 0
       # 充值
       if self.recharge?
