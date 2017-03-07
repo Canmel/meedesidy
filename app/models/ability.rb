@@ -14,6 +14,9 @@ class Ability
       ####店长权限####
     elsif user.has_role? :daily_manager
       manage_date
+    elsif user.has_role? :finance
+      ###财务权限###
+      manage_finance
     end
   end
 
@@ -24,6 +27,10 @@ class Ability
     can :manage, Geren
     can :manage, Driver
     can :manage, Company
+  end
+
+  def manage_finance
+    can :manage, Finance
   end
 
   def no_role

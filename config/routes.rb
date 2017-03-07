@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   root :to => "home#index"
 
   get 'home/index'
+  get 'error/error_404'
   get 'users/load_menus'
   get 'users/login_app'
   get 'qiniu/token'
@@ -51,4 +52,6 @@ Rails.application.routes.draw do
     get :autocomplete_company_name, on: :collection
   end
   get '*path' => proc { |env| Rails.env.development? ? (raise ActionController::RoutingError, %{No route matches "#{env["PATH_INFO"]}"}) : ApplicationController.action(:render_not_found).call(env) }
+
+  # match '*path', via: :all, to: 'error#error_404' if !Rails.env.development?
 end

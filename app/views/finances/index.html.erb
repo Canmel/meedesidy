@@ -6,6 +6,9 @@
     <%= search_form_for @q, :html => {:class => 'pjax-form'} do |f| %>
         <%= f.label "日志名称：", class: "control-label" %>
         <%= f.search_field :remark_cont, class: 'form-control' %>
+        <%= f.label "时间范围：", class: "control-label" %>
+        <%= f.date_field :created_at_gteq, class: "form-control datepicker" %>-
+        <%= f.date_field :created_at_lteq, class: "form-control datepicker" %>
         <%= link_to '充值', :new_finance, class: "btn meedesidy_btn_new" %>
         <button type="submit" class="btn meedesidy_btn_query" data-toggle="modal" data-target="#search_model">查询</button>
     <% end %>
@@ -21,9 +24,10 @@
       <thead>
       <tr>
         <th>#</th>
-        <th>图标名称</th>
-        <th>CODE</th>
-        <th>状态</th>
+        <th>日志类型</th>
+        <th>充值账号(车牌)</th>
+        <th>金额</th>
+        <th>充值时间</th>
         <th>操作</th>
       </tr>
       </thead>
@@ -31,11 +35,12 @@
       <% @finances.each_with_index do |item, index| %>
         <tr>
           <td><%= sequence index %></td>
-          <td><%= item.name %></td>
-          <td><%= item.code %></td>
-          <td><%= item.status_i18n %></td>
+          <td><%= item.log_type_i18n %></td>
+          <td><%= item.car&.car_no %></td>
+          <td><%= item.fee %></td>
+          <td name="created_at"><%= item.created_at.to_s(:full) %></td>
           <td>
-            <%= link_to '编辑', edit_finance_path(item), class: 'label meedesidy_btn_edit'%>
+            <%= link_to '详情', "##", class: 'label meedesidy_btn_edit','data-toggle':'modal', 'data-target': '#showModal', data: get_datas(item), account_num_: get_account_num(item) %>
           </td>
         </tr>
       <% end %>
@@ -44,3 +49,19 @@
     共<%= @finances.total_count %>条 <%= @finances.total_pages %>页 <%= paginate @finances %>
   </div>
 </div>
+
+<%= show_finance_modal_render %>
+<script>
+  $(function(){
+    $(".modal-backdrop").remove();
+//    详情
+    $(".meedesidy_btn_edit").click(function(){
+      var data_str = $(this).attr('data');
+      var data = eval("(" + data_str + ")");
+      var account_num = $(this).attr('account_num_')
+      $("#charge_account").text(account_num);
+      $("#charge_fee").text(data.fee);
+      $("#charge_time").text($(this).parent().parent().find("td[name='created_at']").text());
+    });
+  })
+</script>

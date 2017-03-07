@@ -21,7 +21,7 @@ class Car < ActiveRecord::Base
   attr_accessor :driver_name, :driver_phone
 
   after_update :update_qrcode
-  after_save :create_qrcode
+  after_create :create_qrcode
 
   def valid_driver?
     if driver_id.present?
@@ -47,15 +47,7 @@ class Car < ActiveRecord::Base
 
   # 更新二维码
   def update_qrcode
-    require 'qiniu'
-    require 'rqrcode_png'
-    require 'util/qiniu_util'
-    return if Rails.env.test?
-    QiniuUtil.deleteQiniuRqrcode car_no
-    qr  = RQRCode::QRCode.new("#{car_no};#{change_status}", size: 6, level: :h)
-    png = qr.to_img
-    png.resize(200, 200).save("public/cars/rqrcode/temp_car.png")
-    info = QiniuUtil.upload2qiniu!("public/cars/rqrcode/temp_car.png", car_no)
+    true
   end
 
 # 车辆是否已经绑定

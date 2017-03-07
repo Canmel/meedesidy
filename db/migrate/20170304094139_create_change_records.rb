@@ -13,6 +13,7 @@ class CreateChangeRecords < ActiveRecord::Migration
       t.float :expend_gift, default: 0.0, comment: '消耗余额礼物数量'
       t.float :expend_count, default: 0.0, comment: '总消费'
       t.integer :status, default: 1, comment: '状态'
+      t.integer :change_type, default: 1, comment: '普通'
 
       t.timestamps
     end

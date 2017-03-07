@@ -21,6 +21,7 @@ class ChangeRecordsController < ApplicationController
       end
       # 获取结算结果并开始组合结算数据
       @change_record.save_check_out_result result
+      @change_record.change_type = car.change_status
       # 保存换电记录
       if @change_record.save
         flash_msg '录入换电记录成功'

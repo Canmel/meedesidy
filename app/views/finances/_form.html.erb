@@ -1,0 +1,69 @@
+<%= bootstrap_form_for(@finance, layout: :horizontal, :html => { class: 'pjax-form' }) do |f| %>
+    <%= f.number_field :fee, label: '充值数量', help: '必填' %>
+
+    <%= form_module_title_render '选择充值账号' %>
+
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="finance_account_num">是否对公</label>
+      <div class="col-sm-10">
+        <%= f.check_box :account_type, label: '是', value: '1' %>
+      </div>
+    </div>
+    <%= f.text_field :car_no, label: '个人账户', help: '个人账户为个人车牌号'  %>
+
+    <%= f.text_field :account_num, label: '对公账号', help: '对公账户账号' %>
+    <%= f.text_field :remark, label: '备注' %>
+    <div class="form-group text-center">
+      <%= link_to '取消', finances_path, :class => 'btn btn-default' %>
+      <a name="save_charge" href="##" class="btn meedesidy_btn_save">保存</a>
+    </div>
+<% end %>
+
+
+<script>
+  //  账户是否对公，check_box
+  $(function () {
+    $(".modal-backdrop").remove();
+    $("#finance_account_num").parent().parent().hide();
+    $("#finance_account_type").click(function () {
+      var $isChecked = $(this).is(":checked");
+      if($isChecked){
+        $("#finance_car_no").parent().parent().hide();
+        $("#finance_account_num").parent().parent().show();
+      }else{
+        $("#finance_car_no").parent().parent().show();
+        $("#finance_account_num").parent().parent().hide();
+      }
+    });
+
+    $("#confirm").click(function(){
+      $("#new_finance").submit();
+    });
+    $("a[name='save_charge']").click(function () {
+      $("#colum_div").remove();
+      $("#submitModal").modal('show');
+      var account_num_checked = $("#finance_account_type").is(":checked");
+      var account_num
+      if(account_num_checked){
+        account_num = $("#finance_account_num").val();
+      }else{
+        account_num = $("#finance_car_no").val();
+      }
+
+      $("#submit_div").append(
+          "<table style='height: 50px;width: 90%;' id='colum_div'>" +
+          "<tr>" +
+          "<td class='text-center' style='width: 70%;'><label class='control-label col-sm-2' style='width: 100%;' for='finance_fee'>充值数量</label></td>" +
+          "<td>"+ $("#finance_fee").val() +"</td>" +
+          "</tr>" +
+          "<tr>" +
+          "<td class='text-center' style='width: 70%'><label class='control-label col-sm-2' style='width: 100%;'>充值账户</label></td>" +
+          "<td>" + account_num + "</td>" +
+          "</tr>" +
+          "</table>"
+      )
+    })
+  })
+
+</script>
+<%= submit_info_modal_render %>
