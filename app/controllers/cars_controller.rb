@@ -113,14 +113,16 @@ class CarsController < ApplicationController
 #     2. car 没有关联　司机
   def bind_driver
     @car = Car.find(params[:id])
+    @car.driver_id = car_params[:driver_id]
     if @car.binded?
       flash_msg "该车辆已经绑定过了"
       redirect_to :cars
+    elsif @car.driver&.archived?
+      flash_msg '司机已离职'
+      redirect_to :cars
     else
-      @car.driver_id = car_params[:driver_id]
       @car.status = Car.statuses[:renting]
       @car.charge_rule_id = car_params[:settlementer]
-      p @car
       if @car.valid_driver? && @car.save
         flash_msg "绑定车辆成功"
         save_log(Log.log_types[:bind],
