@@ -8,6 +8,7 @@ module CarHelper
     "<a class='label meedesidy_btn_1' href='##' data-toggle='modal' data-target='#qrCodeModal' name = 'qr_code' car_id='#{car.id}'>二维码</a>".html_safe
   end
 
+  # 二维码
   def car_qr_code_modal_render
     "<div class='modal fade' id='qrCodeModal' tabindex='-1' role='dialog' aria-labelledby='qrCodeModal' aria-hidden='true'>
       <div class='modal-dialog'>
@@ -25,7 +26,8 @@ module CarHelper
       </div>
     </div>".html_safe
   end
-  
+
+  # 发车
   def model_render
     "<div class='modal fade' id='myModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='false'>
       <div class='modal-dialog'>
@@ -67,13 +69,62 @@ module CarHelper
       </div>
       <div class='modal-footer meedesidy_bg_2' style='padding: 3px 22px 5px;'>
         <button type='button' class='btn meedesidy_btn_confirm' id='grant_confirm'>确认</button>
-        <!--<button type='button' class='btn btn-primary'>确认</button>-->
       </div>
       </div>
     </div>
     </div>".html_safe
   end
 
+  # 退款
+  def refund_modal_render
+    "<div class='modal fade' id='refundModal' tabindex='-1' role='dialog' aria-labelledby='refundModalLabel'>
+      <div class='modal-dialog'>
+    <div class='modal-content' align='center'>
+      <div class='modal-header meedesidy_bg_1'>
+        <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
+        <h4 class='modal-title' id='refundModalLabel'>申请退款</h4>
+      </div>
+      <div class='modal-body' id=''>
+        <div>
+          <table style='width: 600px;'>
+            <tr>
+              <td id='car_info' style='width: 45%;'>
+                <div class='form-group'>
+                  <label class='control-label col-sm-4 required' for='car_car_no'>车牌号</label>
+                  <div class='col-sm-6'>
+                  <p class='form-control-static' id='refund_car_no' style='color: #000000;'></p>
+                </div>
+                </div><br/>
+                <div class='form-group'>
+                  <label class='control-label col-sm-4 required' for='car_car_no'>可退余额</label>
+                  <div class='col-sm-6'>
+                  <p class='form-control-static' id='refund_balance' style='color: #000000;'></p>
+                  </div>
+                </div>
+                <br/>
+              </td>
+              <td style='width: 1px; background-color: rgba(0, 0, 0, 0.25); '></td> <td>
+                <input type='hidden' name='refund_id'>
+                <div class='form-group'>
+                  <label class='control-label col-sm-4 required' for='car_car_no'>退款金额</label>
+                  <div class='col-sm-6'>
+                  <input class='form-control' id='refund_fee'>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class='modal-footer meedesidy_bg_2' style='padding: 3px 22px 5px;'>
+          <a class='btn meedesidy_btn_confirm' data-dismiss='modal' id='refund_btn'>申请</a>
+      </div>
+      </div>
+    </div>
+    </div>".html_safe
+  end
+
+  # 退车
   def back_modal_render
     "<div class='modal fade' id='backModal' tabindex='-1' role='dialog' aria-labelledby='backModalLabel'>
       <div class='modal-dialog'>
@@ -122,6 +173,7 @@ module CarHelper
     </div>".html_safe
   end
 
+  # 解绑
   def relieve_modal_render
     "<div class='modal fade' id='relieveModal' tabindex='-1' role='dialog' aria-labelledby='relieveModalLabel' aria-hidden='false'>
       <div class='modal-dialog'>
@@ -188,6 +240,10 @@ module CarHelper
 
   def back_car_render car
     "<a class='label meedesidy_btn_2' modal_car_no='#{car.car_no}' modal_car_geren='#{car.geren&.name}' modal_car_company='#{car.company&.name}' data-toggle='modal' href='##' data-target='#backModal' name='back' data='#{car.id}'>退车</a>".html_safe if car.active? && car.company.present? && car.driver.nil?
+  end
+
+  def refund_btn_render car
+    "<a class='label meedesidy_btn_1' modal_car_no='#{car.car_no}' refund_balance='#{car.balance}' data-toggle='modal' href='##' data-target='#refundModal' name='refund' data='#{car.id}'>退款</a>".html_safe if car.binded? && car.balance?
   end
 
   def bind_car_render car

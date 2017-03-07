@@ -57,6 +57,7 @@
             <%= back_car_render car %>
             <%= grant_car_render car %>
             <%= bind_car_render car %>
+            <%= refund_btn_render car %>
           </td>
         </tr>
       <% end %>
@@ -65,7 +66,8 @@
     共<%= @cars.total_count %>条 <%= @cars.total_pages %>页 <%= paginate @cars %>
   </div>
 </div>
-
+<!--退款模态框-->
+<%= refund_modal_render %>
 <!--发车模态-->
 <%= model_render %>
 <!--解绑模态-->
@@ -133,6 +135,16 @@
       $("#back_btn").attr('href','/cars/'+data+'/back');
     });
 
+//    操作－>退款
+    $("a[name='refund']").click(function () {
+      var data = $(this).attr("data");
+      var modal_car_no = $(this).attr("modal_car_no");
+      var refund_balance = $(this).attr("refund_balance");
+      $("#refund_car_no").text(modal_car_no);
+      $("#refund_balance").text(refund_balance);
+      $("input[name='refund_id']").val(data);
+    });
+
 //    发车确认
     $("#grant_confirm").click(function () {
       $.ajax({
@@ -146,20 +158,29 @@
           setTimeout(function () {
             $("#car_search").submit()
           }, 500);
-
         }
       })
     })
 
+//    退款
+    $("#refund_btn").click(function () {
+      $.ajax({
+        url: '/cars/'+  $("input[name='refund_id']").val() +'/refund',
+        data: { refund_fee: $("#refund_fee").val() },
+        method: 'POST',
+        success: function(data){
+          if(data["result"] != null){
+            showResult(data["result"]);
+          }
+          setTimeout(function () {
+            $("#car_search").submit()
+          }, 500);
+        }
+      })
+    })
   });
   function showResult(result) {
     $("#myModal").modal('hide');
     $(".notice").html("<div class='notice text-center'><span class='label meedesidy_notice_info'>"+ result +"</span></div>")
   }
-</script>
-
-<script>
-  $(function () {
-
-  })
 </script>
