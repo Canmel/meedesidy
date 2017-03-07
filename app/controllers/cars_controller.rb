@@ -64,7 +64,7 @@ class CarsController < ApplicationController
   #   2. company.nil? == true
   def grant
     @car = Car.find(params[:id])
-    if @car.present? && params[:company_id].present?
+    if @car.present? && params[:company_id].present? && @car.godowned?
       @car.company_id = params[:company_id]
       @car.status = Car.statuses[:active]
       if @car.save
@@ -79,8 +79,28 @@ class CarsController < ApplicationController
         render :json => { :code => "500", :result => '发车失败' }
       end
     else
-      flash_msg '无法获取车辆信息，发车失败'
+      flash_msg '无法获取车辆信息或不是入库阶段，发车失败'
       render :json => { :code => '404', :result => '无法获取车辆信息，发车失败'}
+    end
+  end
+
+  # 退款
+  # 车必须是绑定状态
+  def refund
+    p @car
+    p @car.binded?
+    if @car.nil? || !@car.binded?
+      render :json => { :code => '404', :result => '无法获取车辆信息或未绑定，发车失败'}
+    else
+      if @car.balance >= params[:refund_fee].to_f
+        # 创建退款申请
+        refund = Refund.new(car_id: @car.id, fee: params[:refund_fee], operater: current_user, status: Refund.statuses[:apply])
+
+
+        return render :json => { :code => "200", :result => '申请已发出' } if refund.save
+      else
+        render :json => { :code => "500", :result => '退款金额不能大于余额' }
+      end
     end
   end
 
@@ -197,7 +217,7 @@ class CarsController < ApplicationController
 
   private
   def car_params
-    params.require(:car).permit(:car_no, :vin, :color, :geren_id, :company_id, :driver_id, :operater, :settlementer)
+    params.require(:car).permit(:car_no, :vin, :color, :geren_id, :company_id, :driver_id, :operater, :settlementer, :refund_fee)
   end
 
   def set_global_search_variable

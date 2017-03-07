@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170306120715) do
+ActiveRecord::Schema.define(version: 20170307094448) do
 
   create_table "budgets", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -132,6 +132,16 @@ ActiveRecord::Schema.define(version: 20170306120715) do
     t.integer  "status",        limit: 4
     t.integer  "resource_type", limit: 4
     t.integer  "icon_id",       limit: 4
+  end
+
+  create_table "refunds", force: :cascade do |t|
+    t.float    "fee",        limit: 24, default: 0.0
+    t.integer  "car_id",     limit: 4
+    t.integer  "operater",   limit: 4
+    t.integer  "remark",     limit: 4
+    t.integer  "status",     limit: 4,  default: 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "roles", force: :cascade do |t|

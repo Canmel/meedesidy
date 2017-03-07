@@ -31,8 +31,15 @@ class Finance < ActiveRecord::Base
   # 更新余额
   def update_fee
     if self.car.present? && self.fee > 0
-      car.balance = car.balance + self.fee
-      car.save
+      # 充值
+      if self.recharge?
+        balance = car.balance + self.fee
+        car.update(balance: balance)
+      # 退款
+      elsif self.refund?
+        balance = car.balance - fee
+        car.update(balance: balance)
+      end
     end
   end
 end

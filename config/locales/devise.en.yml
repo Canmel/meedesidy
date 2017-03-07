@@ -184,6 +184,11 @@ zh:
         other: "%{count} 条错误使 %{resource} 不能正常保存:"
   hello: "你好"
   enums:
+    refund:
+      status:
+        archived: "驳回"
+        apply: "申请"
+        active: "成功"
     finance:
       log_type:
         recharge: "充值"

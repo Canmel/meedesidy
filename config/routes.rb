@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     get :autocomplete_driver_name, :on => :collection
     member do
       post 'grant'
+      post 'refund'
       get 'bind'
       get 'back'
       get 'relieve'
@@ -45,6 +46,12 @@ Rails.application.routes.draw do
   resources :logs
   resources :change_records
   resources :finances
+  resources :refunds do
+    member do
+      get 'reject'
+      get 'agree'
+    end
+  end
 
 
   get '/drivers/search_company'
