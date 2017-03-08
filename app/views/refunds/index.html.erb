@@ -35,7 +35,7 @@
           <td><%= refund.status_i18n %></td>
           <td>
             <%= link_to '同意', agree_refund_path(refund), data: {confirm: "确认要同意#{refund.car&.car_no}的退款申请?"}, class: 'label meedesidy_btn_edit' if refund.apply? %>
-            <%= link_to '驳回', reject_refund_path(refund), data: {confirm: "确认要驳回#{refund.car&.car_no}的退款申请?"}, class: 'label meedesidy_btn_edit' if refund.apply? %>
+            <%= link_to '驳回', "##", 'data-toggle': 'modal', 'data-target': '#myModal', class: 'label meedesidy_btn_2', data: refund.id, id: 'reject_refund_btn' if refund.apply? %>
           </td>
         </tr>
       <% end %>
@@ -44,3 +44,23 @@
     共<%= @refunds.total_count %>条 <%= @refunds.total_pages %>页 <%= paginate @refunds %>
   </div>
 </div>
+
+<%= reject_modal_render %>
+
+<script>
+  $(function () {
+    $("#reject_refund_btn").click(function () {
+      var data = $(this).attr('data');
+      $("#reject_form").attr("action", "/refunds/"+ data + "/reject")
+    });
+    $("#refund_sub_btn").click(function () {
+      $("#myModal").modal('hide');
+      if($("#refund_remark").val() == null || $("#refund_remark").val() == "") {
+        return alert("备注不能为空");
+      }else {
+        $("#reject_form").submit();
+      }
+    })
+  });
+
+</script>

@@ -224,6 +224,7 @@ class CarsController < ApplicationController
 
   def set_global_search_variable
     params[:q] ||= ActionController::Parameters.new
+    params[:q][:s] = 'id desc'
     @q = Car.ransack(params[:q])
   end
 
