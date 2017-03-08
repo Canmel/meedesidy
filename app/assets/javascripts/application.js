@@ -36,6 +36,7 @@ $(document).on('ready page:load',function(){
         init_html();
         init_datepicker();
         bind_autocomplete();
+        $(".modal-backdrop").remove();
     });
 
     $(document).on('submit', '.pjax-form', function(event) {
@@ -63,6 +64,9 @@ function bind_autocomplete() {
 }
 
 function init_menus() {
+    var a_href = $("#left_menu").find('a').attr('href')
+
+
     // 菜单点击展开／关闭
     $(".dcjq-parent-menu").click(function () {
         $(".dcjq-parent-menu").removeClass('active');

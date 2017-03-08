@@ -21,6 +21,7 @@ class FinancesController < ApplicationController
         car = Car.find_by_car_no @finance.car_no
         @finance.car_id = car&.id
         @finance.log_type = Finance.log_types[:recharge]
+        @finance.operater = current_user
         if @finance.save
           flash_msg '充值成功'
           redirect_to :finances

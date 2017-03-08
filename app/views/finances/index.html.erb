@@ -28,6 +28,7 @@
         <th>充值账号(车牌)</th>
         <th>金额</th>
         <th>充值时间</th>
+        <th>操作人</th>
         <th>操作</th>
       </tr>
       </thead>
@@ -39,6 +40,7 @@
           <td><%= item.car&.car_no %></td>
           <td><%= item.fee %></td>
           <td name="created_at"><%= item.created_at.to_s(:full) %></td>
+          <td><%= item.operater&.name %></td>
           <td>
             <%= link_to '详情', "##", class: 'label meedesidy_btn_edit','data-toggle':'modal', 'data-target': '#showModal', data: get_datas(item), account_num_: get_account_num(item) %>
           </td>
@@ -53,7 +55,6 @@
 <%= show_finance_modal_render %>
 <script>
   $(function(){
-    $(".modal-backdrop").remove();
 //    详情
     $(".meedesidy_btn_edit").click(function(){
       var data_str = $(this).attr('data');

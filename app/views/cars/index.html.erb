@@ -42,7 +42,7 @@
       <% @cars.each_with_index do |car, index| %>
         <tr>
           <td><%= sequence index %></td>
-          <td><%= link_to (car.car_no), car_path(car), "data-skip-pjax": true %></td>
+          <td><%= link_to (car.car_no), car_path(car) %></td>
           <td><%= car.vin %></td>
           <td><%= car.geren&.name %></td>
           <td><%= car.color %></td>
@@ -78,7 +78,6 @@
 <%= car_qr_code_modal_render %>
 <script>
   $(function () {
-    $(".modal-backdrop").remove();
     $("a[name='qr_code']").click(function () {
       var car_id = $(this).attr("car_id");
       $("#car_rqrcode").remove();

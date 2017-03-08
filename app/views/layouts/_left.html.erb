@@ -16,7 +16,11 @@
           <ul class='sub menu-sub' style='overflow: hidden; display: none;' id='sub_menu_<%= menu.id %>'>
             <% load_menus('two_level',menu.id).each do |menu_link| %>
                 <li style="background-color: #424242">
-                  <a href='<%= menu_link.source %>'><%= menu_link.name %></a>
+                  <% if menu_link.source == "/#{current_url}" %>
+                    <a href='<%= menu_link.source %>' class="sub_active" style="color: #428bca;"><%= menu_link.name %></a>
+                  <% else %>
+                    <a href='<%= menu_link.source %>'><%= menu_link.name %></a>
+                  <% end %>
                 </li>
             <% end %>
           </ul>
@@ -25,3 +29,9 @@
     <% end %>
   </ul>
 </div>
+<script>
+  $(function () {
+    $(".sub_active").parents('ul').slideDown();
+  });
+
+</script>

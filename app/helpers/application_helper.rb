@@ -33,4 +33,9 @@ module ApplicationHelper
       @colum_select_collect << { "k" => item.send(colum), "v" => item.send(colum)}
     }
   end
+
+  def current_url
+    url = request.url.to_s
+    url.split("/")[3]
+  end
 end

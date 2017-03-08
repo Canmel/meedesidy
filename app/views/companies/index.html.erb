@@ -25,8 +25,7 @@
                          phone: '电话'
                         }, {
                           edit: {name: '编辑', css: 'label meedesidy_btn_edit'},
-                          del: {name: '删除', css: 'label meedesidy_btn_delete'},
-                          business: '<a class="label meedesidy_btn_edit" data-confirm="我的id是??" href="/companies/??/edit">其他</a>'
+                          del: {name: '删除', css: 'label meedesidy_btn_delete'}
                         }, @companies ) %>
     共<%= @companies.total_count %>条 <%= @companies.total_pages %>页 <%= paginate @companies %>
   </div>
