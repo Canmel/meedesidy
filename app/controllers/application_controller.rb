@@ -3,16 +3,13 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   # skip_before_filter :verify_authenticity_token
   protect_from_forgery with: :null_session
-  before_action :record_request, :valid_login
+  before_action :record_request
+
+  # before_action :valid_login, except: [:new ,:edit, :show, :update]
   ADMIN_ROLE_ID = 2
 
   def valid_login
-    # user_agent =  request.user_agent
-    # user_agent_parsed = UserAgent.parse(user_agent)
-    # if current_user.nil? && user_agent_parsed.platform != 'Android'
-    #   # redirect_to '/auth/login' if request.url.split('/').last != 'login'
-    # end
-    true
+    redirect_to :users
   end
 
   def current_ability
