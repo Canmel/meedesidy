@@ -39,7 +39,7 @@
       <imported>true</imported>
       <remarks>$PROJECT_DIR$/config/database.yml</remarks>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://127.0.0.1:3306/db/production.sqlite3</jdbc-url>
+      <jdbc-url>jdbc:mysql://222.73.129.25:59306/meedesidy</jdbc-url>
       <driver-properties>
         <property name="autoReconnect" value="true" />
         <property name="zeroDateTimeBehavior" value="convertToNull" />
