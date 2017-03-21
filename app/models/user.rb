@@ -14,9 +14,9 @@ class User < ActiveRecord::Base
   validate :valid_user_roles
 
   # after_save 将回调函数包含在同一个事务中，那么要么全部成功，要么全部失败。回调函数中的抛出的异常会导致整个操作失败
-  after_create :create_qrcode if !Rails.env.test?
+  after_create :create_qrcode
 
-  after_update :update_qrcode if !Rails.env.test?
+  after_update :update_qrcode
 
   # after_commit 是在事务提交之后，再进行的处理，那么即使回调函数抛出异常，也不会导致之前的操作失败
   after_commit :do_sth_after_commit, on: [:create, :update]
