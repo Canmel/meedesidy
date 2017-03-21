@@ -30,6 +30,6 @@ production:
   timeout: 5000
   username: root
   password: 1234
-  host: 222.73.129.25
+  host: 127.0.0.1
   port: 59306
   database: meedesidy
