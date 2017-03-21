@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'https://gems.ruby-china.org'
 # gem "rubyist-aasm", :source => "http://gems.github.com"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -56,6 +56,10 @@ gem 'rubocop','0.46.0'
 gem 'qwer', '0.1.7'
 gem 'qiniu', '6.8.1'
 gem 'rqrcode_png', '0.1.5'
+
+gem 'mina'
+gem 'puma'
+
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
