@@ -77,8 +77,7 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.action_controller.relative_url_root = '/discount_service'  #是用来 有用啊
-  config.serve_static_assets = true
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
   config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
   config.assets.precompile += %w( .svg .eot .woff .ttf)
