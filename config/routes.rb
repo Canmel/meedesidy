@@ -60,5 +60,5 @@ Rails.application.routes.draw do
   end
   # get '*path' => proc { |env| Rails.env.development? ? (raise ActionController::RoutingError, %{No route matches "#{env["PATH_INFO"]}"}) : ApplicationController.action(:render_not_found).call(env) }
 
-  match '*path', via: :all, to: 'error#error_404' if Rails.env.development?
+  match '*path', via: :all, to: 'error#error_404' if Rails.env.production?
 end

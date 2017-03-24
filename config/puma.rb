@@ -21,7 +21,7 @@ bind "unix://#{application_path}/tmp/sockets/#{app_name}.sock"
 activate_control_app "unix://#{application_path}/tmp/sockets/pumactl.sock"
 
 #后台运行
-daemonize true
+# daemonize true
 on_restart do
   puts 'On restart...'
 end
