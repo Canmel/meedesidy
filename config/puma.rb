@@ -7,7 +7,7 @@ workers 4
 #项目名
 app_name = "meedesidy"
 #项目路径
-application_path = "/home/baily/MyRails/#{app_name}" if !Rails.env.production?
+application_path = "/home/baily/MyRails/#{app_name}" if !Rails.env.development?
 
 application_path = "/var/www/#{app_name}" if Rails.env.production?
 #这里一定要配置为项目路径下地current
