@@ -38,29 +38,5 @@ module Cup
                        request_specs: false
       g.fixture_replacement :factory_girl, dir: "spec/factories"
     end
-
-    config.assets.precompile << Proc.new do |path|
-      if path =~ /\.(css|js|scss|png|jpg|gif|json)\z/
-        full_path = Rails.application.assets.resolve(path).to_path
-        app_assets_path1 = Rails.root.join('app', 'assets').to_path
-        app_assets_path2 = Rails.root.join('public', 'assets').to_path
-        app_assets_path3 = Rails.root.join('vendor', 'assets').to_path
-
-
-        if full_path.starts_with? app_assets_path1
-          true
-        else
-          if full_path.starts_with? app_assets_path2
-            true
-          else
-            if full_path.starts_with? app_assets_path3
-              true
-            else
-              false
-            end
-          end
-        end
-      end
-    end
   end
 end
