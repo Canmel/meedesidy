@@ -716,7 +716,6 @@ ul.top-menu>li>a:hover,ul.top-menu>li>a:focus {
 }
 
 .log-arrow-up {
-	background: url("../img/arrow-up.png") no-repeat;
 	width: 20px;
 	height: 11px;
 	position: absolute;
@@ -1061,7 +1060,6 @@ ul.top-menu>li>a:hover,ul.top-menu>li>a:focus {
 /**/
 
 .panel-body.chart-texture {
-	background: url("chart-texture.jpg");
 	-webkit-border-radius: 4px 4px 0px 0px;
 	border-radius: 4px 4px 0px 0px;
 }
@@ -1646,7 +1644,6 @@ ul.ft-link li a i {
 
 .owl-buttons .owl-prev {
 	text-indent: -9999px;
-	background: url("left-arrow.png") no-repeat;
 	width: 6px;
 	height: 10px;
 	display: inline-block;
@@ -1654,7 +1651,6 @@ ul.ft-link li a i {
 
 .owl-buttons .owl-next {
 	text-indent: -9999px;
-	background: url("right-arrow.png") no-repeat;
 	width: 6px;
 	height: 10px;
 	display: inline-block;
@@ -3705,7 +3701,6 @@ ul.amounts li {
 }
 
 input.spinner[type="text"], input.spinner[type="password"], input.spinner[type="datetime"], input.spinner[type="datetime-local"], input.spinner[type="date"], input.spinner[type="month"], input.spinner[type="time"], input.spinner[type="week"], input.spinner[type="number"], input.spinner[type="email"], input.spinner[type="url"], input.spinner[type="search"], input.spinner[type="tel"], input.spinner[type="color"] {
-	background: url("input-spinner.gif") right no-repeat !important;
 }
 
 
@@ -4193,22 +4188,6 @@ table.sliders tr td {
 	padding-left: 34px;
 }
 
-.has-js .label_radio {
-	background: url(checkbox/radio-off.png) no-repeat;
-}
-
-.has-js .label_check {
-	background: url(checkbox/check-off.png) no-repeat;
-}
-
-.has-js label.c_on {
-	background: url(checkbox/check-on.png) no-repeat;
-}
-
-.has-js label.r_on {
-	background: url(checkbox/radio-on.png) no-repeat;
-}
-
 .has-js .label_check input,
 .has-js .label_radio input {
 	position: absolute;
@@ -4276,9 +4255,6 @@ table.sliders tr td {
 
 .cke_top, .cke_bottom {
 	background: #F5F5F5 !important;
-	background: -moz-linear-gradient(center top , #F5F5F5, #F5F5F5) repeat scroll 0 0 #F5F5F5 !important;
-	background: -webkit-linear-gradient(center top , #F5F5F5, #F5F5F5) repeat scroll 0 0 #F5F5F5 !important;
-	background: -o-linear-gradient(center top , #F5F5F5, #F5F5F5) repeat scroll 0 0 #F5F5F5 !important;
 	box-shadow: none;
 	padding: 6px 8px 2px;
 }
@@ -4697,7 +4673,6 @@ span.customSelect.changed {
 }
 
 .customSelectInner {
-	background: url(customSelect-arrow.gif) no-repeat center right;
 }
 
 /*boxed page */
