@@ -312,9 +312,6 @@ GEM
     timecop (0.8.1)
     traceroute (0.5.0)
       rails (>= 3.0.0)
-    turbolinks (5.0.1)
-      turbolinks-source (~> 5)
-    turbolinks-source (5.0.0)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (3.1.4)
@@ -398,7 +395,6 @@ DEPENDENCIES
   therubyracer (= 0.12.3)
   timecop
   traceroute
-  turbolinks
   uglifier (>= 1.3.0)
   useragent (= 0.16.8)
   vcr
@@ -406,4 +402,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   1.13.6
+   1.14.6
