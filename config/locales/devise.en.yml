@@ -266,6 +266,10 @@ zh:
       status:
         active: '正常'
         archived: '删除'
+    work_flow:
+      status:
+        active: '正常'
+        archived: '删除'
   views:
       pagination:
         first: "&laquo; 首页"

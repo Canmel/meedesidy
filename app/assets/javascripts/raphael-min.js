@@ -878,7 +878,6 @@
             var d = new bN(c, b);
             d.type = "path";
             bK(d, {fill: "none", stroke: "#000", path: a});
-            console.info(d)
             return d
         }, bI = function (a, b, c) {
             var d = "linear", e = 0.5, f = 0.5, h = a.style;
@@ -1071,9 +1070,6 @@
                                 }else{
                                     console.error("有问题2");
                                 }
-                            }
-                            if(isNaN(o)) {
-                                console.log(1);
                             }
                             h[R](n, o);
                             c.pattern && bJ(c);
