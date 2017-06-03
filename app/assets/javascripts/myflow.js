@@ -3,7 +3,7 @@
     a.config = {
         editable: true,
         lineHeight: 15,
-        basePath: "",
+        basePath: "/",
         rect: {
             attr: {
                 x: 10,
@@ -20,8 +20,9 @@
             name: {text: "state", "font-style": "italic"},
             text: {text: "状态", "font-size": 13},
             margin: 5,
+            //预设值节点属性
             props: [],
-            img: {src: '48/task_empty.png'}
+            img: {}
         },
         path: {
             attr: {
@@ -43,7 +44,15 @@
             }
         },
         tools: {
-            attr: {left: 10, top: 10}, pointer: {}, path: {}, states: {}, save: {
+            attr: {left: 10, top: 10}, pointer: {
+                onclick: function () {
+                    alert("pointer");
+                }
+            }, path: {}, states: {
+                onclick: function () {
+                    alert("pointer");
+                }
+            }, save: {
                 onclick: function (c) {
                     alert(c)
                 }
@@ -113,7 +122,6 @@
         }
     };
     a.rect = function (p, m) {
-        console.log(p, m);
         var u = this, g = "rect" + a.util.nextId(), E = b.extend(true, {}, a.config.rect, p), C = m, t, e, n, f, x, v;
         t = C.rect(E.attr.x, E.attr.y, E.attr.width, E.attr.height, E.attr.r).hide().attr(E.attr);
         e = C.image(a.config.basePath + E.img.src, E.attr.x + E.img.width / 2, E.attr.y + (E.attr.height - E.img.height) / 2, E.img.width, E.img.height).hide();

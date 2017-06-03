@@ -38,11 +38,10 @@
           <td><%= formtable_show(flow) %></td>
           <td><%= flow.publish_time %></td>
           <td><%= flow.status_i18n %></td>
-          <td><%= flow.operater.name %></td>
+          <td><%= flow.operater&.name %></td>
           <td>
-            <%= link_to '编辑', edit_user_path(user), class: 'label meedesidy_btn_edit'%>
-            <%= link_to '删除', user, data: {confirm: "确认要删除#{user.name}?"}, method: :delete, class: "label meedesidy_btn_delete" %>
-            <a class="label meedesidy_btn_1" href="##" data-toggle="modal" data-target="#myModal" name = "qr_code" user_id="<%= user.id %>">二维码</a>
+            <%= link_to '编辑', edit_work_flow_path(flow), class: 'label meedesidy_btn_edit'%>
+            <%= link_to '删除', flow, data: {confirm: "确认要删除#{flow.name}?"}, method: :delete, class: "label meedesidy_btn_delete" %>
           </td>
         </tr>
       <% end %>
