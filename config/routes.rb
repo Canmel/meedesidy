@@ -22,7 +22,12 @@ Rails.application.routes.draw do
   resources :roles
   resources :menus
   resources :icons
-  resources :work_flows
+  resources :work_flows do
+    member do
+      get 'publish'
+      get 'unpublish'
+    end
+  end
 
   # 基本数据路由
   resources :cars do

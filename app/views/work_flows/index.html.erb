@@ -13,8 +13,8 @@
   </div>
 
   <h3 class="sub-header">流程列表
-    <% if flash[:user_notice] %>
-        <div class="notice text-center"><span class="label meedesidy_notice_info"><%= flash[:user_notice] %></span></div>
+    <% if flash[:work_flow_notice] %>
+        <div class="notice text-center"><span class="label meedesidy_notice_info"><%= flash[:work_flow_notice] %></span></div>
     <% end %>
   </h3>
   <div class="table-responsive">
@@ -35,13 +35,18 @@
         <tr>
           <td><%= sequence(index) %></td>
           <td><%= flow.name %></td>
-          <td><%= formtable_show(flow) %></td>
+          <td><%= flow.menu.name %></td>
           <td><%= flow.publish_time %></td>
           <td><%= flow.status_i18n %></td>
           <td><%= flow.operater&.name %></td>
           <td>
-            <%= link_to '编辑', edit_work_flow_path(flow), class: 'label meedesidy_btn_edit'%>
-            <%= link_to '删除', flow, data: {confirm: "确认要删除#{flow.name}?"}, method: :delete, class: "label meedesidy_btn_delete" %>
+            <% if !flow.publish? %>
+                <%= link_to '删除', flow, data: {confirm: "确认要删除#{flow.name}?"}, method: :delete, class: "label meedesidy_btn_delete" %>
+                <%= link_to '编辑', edit_work_flow_path(flow), class: 'label meedesidy_btn_edit'%>
+                <%= link_to '发布', publish_work_flow_path(flow), class: 'label meedesidy_btn_edit', data: {confirm: "确认要发布流程#{flow.name}?"}%>
+            <% else %>
+                <%= link_to '撤回', unpublish_work_flow_path(flow), class: 'label meedesidy_btn_edit', data: {confirm: "确认要发布流程#{flow.name}?"}%>
+            <% end %>
           </td>
         </tr>
       <% end %>
@@ -50,28 +55,3 @@
     共<%= @work_flows.total_count %>条 <%= @work_flows.total_pages %>页 <%= paginate @work_flows %>
   </div>
 </div>
-
-<script>
-$(function () {
-  $("a[name='qr_code']").click(function () {
-    var user_id = $(this).attr("user_id");
-    $("#car_rqrcode").remove();
-//    异步获取用户的二维码下载地址
-    $.ajax({
-      url: "/users/" + user_id + "/primitive_url",
-      method: 'GET',
-      success: function (data) {
-        if(data["code"] == '200'){
-//          将获取的下载地址放回ｈｔｍｌ中
-          $("#myModalLabel").text(data['name']);
-          $("#modal_div").append('<img id="car_rqrcode" src="'+ data['data'] +'" width="240" height="240">');
-        }else{
-          $("#modal_div").append('<span id="car_rqrcode">抱歉！！未找到二维码信息，请更新用户，然后重新保存！</span>');
-        }
-    } });
-  })
-})
-</script>
-
-<%= qrcode_modal_render %>
-

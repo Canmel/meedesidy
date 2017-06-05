@@ -4,9 +4,16 @@ class RolesController < ApplicationController
 
   def index
     params[:q] ||= ActionController::Parameters.new
-    params[:q][:status_eq] = 1
+    params[:q][:status_eq] = Role.statuses[:active]
     @q = Role.ransack(params[:q])
-    @roles = @q.result.page(@page).per(@page_size)
+    respond_to do |format|
+      format.html do
+        @roles = @q.result.page(@page).per(@page_size)
+      end
+      format.json do
+        render json: @q.result.map{|item| {name: item.name, value: item.id}}
+      end
+    end
   end
 
   def new

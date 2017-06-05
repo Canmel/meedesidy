@@ -40,6 +40,7 @@ class User < ActiveRecord::Base
     require 'rqrcode_png'
     require 'util/qiniu_util'
     return if !email.present?
+    return if Rails.env.test?
     email_name = get_email_name email
     qr  = RQRCode::QRCode.new("#{name};#{email}", size: 6, level: :h)
     png = qr.to_img

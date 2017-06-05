@@ -78,15 +78,9 @@
               tools : {
                 save : {
                   onclick : function(data) {
-                    <% if @work_flow.id.present? %>
-                      $("#update_work_flow_content").val(data);
-                      if(confirm('是否保存？')){
-                        $("#edit_work_flow_form").submit();
-                      }
-                    <% else %>
+                    console.log(data);
                       $("#work_flow_content").val(data);
                       $("#qrCodeModal").modal('show');
-                    <% end %>
                   }
                 }
               }
@@ -137,18 +131,31 @@
 
 <div id="myflow"></div>
 
-<%= confirm_modal_render %>
+<div class='modal fade' id='qrCodeModal' tabindex='-1' role='dialog' aria-labelledby='qrCodeModal' aria-hidden='true'>
+  <div class='modal-dialog'>
+    <div class='modal-content' align='center'>
+      <div class='modal-header meedesidy_bg_1'>
+        <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
+        <h4 class='modal-title' id='qrCodeLabel'>请给定流程名称</h4>
+      </div>
+      <div class='modal-body' id='qr_modal_div'>
+      </div>
+      <%= bootstrap_form_for(@work_flow, layout: :horizontal, :html => { class: 'pjax-form', id: 'work_flow_form' }) do |f| %>
+          <%= f.hidden_field :content, label: '流程内容', help: '必填' %>
+          <%=f.text_field :name, label: '流程名称' %>
+          <%=f.select :menu_id, formtables, label: '所属模块' %>
+      <% end %>
+      <div class='modal-footer meedesidy_bg_2'>
+        <button type='button' class='btn btn-default' data-dismiss='modal' id='comfirm_btn'>确认</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
   $(function () {
     $("#comfirm_btn").click(function () {
-      $("#new_flow_form").submit();
+      $("#work_flow_form").submit();
     })
   })
 </script>
-
-<% if @work_flow.id %>
-    <%= bootstrap_form_for(@work_flow, layout: :horizontal, :html => { class: 'pjax-form', style: 'display: none', id: 'edit_work_flow_form' }) do |f| %>
-        <%= f.text_field :content, id: 'update_work_flow_content' %>
-    <% end %>
-<% end %>
