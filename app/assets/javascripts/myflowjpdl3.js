@@ -52,7 +52,7 @@ $.extend(true,myflow.config.tools.states,{
 				props : {
 					text: {name:'text',label: '显示', value:'', editor: function(){return new myflow.editors.textEditor();}, value:'状态'},
 					temp1: {name:'temp1', label : '文本', value:'', editor: function(){return new myflow.editors.inputEditor();}},
-					temp2: {name:'temp2', label : '选择', value:'', editor: function(){return new myflow.editors.selectEditor([{name:'aaa',value:1},{name:'bbb',value:2}]);}}
+					roles: {name:'temp2', label : '选择', value:'', editor: function(){return new myflow.editors.selectEditor([{name:'aaa',value:1},{name:'bbb',value:2}]);}}
 				}},
 			fork : {type : 'fork',
 				name : {text:'<<fork>>'},
@@ -79,7 +79,7 @@ $.extend(true,myflow.config.tools.states,{
 				props : {
 					text: {name:'text', label: '显示', value:'', editor: function(){return new myflow.editors.textEditor();}, value:'任务'},
 					temp1: {name:'temp1', label: '文本', value:'', editor: function(){return new myflow.editors.inputEditor();}},
-					temp2: {name:'temp2', label : '选择', value:'', editor: function(){return new myflow.editors.selectEditor('select.json');}}
+					roles: {name:'temp2', label : '角色', value:'', editor: function(){return new myflow.editors.selectEditor('/roles.json');}}
 				}}
 });
 })(jQuery);

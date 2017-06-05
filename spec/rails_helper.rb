@@ -36,9 +36,9 @@ RSpec.configure do |config|
   config.before(:each) do |_example|
     # TODO.md: 全局 mock
     allow_any_instance_of(Object).to receive(:sleep).with(any_args)
-    allow(QiniuUtil).to receive(:upload2qiniu).with(any_args)
-    allow(QiniuUtil).to receive(:deleteQiniuRqrcode).with(any_args)
-    allow(QiniuUtil).to receive(:deleteQiniuPhoto).with(any_args)
+    # allow(QiniuUtil).to receive(:upload2qiniu).with(any_args)
+    # allow(QiniuUtil).to receive(:deleteQiniuRqrcode).with(any_args)
+    # allow(QiniuUtil).to receive(:deleteQiniuPhoto).with(any_args)
 
     # 清理数据库
     DatabaseCleaner.strategy = :truncation

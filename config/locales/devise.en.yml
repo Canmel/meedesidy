@@ -270,6 +270,12 @@ zh:
       status:
         active: '正常'
         archived: '删除'
+        publish: '已发布'
+    task:
+      status:
+        wait: '未处理'
+        agree: '同意'
+        reject: '驳回'
   views:
       pagination:
         first: "&laquo; 首页"
