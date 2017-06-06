@@ -10,33 +10,61 @@ RSpec.describe Flow, type: :model do
     flow.save
     flow.reload
     p "开始一个流程"
-    flow.start
-    p "当前状态是：　#{flow.current_state}"
-    p "=============任务没完成==============="
-    p "进入下一节点 #{flow.next_node}"
-    flow.to_next
-    p "当前状态是　： #{flow.current_state}"
-    p "=============任务没完成==============="
-
-    p "==============任务完成================"
-    flow.tasks.each do |item|
-      item.to_pass(user, "完成任务")
+    p flow.current_state
+    flow.start(user)
+    p flow.reload.current_state
+    flow.reload.to_next
+    p flow.reload.current_state
+    tasks =  Task.where(flow_id: flow.id, status: Task.statuses[:wait]).where('rect_name in (?)', flow.rect_name)
+    tasks.each do |task|
+      task.to_pass(user, '同意')
     end
-    flow.to_next
-    p "当前状态是　： #{flow.current_state}"
-    p "==============任务完成================"
+    flow.reload.to_next
+    p flow.reload.current_state
+    p "当前是否有任务未完成"
+
+    # flow.reload.to_next
+    #
+    # p "================="
+    # p flow.current_state
+    # p flow.reload.current_state
+    # p Flow.first
 
 
 
-    p "当前所有 任务数量　：　#{flow.tasks.size}"
-    p "当前流程的　任务数量：　#{flow.current_tasks}"
-    p "当前任务是否清空: #{Task.flow_task_clear?(flow.id)}"
-    flow.current_tasks.each do |item|
-      item.to_pass(user, "我同意了")
-    end
-    p "当前任务是否清空: #{Task.flow_task_clear?(flow.id)}"
-    p flow.next_node
-    p "当前状态：　#{flow.current_state}"
+
+
+
+    # p "当前状态是：　#{flow.current_state}"
+    # p "=============任务没完成==============="
+    # p "进入下一节点 #{flow.next_node}"
+    # flow.to_next
+    # p "当前状态是　： #{flow.current_state}"
+    # p "=============任务没完成==============="
+    #
+    # p "==============任务完成================"
+    # flow.tasks.each do |item|
+    #   item.to_pass(user, "完成任务")
+    # end
+    # flow.to_next
+    # p "当前状态是　： #{flow.current_state}"
+    # p "==============任务完成================"
+    #
+    #
+    #
+    # p "当前所有 任务数量　：　#{flow.tasks.size}"
+    # p "当前流程的　任务数量：　#{flow.current_tasks}"
+    # p "当前任务是否清空: #{Task.flow_task_clear?(flow.id)}"
+    # flow.current_tasks.each do |item|
+    #   item.to_pass(user, "我同意了")
+    # end
+    # p flow.current_state
+    # p "当前任务是否清空: #{Task.flow_task_clear?(flow.id)}"
+    # p flow.next_node
+    # p "当前状态：　#{flow.current_state}"
+    # p flow.reload.to_next
+    # p flow.reload.to_next
+    # p "当前状态：　#{flow.current_state}"
 
   end
 
