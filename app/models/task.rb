@@ -27,7 +27,7 @@ class Task < ActiveRecord::Base
   class << self
     # 判断一个流程当前任务是否都已经完成
     def flow_task_clear?(flow)
-      Task.where(flow_id: flow.id, status: Task.statuses[:wait]).where('rect_name in (?)', flow.rect_name).size.zero?
+      Task.where(flow_id: flow.id, status: Task.statuses[:wait]).where('rect_name in (?)', flow.rect_name.split(',')).size.zero?
     end
 
     def user_tasks(flow, user)

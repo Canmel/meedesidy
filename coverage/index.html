@@ -14,7 +14,7 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2017-06-06T21:01:32+08:00">2017-06-06T21:01:32+08:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2017-06-06T21:08:59+08:00">2017-06-06T21:08:59+08:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -677,7 +677,7 @@
         <td>22</td>
         <td>16</td>
         <td>6</td>
-        <td>0.8</td>
+        <td>0.9</td>
       </tr>
       
       <tr>
@@ -1222,7 +1222,7 @@
         <td>22</td>
         <td>16</td>
         <td>6</td>
-        <td>0.8</td>
+        <td>0.9</td>
       </tr>
       
       <tr>
@@ -17974,10 +17974,10 @@
           <code class="ruby">    def flow_task_clear?(flow)</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="30">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="5" data-linenumber="30">
+          <span class="hits">5</span>
           
-          <code class="ruby">      Task.where(flow_id: flow.id, status: Task.statuses[:wait]).where(&#39;rect_name in (?)&#39;, flow.rect_name).size.zero?</code>
+          <code class="ruby">      Task.where(flow_id: flow.id, status: Task.statuses[:wait]).where(&#39;rect_name in (?)&#39;, flow.rect_name.split(&#39;,&#39;)).size.zero?</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="31">

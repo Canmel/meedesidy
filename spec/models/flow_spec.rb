@@ -16,12 +16,13 @@ RSpec.describe Flow, type: :model do
     flow.reload.to_next
     p flow.reload.current_state
     tasks =  Task.where(flow_id: flow.id, status: Task.statuses[:wait]).where('rect_name in (?)', flow.rect_name)
+    p "当前是否任务全部完成：　#{Task.flow_task_clear?(flow)}"
     tasks.each do |task|
       task.to_pass(user, '同意')
     end
     flow.reload.to_next
     p flow.reload.current_state
-    p "当前是否有任务未完成"
+    p "当前是否任务全部完成：　#{Task.flow_task_clear?(flow)}"
 
     # flow.reload.to_next
     #
