@@ -3,10 +3,13 @@ class Flow < ActiveRecord::Base
   STATE_TYPE_TASK = 'task'.freeze
   STATE_TYPE_START = 'start'.freeze
   STATE_TYPE_JOIN = 'join'.freeze
+  STATE_TYPE_END = 'end'.freeze
 
   belongs_to :operater, class_name: User
   belongs_to :work_flow
   has_many :tasks
+
+  enum state: { active: 1, archived: 0 }
 
   def start(user)
     states.each do |k, v|
@@ -23,12 +26,17 @@ class Flow < ActiveRecord::Base
     result = get_next
     states.each do |k, v|
       result[1].each do |item|
-        if item.to_s == k.to_s
-           Task.new(status: Task.statuses[:wait], flow_id: id, role_id: v[:props][:roles][:value], rect_name: k.to_s).save
+        item_states = get_states_by_names([item])
+        if item.to_s == k.to_s && item_states[0].values[0][:type] == STATE_TYPE_TASK
+          Task.new(status: Task.statuses[:wait], flow_id: id, role_id: v[:props][:roles][:value], rect_name: k.to_s).save
         end
       end
     end
-    update(status: arr_to_str(result[0]), rect_name: arr_to_str(result[1]))
+    update(status: arr_to_str(result[0]), rect_name: arr_to_str(result[1])) if !empty_result?(result)
+    # 如果当前是end节点 结束流程节点
+    if current_state.size == 1 && current_state[0].values[0][:type] == STATE_TYPE_END
+      update(state: Flow.states[:archived])
+    end
   end
 
   def get_next(node = nil)
@@ -38,7 +46,7 @@ class Flow < ActiveRecord::Base
       return next_state(node)
     else
       next_state.each do |item|
-        if task?(item) || join?(item)
+        if task?(item) || end?(item)
           item.each{|k, v|
             status_result << v[:text][:text]
             rect_name_result << k.to_s
@@ -54,8 +62,6 @@ class Flow < ActiveRecord::Base
     end
     [status_result, rect_name_result]
   end
-
-
 
   def next_state(node = nil)
     result = []
@@ -113,11 +119,15 @@ class Flow < ActiveRecord::Base
   end
 
   def task?(rect_node)
-    rect_node.each{|k, v|  return v[:type] == STATE_TYPE_TASK}
+    rect_node.each{|k, v| return v[:type] == STATE_TYPE_TASK}
   end
 
   def join?(rect_node)
-    rect_node.each{|k, v|  return v[:type] == STATE_TYPE_JOIN}
+    rect_node.each{|k, v| return v[:type] == STATE_TYPE_JOIN}
+  end
+
+  def end?(rect_node)
+    rect_node.each{|k, v| return v[:type] == STATE_TYPE_END}
   end
 
   def current_rect_names
@@ -143,6 +153,11 @@ class Flow < ActiveRecord::Base
       result << ','
     end
     return result.chop
+  end
+
+  def empty_result?(result)
+    return true if result.empty? || result[0].nil? || result[1].nil?
+    result[0].empty? && result[1].empty?
   end
 
   class FlowPath

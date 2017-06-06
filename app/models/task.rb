@@ -1,7 +1,7 @@
 class Task < ActiveRecord::Base
   enum status: { wait: 0, agree: 1, reject: 2 }
 
-  validates :role_id, presence: true
+  # validates :role_id, presence: true
   validate :valid_user_roles, on: [:to_pass, :to_reject]
 
   belongs_to :flow
@@ -21,6 +21,7 @@ class Task < ActiveRecord::Base
   end
 
   def valid_user_roles
+    return true if role_id.nil?
     errors.add(:operater_id, '用户没有权限操作') unless User.find(operater_id).roles.pluck(:id).include? role_id
   end
 

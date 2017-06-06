@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170605043959) do
+ActiveRecord::Schema.define(version: 20170606150132) do
 
   create_table "budgets", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -104,6 +104,7 @@ ActiveRecord::Schema.define(version: 20170605043959) do
     t.datetime "updated_at"
     t.text     "content",      limit: 65535
     t.string   "rect_name",    limit: 255
+    t.integer  "state",        limit: 4,     default: 1
   end
 
   create_table "gerens", force: :cascade do |t|

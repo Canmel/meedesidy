@@ -276,6 +276,10 @@ zh:
         wait: '未处理'
         agree: '同意'
         reject: '驳回'
+    flow:
+      state:
+        active: '活跃'
+        archived: '销毁'
   views:
       pagination:
         first: "&laquo; 首页"
