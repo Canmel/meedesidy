@@ -54,8 +54,8 @@ Rails.application.routes.draw do
   resources :finances
   resources :refunds do
     member do
-      get 'reject'
-      get 'agree'
+      post 'reject'
+      post 'agree'
     end
   end
 

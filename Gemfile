@@ -57,8 +57,8 @@ gem 'qwer', '0.1.7'
 gem 'qiniu', '6.8.1'
 gem 'rqrcode_png', '0.1.5'
 
-gem 'mina'
-gem 'puma'
+# gem 'mina'
+# gem 'puma'
 
 
 group :development do

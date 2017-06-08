@@ -87,17 +87,22 @@ class CarsController < ApplicationController
   # 退款
   # 车必须是绑定状态
   def refund
-    p @car
-    p @car.binded?
     if @car.nil? || !@car.binded?
       render :json => { :code => '404', :result => '无法获取车辆信息或未绑定，发车失败'}
     else
       if @car.balance >= params[:refund_fee].to_f
         # 创建退款申请
         refund = Refund.new(car_id: @car.id, fee: params[:refund_fee], operater: current_user, status: Refund.statuses[:apply])
-
-
-        return render :json => { :code => "200", :result => '申请已发出' } if refund.save
+        # 创建申请流程
+        work_flow = WorkFlow.find(params[:work_flow_id])
+        flow = Flow.new(work_flow: work_flow, name: work_flow.name, formtable: params[:form_str], content: work_flow.content )
+        refund.flow_id = flow.id
+        if refund.save && flow.save && refund.update(flow_id: flow.id)
+          flow.start(current_user)
+          return render :json => { :code => "200", :result => '申请已发出' } # if refund.save
+        else
+          return render :json => { :code => "500", :result => '申请失败' }
+        end
       else
         render :json => { :code => "500", :result => '退款金额不能大于余额' }
       end

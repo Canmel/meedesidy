@@ -111,6 +111,14 @@ module CarHelper
                   <input class='form-control' id='refund_fee'>
                   </div>
                 </div>
+                <div class='form-group'>
+                  <label class='control-label col-sm-4 required' for='car_car_no'>退款流程</label>
+                  <div class='col-sm-6'>
+                  <select class='form-control' name='work_flow_id' id='work_flow_id' >
+                  #{work_flow_options}
+                  </select>
+                  </div>
+                </div>
               </td>
             </tr>
           </table>
@@ -270,5 +278,13 @@ module CarHelper
 
   def delete_car_render car
     link_to '删除', car, data: {confirm: "确认要删除#{car.car_no}?"}, method: :delete, class: 'label meedesidy_btn_delete' if car.archived?
+  end
+
+  def work_flow_options
+    result = ''
+    WorkFlow.where(menu: Menu.where(source: '/refunds')[0]).each do |item|
+      result << "<option value='#{item.id}' >#{item.name}</option>"
+    end
+    return result
   end
 end
