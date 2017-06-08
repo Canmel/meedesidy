@@ -165,7 +165,7 @@
     $("#refund_btn").click(function () {
       $.ajax({
         url: '/cars/'+  $("input[name='refund_id']").val() +'/refund',
-        data: { refund_fee: $("#refund_fee").val() },
+        data: { refund_fee: $("#refund_fee").val(), form_str: $("#car_info").parents('table').html(), work_flow_id: $("#work_flow_id").val() },
         method: 'POST',
         success: function(data){
           if(data["result"] != null){

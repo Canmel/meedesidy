@@ -1,6 +1,8 @@
 class Task < ActiveRecord::Base
   enum status: { wait: 0, agree: 1, reject: 2 }
 
+  belongs_to :role
+
   # validates :role_id, presence: true
   validate :valid_user_roles, on: [:to_pass, :to_reject]
 

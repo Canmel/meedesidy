@@ -8,6 +8,7 @@ class Flow < ActiveRecord::Base
   belongs_to :operater, class_name: User
   belongs_to :work_flow
   has_many :tasks
+  belongs_to :role
 
   enum state: { active: 1, archived: 0 }
 
@@ -75,6 +76,12 @@ class Flow < ActiveRecord::Base
     return result.uniq
   end
 
+  def to_end
+    states.each do |k, v|
+      update(status: v[:text][:text], rect_name: k )if v[:type].to_s == STATE_TYPE_END
+    end
+  end
+
   def current_state
     result = []
     current_rect_names.each do |item|
@@ -83,8 +90,11 @@ class Flow < ActiveRecord::Base
     return result
   end
 
-
-
+  def flow_end?
+    current_state.each do |state|
+      return end?(state)
+    end
+  end
 
   private
 

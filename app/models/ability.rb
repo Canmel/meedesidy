@@ -13,7 +13,9 @@ class Ability
       can :manage, :all
       ####店长权限####
     elsif user.has_role? :daily_manager
+      manage_work_flow
       manage_date
+      manage_finance
     elsif user.has_role? :finance
       ###财务权限###
       manage_finance
@@ -31,6 +33,13 @@ class Ability
 
   def manage_finance
     can :manage, Finance
+    can :manage, Refund
+  end
+
+  def manage_work_flow
+    can :manage, WorkFlow
+    can :manage, Flow
+    can :manage, Task
   end
 
   def no_role

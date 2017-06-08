@@ -31,5 +31,4 @@ RSpec.describe Flow, type: :model do
     flow.reload.to_next
     expect(flow.reload.state_i18n).to eq '销毁'
   end
-
 end

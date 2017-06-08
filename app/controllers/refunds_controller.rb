@@ -14,35 +14,54 @@ load_and_authorize_resource
   # 同意
   def agree
     ActiveRecord::Base.transaction do
-    if @refund.update!(status: Refund.statuses[:active])
-      if @refund.active?
-        # @refund.car.update!(:balance => @refund.car.balance - @refund.fee)
-        # 产生一条财务记录
-        finance = Finance.new(account_type: 0, car_no: @refund.car.car_no, car_id: @refund.car.id, fee: @refund.fee, log_type: Finance.log_types[:refund], operater: current_user)
-        finance.save!
-        flash_msg '审批成功'
+      if @refund.flow.present?
+        if !Task.flow_task_clear?(@refund.flow)
+          # 将当前流程所有可以完成的任务都同意
+          tasks = @refund.flow&.tasks
+          tasks.each do |item|
+            item.to_pass(current_user, refund_params[:remark])
+          end
+        end
+        @refund.flow.to_next
+        if @refund.flow.flow_end?
+          if @refund.update!(status: Refund.statuses[:active])
+              if @refund.active?
+                # 产生一条财务记录
+                finance = Finance.new(account_type: 0, car_no: @refund.car.car_no, car_id: @refund.car.id, fee: @refund.fee, log_type: Finance.log_types[:refund], operater: current_user)
+                finance.save!
+                flash_msg '审批成功'
+              end
+          else
+            flash_msg '审批失败'
+          end
+        end
       end
-    else
-      flash_msg '审批失败'
     end
     redirect_to :refunds
-    end
   end
 
   # 驳回
   def reject
     ActiveRecord::Base.transaction do
-      p @refund
-      if refund_params[:remark].nil?
-        flash_msg '备注不能为空'
-        return redirect_to :refunds
+      if @refund.flow.present?
+        if !Task.flow_task_clear?(@refund.flow)
+          tasks = @refund.flow&.tasks
+          tasks.each do |item|
+            item.to_reject(current_user, refund_params[:remark])
+          end
+          @refund.flow.to_end
+        end
+        if refund_params[:remark].nil?
+          flash_msg '备注不能为空'
+          return redirect_to :refunds
+        end
+        if @refund.update!(status: Refund.statuses[:archived], remark: refund_params[:remark])
+          flash_msg '审批成功'
+        else
+          flash_msg '审批失败'
+        end
+        redirect_to :refunds
       end
-      if @refund.update!(status: Refund.statuses[:archived], remark: refund_params[:remark])
-        flash_msg '审批成功'
-      else
-        flash_msg '审批失败'
-      end
-      redirect_to :refunds
     end
   end
 
