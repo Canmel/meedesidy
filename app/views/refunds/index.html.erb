@@ -35,7 +35,7 @@
             <td><%= refund.fee %></td>
             <td><%= refund.car&.car_no %></td>
             <td><%= refund.status_i18n %></td>
-            <td><%= link_to "#{refund.flow&.status}", "##", data: refund.flow&.id, class: 'flow_status_btn' %></td>
+            <td><%= link_to "#{refund.flow&.status}", "##", data: refund.flow&.id, current_status_name: refund.flow&.status, class: 'flow_status_btn' %></td>
             <td>
               <% if refund.examine? current_user %>
                   <%= link_to '审批', "##", 'data-toggle': 'modal', 'data-target': '#myModal', class: 'label meedesidy_btn_2', data: refund.id, id: 'reject_refund_btn' if refund.apply? %>
@@ -84,7 +84,7 @@
         </div>
       </div>
       <div class="modal-footer meedesidy_bg_2">
-        <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="worl_flow_cancel_btn">关闭
         </button>
       </div>
     </div>
@@ -93,16 +93,16 @@
 <script>
   $(function () {
     $(".flow_status_btn").click(function () {
+      var current_status_name = $(this).attr('current_status_name');
       $.ajax({
         url: '/flows/'+$(this).attr('data'),
         type: 'GET',
         success: function (data) {
           initFlow(data['content']);
           $("#showFlow").modal('show');
-          $('rect').each(function (index, node) {
-            if ($(node).css('display') == 'inline'){
-              $(node).css('background-color', 'red');
-              console.log($(node))
+          $('#myflow text').each(function (index, node) {
+            if ($(node).find('tspan').text() == current_status_name){
+              $(node).css('fill', 'red');
             }
           })
         }
@@ -112,6 +112,7 @@
   });
 
   function initFlow(content) {
+    $("#myflow").html("");
     content = content.replace(/&#39;/g, '\'');
     $('#myflow').myflow(
         {
