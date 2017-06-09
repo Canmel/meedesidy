@@ -37,6 +37,7 @@ $(document).on('ready page:load',function(){
         init_datepicker();
         bind_autocomplete();
         $(".modal-backdrop").remove();
+        init_flow();
     });
 
     $(document).on('submit', '.pjax-form', function(event) {
@@ -46,7 +47,40 @@ $(document).on('ready page:load',function(){
     init_datepicker();
     init_menus();
     bind_autocomplete();
+    init_flow();
 });
+
+function init_flow() {
+    if($(".work-flow").size() == 0){
+        return false
+    }
+    $(".flow_status_btn").click(function () {
+        var current_status_name = $(this).attr('current_status_name');
+        $.ajax({
+            url: '/flows/'+$(this).attr('data'),
+            type: 'GET',
+            success: function (data) {
+                initFlow(data['content']);
+                $("#showFlow").modal('show');
+                $('#myflow text').each(function (index, node) {
+                    if ($(node).find('tspan').text() == current_status_name){
+                        $(node).css('fill', 'red');
+                    }
+                })
+            }
+        })
+    });
+
+    function initFlow(content) {
+        $("#myflow").html("");
+        content = content.replace(/&#39;/g, '\'');
+        $('#myflow').myflow(
+            {
+                basePath: "/",
+                restore: eval("(" + content + ")"),
+            });
+    }
+}
 
 
 function init_html() {

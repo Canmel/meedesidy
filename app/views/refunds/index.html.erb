@@ -80,7 +80,21 @@
       </div>
       <div class="modal-body">
         <div style="overflow: auto; height: 300px;">
-          <div id="myflow"></div>
+          <div id="myflow_props"
+               style="position: absolute; top: 30px; right: 50px; background-color: #fff; width: 220px; padding: 3px;"
+               class="ui-widget-content">
+            <div id="myflow_props_handle" class="ui-widget-header">属性</div>
+            <table border="1" width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td>aaa</td>
+              </tr>
+              <tr>
+                <td>aaa</td>
+              </tr>
+            </table>
+            <div>&nbsp;</div>
+          </div>
+          <div id="myflow" class="work-flow"></div>
         </div>
       </div>
       <div class="modal-footer meedesidy_bg_2">
@@ -90,34 +104,3 @@
     </div>
   </div>
 </div>
-<script>
-  $(function () {
-    $(".flow_status_btn").click(function () {
-      var current_status_name = $(this).attr('current_status_name');
-      $.ajax({
-        url: '/flows/'+$(this).attr('data'),
-        type: 'GET',
-        success: function (data) {
-          initFlow(data['content']);
-          $("#showFlow").modal('show');
-          $('#myflow text').each(function (index, node) {
-            if ($(node).find('tspan').text() == current_status_name){
-              $(node).css('fill', 'red');
-            }
-          })
-        }
-      })
-    })
-
-  });
-
-  function initFlow(content) {
-    $("#myflow").html("");
-    content = content.replace(/&#39;/g, '\'');
-    $('#myflow').myflow(
-        {
-          basePath: "/",
-          restore: eval("(" + content + ")"),
-        });
-  }
-</script>
