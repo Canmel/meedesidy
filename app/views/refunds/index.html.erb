@@ -3,16 +3,17 @@
   <h5 class="page-header">查询条件</h5>
   <div class="dataTables_wrapper form-inline">
     <div>
-    <%= search_form_for @q, :html => {:class => 'pjax-form'} do |f| %>
-        <%= f.label "车牌号：", class: "control-label" %>
-        <%= f.search_field :car_car_no_cont, class: 'form-control' %>
-        <button type="submit" class="btn meedesidy_btn_query" data-toggle="modal" data-target="#search_model">查询</button>
-    <% end %>
+      <%= search_form_for @q, :html => {:class => 'pjax-form'} do |f| %>
+          <%= f.label "车牌号：", class: "control-label" %>
+          <%= f.search_field :car_car_no_cont, class: 'form-control' %>
+          <button type="submit" class="btn meedesidy_btn_query" data-toggle="modal" data-target="#search_model">查询</button>
+      <% end %>
     </div>
   </div>
   <h3 class="sub-header">退款申请列表
     <% if flash[:refund_notice] %>
-        <div class="notice text-center"><span class="label meedesidy_notice_info"><%= flash[:refund_notice] %></span></div>
+        <div class="notice text-center"><span class="label meedesidy_notice_info"><%= flash[:refund_notice] %></span>
+        </div>
     <% end %>
   </h3>
   <div class="table-responsive">
@@ -29,18 +30,18 @@
       </thead>
       <tbody>
       <% @refunds.each_with_index do |refund, index| %>
-        <tr>
-          <td><%= sequence index %></td>
-          <td><%= refund.fee %></td>
-          <td><%= refund.car&.car_no %></td>
-          <td><%= refund.status_i18n %></td>
-          <td><%= refund.flow&.status %></td>
-          <td>
-            <% if refund.examine? current_user %>
-              <%= link_to '审批', "##", 'data-toggle': 'modal', 'data-target': '#myModal', class: 'label meedesidy_btn_2', data: refund.id, id: 'reject_refund_btn' if refund.apply? %>
-            <% end %>
-          </td>
-        </tr>
+          <tr>
+            <td><%= sequence index %></td>
+            <td><%= refund.fee %></td>
+            <td><%= refund.car&.car_no %></td>
+            <td><%= refund.status_i18n %></td>
+            <td><%= link_to "#{refund.flow&.status}", "##", data: refund.flow&.id, current_status_name: refund.flow&.status, class: 'flow_status_btn' %></td>
+            <td>
+              <% if refund.examine? current_user %>
+                  <%= link_to '审批', "##", 'data-toggle': 'modal', 'data-target': '#myModal', class: 'label meedesidy_btn_2', data: refund.id, id: 'reject_refund_btn' if refund.apply? %>
+              <% end %>
+            </td>
+          </tr>
       <% end %>
       </tbody>
     </table>
@@ -54,18 +55,69 @@
   $(function () {
     $("#reject_refund_btn").click(function () {
       var data = $(this).attr('data');
-      $("#reject_btn").attr("data", "/refunds/"+ data +"/reject")
-      $("#agree_btn").attr("data", "/refunds/"+ data +"/agree")
+      $("#reject_btn").attr("data", "/refunds/" + data + "/reject")
+      $("#agree_btn").attr("data", "/refunds/" + data + "/agree")
     });
     $(".reject_refund_btn").click(function () {
       $("#myModal").modal('hide');
-      if($("#refund_remark").val() == null || $("#refund_remark").val() == "") {
+      if ($("#refund_remark").val() == null || $("#refund_remark").val() == "") {
         return alert("备注不能为空");
-      }else {
+      } else {
         $("#reject_form").attr("action", $(this).attr('data'));
         $("#reject_form").submit();
       }
     })
   });
 
+</script>
+
+<div class="modal fade" id="showFlow" tabindex="-1" role="dialog" aria-labelledby="showFlowLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header meedesidy_bg_1">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times; </button>
+        <h4 class="modal-title text-center" id="myModalLabel">流程状态</h4>
+      </div>
+      <div class="modal-body">
+        <div style="overflow: auto; height: 300px;">
+          <div id="myflow"></div>
+        </div>
+      </div>
+      <div class="modal-footer meedesidy_bg_2">
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="worl_flow_cancel_btn">关闭
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $(function () {
+    $(".flow_status_btn").click(function () {
+      var current_status_name = $(this).attr('current_status_name');
+      $.ajax({
+        url: '/flows/'+$(this).attr('data'),
+        type: 'GET',
+        success: function (data) {
+          initFlow(data['content']);
+          $("#showFlow").modal('show');
+          $('#myflow text').each(function (index, node) {
+            if ($(node).find('tspan').text() == current_status_name){
+              $(node).css('fill', 'red');
+            }
+          })
+        }
+      })
+    })
+
+  });
+
+  function initFlow(content) {
+    $("#myflow").html("");
+    content = content.replace(/&#39;/g, '\'');
+    $('#myflow').myflow(
+        {
+          basePath: "/",
+          restore: eval("(" + content + ")"),
+        });
+  }
 </script>

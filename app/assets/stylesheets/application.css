@@ -122,6 +122,38 @@ a.meedesidy_bg_3:active, a.meedesidy_bg_3:hover  {
 
 }
 
+svg {
+    margin: 0;
+    pading: 0;
+    text-align: left;
+    font-family: Arial, sans-serif, Helvetica, Tahoma;
+    font-size: 12px;
+    line-height: 1.5;
+    color: black;
+    background-image: url(bg.png);
+}
+
+hr {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 1px;
+    border-top: 1px solid #eee;
+}
+
+
+.mover {
+    border: 1px solid #ddd;
+    background-color: #ddd;
+}
+
+.selected {
+    background-color: #ddd;
+}
+
+.state {
+
+}
+
 #myflow_props table {
 
 }
