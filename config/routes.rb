@@ -46,6 +46,7 @@ Rails.application.routes.draw do
   resources :gerens
   resources :companies
   resources :settlementers
+  resources :flows
 
   # 业务路由
   resources :budgets
@@ -58,7 +59,6 @@ Rails.application.routes.draw do
       post 'agree'
     end
   end
-
 
   get '/drivers/search_company'
   resources :drivers do
