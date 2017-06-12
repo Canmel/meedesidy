@@ -36,5 +36,13 @@ class Task < ActiveRecord::Base
     def user_tasks(flow, user)
       Task.where(flow_id: flow.id, status: Task.statuses[:wait]).where('rect_name in (?)', flow.rect_name).where('role_id in (?)', user.roles.map(&:id))
     end
+
+    def current_tasks(user)
+      Task.where(status: Task.statuses[:wait]).where('role_id in (?)', user.roles.map(&:id))
+    end
+
+    def passed_tasks(user)
+      Task.where.not(status: Task.statuses[:wait]).where('role_id in (?)', user.roles.map(&:id))
+    end
   end
 end

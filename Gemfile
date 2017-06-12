@@ -57,6 +57,8 @@ gem 'qwer', '0.1.7'
 gem 'qiniu', '6.8.1'
 gem 'rqrcode_png', '0.1.5'
 
+gem 'lazy_high_charts', '1.5.6'
+
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'

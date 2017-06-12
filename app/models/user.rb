@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  HALF_HOUR_SECOND = 108000
   rolify
 
   has_and_belongs_to_many :roles, :join_table => :users_roles
@@ -62,5 +63,11 @@ class User < ActiveRecord::Base
     return nil if !email.present?
     email_names = email.to_s.split "@"
     email_name = email_names[0]
+  end
+
+  class << self
+    def current_user_chart_data
+      User.active.where('(NOW() - current_sign_in_at) < ?', 108000)
+    end
   end
 end

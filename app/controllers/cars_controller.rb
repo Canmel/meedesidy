@@ -95,7 +95,7 @@ class CarsController < ApplicationController
         refund = Refund.new(car_id: @car.id, fee: params[:refund_fee], operater: current_user, status: Refund.statuses[:apply])
         # 创建申请流程
         work_flow = WorkFlow.find(params[:work_flow_id])
-        flow = Flow.new(work_flow: work_flow, name: work_flow.name, formtable: params[:form_str], content: work_flow.content )
+        flow = Flow.new(work_flow: work_flow, name: work_flow.name, formtable: params[:form_str], content: work_flow.content, menu_id: work_flow.menu.id )
         refund.flow_id = flow.id
         if refund.save && flow.save && refund.update(flow_id: flow.id)
           flow.start(current_user)

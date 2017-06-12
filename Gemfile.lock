@@ -109,6 +109,7 @@ GEM
       railties (>= 3.2, < 5.1)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
+    hash-deep-merge (0.1.1)
     hashdiff (0.3.2)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
@@ -138,6 +139,8 @@ GEM
     kaminari-core (1.0.0)
     launchy (2.4.3)
       addressable (~> 2.3)
+    lazy_high_charts (1.5.6)
+      hash-deep-merge
     less (2.6.0)
       commonjs (~> 0.2.7)
     less-rails (2.8.0)
@@ -362,6 +365,7 @@ DEPENDENCIES
   json (= 1.8.3)
   kaminari (= 1.0.0)
   launchy
+  lazy_high_charts (= 1.5.6)
   less-rails (= 2.8.0)
   mysql2 (= 0.4.5)
   parallel_tests

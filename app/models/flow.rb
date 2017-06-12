@@ -7,6 +7,7 @@ class Flow < ActiveRecord::Base
 
   belongs_to :operater, class_name: User
   belongs_to :work_flow
+  belongs_to :menu
   has_many :tasks
   belongs_to :role
 
