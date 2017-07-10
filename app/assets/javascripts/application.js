@@ -16,6 +16,7 @@
 //= require jquery.datetimepicker
 //= require jquery-ui
 //= require autocomplete-rails
+//= require highcharts/highstock
 //= require_tree .
 
 

@@ -41,6 +41,8 @@ zh:
             name:
               blank: '姓名不能为空'
               too_long: '姓名长度过长'
+            current_password:
+              blank: '当前密码不能为空'
         geren:
           attributes:
             seat_num:

@@ -310,6 +310,7 @@
     <orderEntry type="library" scope="PROVIDED" name="ffi (v1.9.18, rbenv: 2.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="font-awesome-rails (v4.7.0.1, rbenv: 2.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="globalid (v0.3.7, rbenv: 2.3.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="hash-deep-merge (v0.1.1, rbenv: 2.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="hashdiff (v0.3.2, rbenv: 2.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="http-cookie (v1.0.3, rbenv: 2.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="i18n (v0.8.1, rbenv: 2.3.1) [gem]" level="application" />
@@ -322,6 +323,7 @@
     <orderEntry type="library" scope="PROVIDED" name="kaminari-activerecord (v1.0.0, rbenv: 2.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="kaminari-core (v1.0.0, rbenv: 2.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="launchy (v2.4.3, rbenv: 2.3.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="lazy_high_charts (v1.5.6, rbenv: 2.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="less (v2.6.0, rbenv: 2.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="less-rails (v2.8.0, rbenv: 2.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="libv8 (v3.16.14.17, rbenv: 2.3.1) [gem]" level="application" />

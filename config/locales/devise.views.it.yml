@@ -77,7 +77,7 @@ it:
         leave_blank_if_you_don_t_want_to_change_it: lascia in bianco se non vuoi cambiarla
         title: Modifica %{resource}
         unhappy: Scontento
-        update: Aggiorna
+        update: "天啊"
         we_need_your_current_password_to_confirm_your_changes: abbiamo bisogno della tua password attuale per confermare i cambiamenti
       new:
         sign_up: Registrati
@@ -95,7 +95,7 @@ it:
       signed_out: Sei uscito correttamente.
     shared:
       links:
-        back: Indietro
+        back: "返回"
         didn_t_receive_confirmation_instructions: Non hai ricevuto le istruzioni per la conferma?
         didn_t_receive_unlock_instructions: Non hai ricevuto le istruzioni per lo sblocco?
         forgot_your_password: Password dimenticata?

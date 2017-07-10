@@ -2,14 +2,46 @@
 
 <% provide(:title, '主页信息') %>
 <div class="panel col-md-12 col-lg-12 col-sm-12 col-xs-12">
-  <section class="wrapper">
-    <%= current_url %>
-    <% if can? :read, Car %>
-        sssdddddddddddddddddddd
+  <div class="col-md-3" style="margin-top: 10px; height: 350px; border: 1px solid #CCCCCC; background-color: #f1f1f1;">
+    <div style="text-align: center; line-height: 20px"><span>我的待办</span></div>
+    <hr style="background-color: #adadad">
+    <table>
+      <% @tasks.each do |task| %>
+      <tr>
+        <td class="col-md-9"><%= abbr_name(task.flow&.menu&.name + "|" + task.flow&.name) %></td>
+        <td class="col-md-3">
+          <% case task.flow&.menu_id %>
+          <% when Menu.where(source: '/refunds')[0][:id] %>
+              <%= link_to '追踪', refunds_path('q[car_car_no_cont]': Refund.where(flow_id: task.flow&.id)[0]&.car&.car_no, 'q[id_eq]': Refund.where(flow_id: task.flow&.id)[0]&.id) %>
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+  <div class="col-md-3" style="margin-top: 10px; height: 350px; border: 1px solid #CCCCCC; background-color: #f1f1f1;">
+    <div style="text-align: center;"><span>我的已办</span></div>
+    <hr style="background-color: #adadad">
+    <table>
+      <% @passed_tasks.each do |task| %>
+          <tr>
+            <td class="col-md-9"><%= abbr_name((Task.find(9).flow&.menu&.name.nil? ? Task.find(9).flow&.work_flow&.menu&.name : Task.find(9).flow&.menu&.name) + "|" + task.flow&.name) %></td>
+            <td class="col-md-3">
+              <% case task.flow&.menu_id.nil? ? task.flow&.work_flow&.menu_id : task.flow&.menu_id %>
+              <% when Menu.where(source: '/refunds')[0][:id] %>
+                  <%= link_to '追踪', refunds_path('q[car_car_no_cont]': Refund.where(flow_id: task.flow&.id)[0]&.car&.car_no, 'q[id_eq]': Refund.where(flow_id: task.flow&.id)[0]&.id) %>
+              <% end %>
+            </td>
+          </tr>
+      <% end %>
+    </table>
+  </div>
+  <div id="home_user_chart" class="col-md-3">
+    <%= high_chart("home_user_chart", @users_chart) %>
+  </div>
 
-    <% end %>
-    <h1>sssssssssssssssssssssssssssss</h1>
-    <%= current_user.has_role? :admin %>
-    <p><%= current_user.name %></p>
-  </section>
+  <div id="home_car_chart" class="col-md-3">
+    <%= high_chart("home_car_chart", @cars_chart) %>
+  </div>
+  <div><span>等待开发<%=   %></span></div>
 </div>

@@ -1,39 +1,22 @@
-<h2><%= t('.title', resource: resource_class.model_name.human) %></h2>
+<% provide(:title, '日志信息') %>
+<div class="panel col-md-12 col-lg-12 col-sm-12 col-xs-12">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+<h5 class="page-header" id="page_title_by_menu">修改密码</h5>
+
+<%= bootstrap_form_tag(url: registration_path(resource_name, id: current_user.id ), :method => 'put', :html => {:class => 'form-horizontal col-lg-8 pjax-form'}) do |f| %>
+
   <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email %>
-  </div>
+  <%= f.text_field :email, label: "邮箱：", value: current_user.email %>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <p>
-      <%= t('.currently_waiting_confirmation_for_email', email: resource.unconfirmed_email) %>
-    </p>
-  <% end %>
+  <%= f.password_field :password, label: "新密码：" %>
 
-  <div class="field">
-    <%= f.label :password %> <i>(<%= t('.leave_blank_if_you_don_t_want_to_change_it') %>)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+  <%= f.password_field :password_confirmation, label: "确认密码：" %>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation %>
-  </div>
+  <%= f.password_field :current_password, label: "当前密码：" %>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(<%= t('.we_need_your_current_password_to_confirm_your_changes') %>)</i><br />
-    <%= f.password_field :current_password %>
-  </div>
-
-  <div><%= f.submit t('.update') %></div>
+  <%= f.submit '提交', class: 'btn meedesidy_btn_save' %>
+  <%= link_to "返回", '/', class: 'btn btn-default' %>
 <% end %>
-
-<h3><%= t('.cancel_my_account') %></h3>
-
-<p><%= t('.unhappy') %> <%= link_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete %>.</p>
-
-<%= link_to t('devise.shared.links.back'), :back %>
+  <%= resource %>
+</div>
