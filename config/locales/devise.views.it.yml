@@ -95,7 +95,7 @@ it:
       signed_out: Sei uscito correttamente.
     shared:
       links:
-        back: Indietro
+        back: "返回"
         didn_t_receive_confirmation_instructions: Non hai ricevuto le istruzioni per la conferma?
         didn_t_receive_unlock_instructions: Non hai ricevuto le istruzioni per lo sblocco?
         forgot_your_password: Password dimenticata?

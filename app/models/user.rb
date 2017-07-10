@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 
   enum status: { active: 1, archived: 0 }
 
-  validate :password, on: :create
+  validate :password
   validates :name, presence: true, length: { maximum: 14 }
   validate :valid_user_roles
 
