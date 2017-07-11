@@ -5,9 +5,9 @@ class HomeController < ApplicationController
 
     @cars = Car.find_by_sql('select count(*) count, gerens.name geren_name from cars left join gerens on gerens.id = cars.geren_id group by cars.geren_id')
 
-    @tasks = Task.current_tasks(current_user)
+    @tasks =  Kaminari.paginate_array(Task.current_tasks(current_user)).page(@page).per(@page_size)
 
-    @passed_tasks = Task.passed_tasks(current_user)
+    @passed_tasks =  Kaminari.paginate_array(Task.passed_tasks(current_user)).page(@page).per(@page_size)
 
     @users_chart = LazyHighCharts::HighChart.new('pie') do |f|
       f.chart(defaultSeriesType: "pie")
@@ -62,7 +62,5 @@ class HomeController < ApplicationController
           }
       })
     end
-
-
   end
 end
