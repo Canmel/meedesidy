@@ -5,6 +5,9 @@
         <i class="fa fa-dashboard">
         </i>
         <span>首页</span>
+        <span class="label label-success span-sidebar">
+            <%= @tasks.count %>
+        </span>
       </a>
     </li>
     <% load_menus('one_level', nil).each do |menu| %>
