@@ -1,13 +1,18 @@
 class HomeController < ApplicationController
+  require 'util/wether_util'
   before_filter :authenticate_user!
+
   def index
+
+    @wether = WetherUtil.new
+
     @users = User.current_user_chart_data
 
     @cars = Car.find_by_sql('select count(*) count, gerens.name geren_name from cars left join gerens on gerens.id = cars.geren_id group by cars.geren_id')
 
-    @tasks =  Kaminari.paginate_array(Task.current_tasks(current_user)).page(@page).per(@page_size)
+    @tasks =  Kaminari.paginate_array(Task.current_tasks(current_user)).page(@page).per(@page_size) if params[:passed].nil?
 
-    @passed_tasks =  Kaminari.paginate_array(Task.passed_tasks(current_user)).page(@page).per(@page_size)
+    @passed_tasks =  Kaminari.paginate_array(Task.passed_tasks(current_user)).page(@page).per(@page_size) if params[:passed].present?
 
     @users_chart = LazyHighCharts::HighChart.new('pie') do |f|
       f.chart(defaultSeriesType: "pie")
@@ -63,4 +68,5 @@ class HomeController < ApplicationController
       })
     end
   end
+
 end

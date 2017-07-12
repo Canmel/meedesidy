@@ -161,6 +161,7 @@ GEM
     netrc (0.11.0)
     nokogiri (1.7.0.1)
       mini_portile2 (~> 2.1.0)
+    open_uri_redirections (0.2.1)
     orm_adapter (0.5.0)
     parallel (1.10.0)
     parallel_tests (2.13.0)
@@ -368,6 +369,7 @@ DEPENDENCIES
   lazy_high_charts (= 1.5.6)
   less-rails (= 2.8.0)
   mysql2 (= 0.4.5)
+  open_uri_redirections
   parallel_tests
   pjax_rails (= 0.4.0)
   qiniu (= 6.8.1)
