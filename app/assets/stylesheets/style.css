@@ -639,7 +639,7 @@ ul.top-menu>li>a:hover,ul.top-menu>li>a:focus {
 .dropdown-menu.extended.logout > li:last-child {
 	float: left;
 	width: 100%;
-	background: #e4675d;
+	background: #676767;
 	border-radius: 0 0 3px 3px;
 }
 
@@ -911,7 +911,7 @@ ul.top-menu>li>a:hover,ul.top-menu>li>a:focus {
 	float: left;
 	text-align: center;
 	-webkit-border-radius: 5px 5px 0 0;
-	-moz-border-radius: 5px 5px 0 0x;
+	-moz-border-radius: 5px 5px 0 0px;
 	border-radius: 5px 5px 0 0;
 	z-index: 10;
 }
@@ -1505,7 +1505,7 @@ h3.timeline-title {
     /* Safari and Chrome */
 	.panel-footer.revenue-foot {
 		margin-bottom: -4px;
-	};
+	}
 }
 
 .panel-footer.revenue-foot ul {
