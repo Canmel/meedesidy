@@ -3,7 +3,7 @@
 
 <h5 class="page-header" id="page_title_by_menu">修改密码</h5>
 
-<%= bootstrap_form_tag(url: registration_path(resource_name, id: current_user.id ), :method => 'put', :html => {:class => 'form-horizontal col-lg-8 pjax-form'}) do |f| %>
+<%= bootstrap_form_tag(url: registration_path(resource_name, id: current_user.id ), :method => 'put', :html => {:class => 'form-horizontal col-lg-8 pjax-form', :style => "margin-left: 20%;"}) do |f| %>
 
   <%= devise_error_messages! %>
 
@@ -14,9 +14,9 @@
   <%= f.password_field :password_confirmation, label: "确认密码：" %>
 
   <%= f.password_field :current_password, label: "当前密码：" %>
-
-  <%= f.submit '提交', class: 'btn meedesidy_btn_save' %>
-  <%= link_to "返回", '/', class: 'btn btn-default' %>
+  <div style="text-align: center;">
+    <%= f.submit '提交', class: 'btn meedesidy_btn_save' %>
+    <%= link_to "返回", '/', class: 'btn btn-default' %>
+  </div>
 <% end %>
-  <%= resource %>
 </div>
