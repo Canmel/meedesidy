@@ -134,7 +134,7 @@ a,a:hover,a:focus {
 	margin: 0;
 	padding: 20px 15px;
 	text-align: center;
-	background: #2e9dbd;
+	background: #5d5d5d;
 	border-radius: 5px 5px 0 0;
 	-webkit-border-radius: 5px 5px 0 0;
 	color: #fff;
@@ -179,12 +179,12 @@ a,a:hover,a:focus {
 }
 
 .form-signin .btn-login {
-	background: #3ac2e9;
+	background: #6b6b6b;
 	color: #fff;
 	text-transform: uppercase;
 	font-weight: 600;
 	font-family: 'Open Sans',sans-serif;
-	box-shadow: 0 4px #2da5c8;
+	box-shadow: 0 4px #2b2b2b;
 	margin-bottom: 20px;
 }
 
@@ -229,15 +229,15 @@ a,a:hover,a:focus {
 }
 
 .login-social-link a.facebook {
-	background: #5193ea;
+	background: #b0b0b0;
 	margin-right: 22px;
-	box-shadow: 0 4px #2775e2;
+	box-shadow: 0 4px #7b7b7b;
 	float: left;
 }
 
 .login-social-link a.twitter {
-	background: #44ccfe;
-	box-shadow: 0 4px #2bb4e8;
+	background: #585858;
+	box-shadow: 0 4px #2b2b2b;
 	float: left;
 }
 
@@ -5205,7 +5205,7 @@ tr.odd.gradeX td.sorting_1, tr.even.gradeX td.sorting_1, table.display tr.even.g
 }
 
 .login-screen {
-	background: #02bac6 url("lock-bg.jpg");
+	background: #262626;
 	background-size: cover;
 	background-repeat: repeat;
 }
