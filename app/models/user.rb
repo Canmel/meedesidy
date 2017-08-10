@@ -10,9 +10,9 @@ class User < ActiveRecord::Base
 
   enum status: { active: 1, archived: 0 }
 
-  validate :password
-  validates :name, presence: true, length: { maximum: 14 }
-  validate :valid_user_roles
+  validates :password, presence: true
+  # validates :name, presence: true, length: { maximum: 14 }
+  # validate :valid_user_roles
 
   # after_save 将回调函数包含在同一个事务中，那么要么全部成功，要么全部失败。回调函数中的抛出的异常会导致整个操作失败
   after_create :create_qrcode
@@ -25,10 +25,11 @@ class User < ActiveRecord::Base
   # after_rollback
 
   def valid_user_roles
-    errors.add(:role_ids, '至少有一个角色') if Rails.env.development? && roles.size.zero?
+    errors.add(:role_ids, '至少有一个角色') if Rails.env.development? && roles.size.zero? && name.present?
   end
 
   def self.authenticate(email, password)
+    p "222222222222111111111111111111111"
     user = User.find_by_email(email)
     if user && user.active? && BCrypt::Engine.hash_secret(password, user.salt) == user.password_digest
       return user

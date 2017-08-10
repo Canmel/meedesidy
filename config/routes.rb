@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   get 'qiniu/token'
 
-  # devise_for :users
-  # devise_for :users, :controllers => {:registrations => "devise_customed/registrations"}
   devise_for :users,controllers:{sessions:"users/sessions",confirmations:"users/confirmations",passwords:"users/passwords",registrations:"users/registrations" }, path: "auth",
              path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'cmon_let_me_in' }
   root :to => "home#index"
@@ -64,7 +62,8 @@ Rails.application.routes.draw do
   resources :drivers do
     get :autocomplete_company_name, on: :collection
   end
-  get '*path' => proc { |env| Rails.env.development? ? (raise ActionController::RoutingError, %{No route matches "#{env["PATH_INFO"]}"}) : ApplicationController.action(:render_not_found).call(env) }
+  #
+  # get '*path' => proc { |env| Rails.env.development? ? (raise ActionController::RoutingError, %{No route matches "#{env["PATH_INFO"]}"}) : ApplicationController.action(:render_not_found).call(env) }
 
   # match '*path', via: :all, to: 'error#error_404' if Rails.env.production?
 end

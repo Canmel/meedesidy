@@ -10,12 +10,12 @@ default: &default
   timeout: 5000
   username: root
   password: 1234
-  host: localhost
+  host: 39.108.150.8
   port: 3306
 
 development:
   <<: *default
-  database: cup
+  database: meedesidy
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

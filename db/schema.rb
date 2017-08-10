@@ -14,8 +14,10 @@
 ActiveRecord::Schema.define(version: 20170606150132) do
 
   create_table "budgets", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",       limit: 255
+    t.integer  "status",     limit: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "cars", force: :cascade do |t|
@@ -110,9 +112,9 @@ ActiveRecord::Schema.define(version: 20170606150132) do
   create_table "gerens", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.integer  "seat_num",   limit: 4
+    t.integer  "status",     limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "status",     limit: 4,   default: 1
   end
 
   create_table "icons", force: :cascade do |t|
@@ -126,7 +128,7 @@ ActiveRecord::Schema.define(version: 20170606150132) do
   create_table "logs", force: :cascade do |t|
     t.integer  "log_type",   limit: 4
     t.integer  "operater",   limit: 4
-    t.integer  "status",     limit: 4,   default: 1
+    t.integer  "status",     limit: 4,   default: 0
     t.integer  "car_id",     limit: 4
     t.integer  "driver_id",  limit: 4
     t.integer  "company_id", limit: 4
@@ -141,10 +143,10 @@ ActiveRecord::Schema.define(version: 20170606150132) do
     t.string   "source",        limit: 255
     t.integer  "parent_id",     limit: 4
     t.integer  "resource_id",   limit: 4
+    t.integer  "resource_type", limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "status",        limit: 4
-    t.integer  "resource_type", limit: 4
     t.integer  "icon_id",       limit: 4
   end
 

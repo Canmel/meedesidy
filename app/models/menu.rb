@@ -15,6 +15,7 @@ class Menu < ActiveRecord::Base
 
   class << self
     def find_by_user(user_id, level, parent_id)
+      p "222222222222222222222" * 22
       user = User.find(user_id)
       roles = user.roles
       menus = []
