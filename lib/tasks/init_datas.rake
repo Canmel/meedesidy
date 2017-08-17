@@ -43,8 +43,7 @@ namespace :init_datas do
     Menu.create(name: '财务往来日志', status: :active, desc: '财务往来日志', resource_type: 2, parent_id: finance.id, source: '/finances')
     Menu.create(name: '退款申请管理', status: :active, desc: '退款申请管理', resource_type: 2, parent_id: finance.id, source: '/refunds')
 
-    Role.create(name: 'admin', status: :active, menu_ids: Menu.active.pluck(:id))
+    Role.create(name: 'admin', status: :active, menu_ids: Menu.active.pluck(:id), desc: '超级管理员')
     User.create(name: 'Meedesidy', password: 123123, status: :active, email: 'meedesidy@mee.cn', role_ids: Role.active.pluck(:id))
   end
 end
-

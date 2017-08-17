@@ -10,8 +10,9 @@ class User < ActiveRecord::Base
 
   enum status: { active: 1, archived: 0 }
 
-  validates :password, presence: true
-  # validates :name, presence: true, length: { maximum: 14 }
+  validates :password, length: 6..20, presence: true, on: :create
+  validates :email, presence: true, uniqueness: true
+  validates :name, presence: true, length: { maximum: 14 }, on: :update
   # validate :valid_user_roles
 
   # after_save 将回调函数包含在同一个事务中，那么要么全部成功，要么全部失败。回调函数中的抛出的异常会导致整个操作失败
@@ -29,7 +30,6 @@ class User < ActiveRecord::Base
   end
 
   def self.authenticate(email, password)
-    p "222222222222111111111111111111111"
     user = User.find_by_email(email)
     if user && user.active? && BCrypt::Engine.hash_secret(password, user.salt) == user.password_digest
       return user

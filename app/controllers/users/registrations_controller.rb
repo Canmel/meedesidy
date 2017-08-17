@@ -9,12 +9,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    p "22222"
-    p sign_up_params
     super
-    p resource.valid?
-    p resource
-
   end
 
   # GET /resource/edit

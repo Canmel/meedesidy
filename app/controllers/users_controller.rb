@@ -26,6 +26,9 @@ class UsersController < ApplicationController
   end
 
   def update
+    ooo = User.new(user_params)
+    p ooo.valid?
+    p ooo.errors
     if @user.update_without_password(user_params)
       require 'qiniu'
       require 'rqrcode_png'

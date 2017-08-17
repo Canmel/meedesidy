@@ -1,0 +1,11 @@
+web:
+  image: daocloud.io/meedesidy/meedesidy:master-ead185a
+  restart: always
+  ports:
+  - '22'
+  - '80'
+  volumes:
+  - /apps/fbms/rails_log:/rails_app/log
+  environment:
+  - VIRTUAL_HOST=www.meedesidy.top
+  - SECRET_KEY_BASE=eba45ab911c99c725ec3674b2677bb7c5947644c440acdd77e6a88445fc2d456fd69f1d89aa4ebfbb8b78faad97af84a77e0edfccc3b8d2ee46c1dcbb02aadaa
