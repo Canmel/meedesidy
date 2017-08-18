@@ -4,7 +4,7 @@ namespace :init_datas do
   end
 
   def init_menus
-    Icon.create(name: "图表", code: 'fa-bar-chart-o', status: 1)
+    report = Icon.create(name: "图表", code: 'fa-bar-chart-o', status: 1)
     laptop = Icon.create(name: "布局", code: 'fa-laptop', status: 1)
     Icon.create(name: "表格", code: 'fa-th', status: 1)
     Icon.create(name: "邮件", code: 'fa-envelope', status: 1)
@@ -45,5 +45,6 @@ namespace :init_datas do
 
     Role.create(name: 'admin', status: :active, menu_ids: Menu.active.pluck(:id), desc: '超级管理员')
     User.create(name: 'Meedesidy', password: 123123, status: :active, email: 'meedesidy@mee.cn', role_ids: Role.active.pluck(:id))
+    Menu.create(name: '流程信息管理', status: :active, desc: '流程信息管理', resource_type: 2, parent_id: sys.id, source: '/work_flows')
   end
 end
