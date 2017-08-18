@@ -23,13 +23,3 @@ development:
 test:
   <<: *default
   database: meedesidy
-
-production:
-  adapter: mysql2
-  pool: 5
-  timeout: 5000
-  username: root
-  password: 1234
-  host: db.meedesidy.top
-  port: 9906
-  database: meedesidy
